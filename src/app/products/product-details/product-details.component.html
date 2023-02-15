@@ -1,0 +1,245 @@
+<!-- Middle Contant  Section Start Here -->
+<!-- <div class="middle_contant_wrap clearfix" *ngIf="productDetailObj"> -->
+  <!-- Product Details Section Start Here -->
+  <div class="product_details_wrap" >
+      <section>
+                  <div class="product_zoom_wrapp">
+                      <div class="xzoom-container">
+                          <img class="xzoom" id="xzoom-default" [src]="productDetailObj?.images[0].image"
+                          xoriginal=""  #xOriginal/>
+                          <div class="menu-wrapper">
+                              <div class="xzoom-thumbs menu">
+                                  <a class="item" [href]="item.image" (mouseover)="selectImageHover(item)" *ngFor="let item of productDetailObj?.images"><img
+                                          class="xzoom-gallery" width="80" height="100" [ngClass]="{'xactive': item.id === selectedImage}"
+                                          [src]="item.image"
+                                          xpreview=""
+                                          #xPreview></a>
+                              </div>
+                              <div class="paddles">
+                                  <button class="left-paddle paddle hidden">
+                                      <i class="fa fa-angle-up" aria-hidden="true"></i>
+                                  </button>
+                                  <button class="right-paddle paddle" [ngClass]="{'hidden': productDetailObj?.images.length < 4}">
+                                      <i class="fa fa-angle-down" aria-hidden="true"></i>
+                                  </button>
+                              </div>
+                          </div>
+                      </div>
+
+                      <!-- https://res.cloudinary.com/techugonew/image/upload/v1594397254/jSiq460JYg5wz8JYzQGQ5GN4.jpg -->
+
+
+                      <!-- <div class="xzoom-container">
+                        <img class="xzoom" id="xzoom-default" src="assets/images/zoom_slider/01_b_car.jpg"
+                            xoriginal="assets/images/zoom_slider/01_b_car_main.jpg" />
+                        <div class="menu-wrapper">
+                            <div class="xzoom-thumbs menu">
+                                <a class="item" href="assets/images/zoom_slider/01_a_car_big.jpg"><img
+                                        class="xzoom-gallery" width="80" height="100"
+                                        src="assets/images/zoom_slider/01_a_car.jpg"
+                                        xpreview="assets/images/zoom_slider/01_a_car.jpg"
+                                        title="Description"></a>
+                                <a class="item" href="assets/images/zoom_slider/02_b_car_big.jpg"><img
+                                        class="xzoom-gallery" width="80" height="100"
+                                        src="assets/images/zoom_slider/02_b_car.jpg" title="Tital"></a>
+                                <a class="item" href="assets/images/zoom_slider/03_c_car_big.jpg"><img
+                                        class="xzoom-gallery" width="80" height="100"
+                                        src="assets/images/zoom_slider/03_c_car.jpg" title="Tital"></a>
+                                <a class="item" href="assets/images/zoom_slider/04_d_car_big.jpg"><img
+                                        class="xzoom-gallery" width="80" height="100"
+                                        src="assets/images/zoom_slider/04_d_car_big.jpg" title="Tital"></a>
+                            </div>
+                            <div class="paddles">
+                                <button class="left-paddle paddle hidden">
+                                    <i class="fa fa-angle-up" aria-hidden="true"></i>
+                                </button>
+                                <button class="right-paddle paddle">
+                                    <i class="fa fa-angle-down" aria-hidden="true"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div> -->
+
+
+
+                  </div>
+                  <!-- Product image responsive view start here -->
+                  <div class="mobile_slider_wrap">
+                      <div class="contain">
+                          <!-- <div class="product_slider owl-carousel owl-theme">
+                            <div class="item">
+                              <a class="mob_view_card" href="javascript:void(0);"><img
+                                 src="assets/images/zoom_slider/02_b_car_big.jpg" ></a>
+                            </div>
+                            <div class="item">
+                              <a class="mob_view_card" href="javascript:void(0);"><img
+                                src="assets/images/zoom_slider/03_c_car_big.jpg"></a>
+                            </div>
+                            <div class="item">
+                              <a class="mob_view_card" href="javascript:void(0);"><img
+                                    src="assets/images/zoom_slider/04_d_car_big.jpg"></a>
+                            </div>
+                           </div> -->
+
+                           <owl-carousel-o [options]="customOptions">
+                           <ng-container *ngFor="let slide of productDetailObj?.images">
+                              <ng-template carouselSlide [id]="slide.id">
+                                <!-- <img [src]="slide.src" [alt]="slide.alt" [title]="slide.title"> -->
+                                <div class="product_slider">
+                                  <div class="item">
+                                    <a class="mob_view_card" href="javascript:void(0);"><img
+                                       [lazyLoad]="slide.image" [defaultImage]="defaultImage" ></a>
+                                  </div>
+                                 </div>
+                              </ng-template>
+                            </ng-container>
+
+                          </owl-carousel-o>
+                        </div>
+                        <!-- <div class="add_cart_btn_wrap clearfix">
+                          <div class="add_to_cart_btn">
+                              <ng-container *ngIf="!productDetailObj?.Cart">
+                                <button (click)="submit('cart')" *ngIf="productDetailObj?.plive">Add to Cart <i class="fa fa-shopping-cart"
+                                  aria-hidden="true"></i></button>
+                              </ng-container>
+                              <ng-container *ngIf="productDetailObj?.Cart">
+                                <button routerLink="/cart">Go to Cart <i class="fa fa-shopping-cart"
+                                  aria-hidden="true"></i></button>
+                              </ng-container>
+                          </div>
+                          <div class="buy_btn">
+                            <button *ngIf="productDetailObj?.plive" (click)="submit('buy')">Buy <i class="fa fa-bolt" aria-hidden="true"></i></button>
+                            <button *ngIf="!productDetailObj?.plive" (click)="submit('enquire')">Enquire <i class="fa fa-commenting chat_inqry" aria-hidden="true"></i></button>
+                          </div>
+                      </div> -->
+                  </div>
+                  <!-- Product image responsive view End here -->
+
+                  <div class="product_details_wrapper">
+                      <h2>{{productDetailObj?.productName}}</h2>
+                       <p>By {{productDetailObj?.ArtisanName}}</p>
+                       <div class="desciption_wrap">
+                        <!-- <div class="desheading">Description</div> -->
+                        <p [innerHTML]="(formatDescription ? formatDescription : '-' | safeHtml) || '---'">
+
+                        </p>
+                        <!-- <span *ngIf="productDetailObj?.description.length > 300 && !showMore">...</span> -->
+                          <a href="javascript:;" *ngIf="productDetailObj?.description.length > 300 && !showMore"
+                            (click)="showMore=true; readMoreLogic()" class="readMore">Read more >></a>
+                          <a href="javascript:;" *ngIf="showMore" (click)="showMore=false; readMoreLogic()" class="readMore">Read less</a>
+                    </div>
+                    <span class="priceviewbx" *ngIf="productDetailObj?.plive">₹ {{productDetailObj?.amount}}</span>
+                      <div class="common_input_warp">
+                          <div [formGroup]="productQtyInputForm">
+                            <div class="form-group">
+                              <div class="star_mark_field">*</div>
+                              <input type="text" class="form-control" placeholder="Quantity" formControlName="qty"
+                              (keypress)="numberOnly($event)" maxlength="5">
+                              <div *ngIf="submitted && f.qty.errors" class="invalid">
+                                <div *ngIf="f.qty.errors.required">Quantity is required</div>
+                                <div *ngIf="!f.qty.errors.required && f.qty.errors.pattern">Quantity should be greater than 0</div>
+                             </div>
+                          </div>
+                          </div>
+                          </div>
+
+                      <div class="add_cart_btn_wrap clearfix">
+                        <div class="buy_btn">
+                          <button (click)="submit('buy'); sendEvent('Product_buy_now')" *ngIf="productDetailObj?.plive" [disabled]="productDetailObj?.Cart">BUY NOW <span class="buynonicon"></span></button>
+                          <button (click)="submit('enquire'); sendEvent('Product_enquire')" *ngIf="!productDetailObj?.plive">ENQUIRE <i class="fa fa-commenting chat_inqry" aria-hidden="true"></i></button>
+                      </div>
+                        <div class="add_to_cart_btn">
+                            <ng-container *ngIf="!productDetailObj?.Cart">
+                              <button (click)="submit('cart'); sendEvent('Product_add_to_cart', '')">ADD TO CART <i class="fa fa-shopping-cart"
+                                aria-hidden="true"></i></button>
+                        <!-- <button (click)="submit('cart')" *ngIf="!productDetailObj?.plive">Add to Cart <i class="fa fa-shopping-cart"
+                                aria-hidden="true"></i></button> -->
+                            </ng-container>
+                            <ng-container *ngIf="productDetailObj?.Cart">
+                              <button (click)="sendEvent('Product_go_to_cart')" routerLink="/cart">GO TO CART <i class="fa fa-shopping-cart"
+                                aria-hidden="true"></i></button>
+                            </ng-container>
+                        </div>
+
+                    </div>
+                  </div>
+
+      </section>
+
+  </div>
+  <!-- Product Details Section End Here -->
+<!-- </div> -->
+<!-- Middle Contant Section End Here -->
+
+
+<!-- Modal Section Start Here  -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog congrats_modal_wrap_width inquiry_warning_popup" role="document">
+    <div class="modal-content congrats_modal_wrap">
+      <div class="modal-body ">
+      <div class="modal_msg" *ngIf="productDetailObj">
+      <h2>Ok...let us help you here!</h2>
+      <!-- <p>The available quantity for this product is {{productDetailObj?.inventoryQty}} nos. If you want to order a higher quantity, add the product quantity to enquiry cart</p> -->
+      <p>The available quantity for this product is {{productDetailObj?.inventoryQty}} units. Looking
+        for a higher quantity?</p>
+      </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" (click)="gotoCart()">Continue</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="doableQty" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+  <div class="modal-dialog congrats_modal_wrap_width inquiry_warning_popup" role="document">
+    <div class="modal-content congrats_modal_wrap">
+      <div class="modal-body ">
+      <div class="modal_msg" *ngIf="productDetailObj">
+      <h2>Ok...let us help you here!</h2>
+      <!-- <p>The minimum order quantity for this product is {{productDetailObj?.doableQty}} nos.</p> -->
+      <p>The minimum quantity to be ordered for this product is {{productDetailObj?.doableQty}}
+        units. Please change the quantity to proceed.</p>
+      </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Continue</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="noLoggedIn" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog congrats_modal_wrap_width inquiry_warning_popup" role="document">
+    <div class="modal-content congrats_modal_wrap">
+      <div class="modal-body ">
+      <div class="modal_msg">
+      <h2>Please login first!!</h2>
+      <p>Please login to add products to cart, buy products or enquire non-live products.</p>
+      </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" (click)="gotoLogin()">Continue</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="emailNotVerified" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog congrats_modal_wrap_width inquiry_warning_popup" role="document">
+    <div class="modal-content congrats_modal_wrap">
+      <div class="modal-body ">
+        <div class="modal_msg">
+          <h2>Please Verfiy email !</h2>
+          <p>Please verify your email id before placing order or generating product enquiries. Please check your email
+            for verification.</p>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">OK</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Modal Section End Here  -->

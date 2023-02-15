@@ -1,0 +1,298 @@
+<div id="wrapper">
+    <!-- Hedar Section Start Here -->
+    <div class="header_wrap">
+      <div class="container">
+        <div id="nav-icon1"> <span></span> <span></span> <span></span> </div>
+          <nav class="navbar navbar-default navbar-fixed-top">
+              <div id="remove_label" class="dummy_contant_wrap">
+                  <h2>Subscribe to our newsletter to stay updated on all our offers.
+                    <a style="cursor: pointer;" (click)="subscribeNow()">Subscribe Now</a>
+                  </h2>
+                  <i style="cursor: pointer;" (click)="removeLabel()" class="fa fa-close"></i>
+              </div>
+            <div class="nav_header_wrap">
+                      <a class="navbar-brand" routerLink="/" (click)="clearSearchTerm()"> <img src="assets/images/lal10_logo.png" width="70" height="94" alt="lal10" /> </a>
+                  <div class="navbar-form navbar-left search_wrap">
+                      <div class="form-group">
+                          <!-- <input type="text" class="form-control" placeholder="Search for product and brands" [(ngModel)]="searchName" [formControl]="searchTerm" (keyup)="searchProduct($event)"
+                           [matAutocomplete]="auto">
+                          <i class="fa fa-search" aria-hidden="true"></i>
+                          <mat-autocomplete #auto >
+                            <mat-option *ngFor="let option of options" [value]="option.name" (click)="openSearchedProductDetail(option.id)">
+                              {{option.name}}
+                            </mat-option>
+                          </mat-autocomplete> -->
+                          <i class="fa fa-search" aria-hidden="true" (click)="searchProduct(faSearch)"></i>
+                          <div class="ng-autocomplete">
+                            <ng-autocomplete
+                              [data]="options"
+                              [searchKeyword]="keyword"
+                              (selected)='selectEvent($event)'
+                              (inputChanged)='onChangeSearch($event)'
+                              [itemTemplate]="itemTemplate"
+                              [debounceTime]="500"
+                              (keyup)="searchProduct($event)" #auto>
+                            </ng-autocomplete>
+
+                            <ng-template #itemTemplate let-item>
+                            <a [innerHTML]="item.name"></a>
+                            </ng-template>
+                            </div>
+
+                      </div>
+
+                  </div>
+
+            <!-- <button id="toggleNav" class="navbar-toggle" type="button" data-toggle="collapse" data-target=".js-navbar-collapse">
+                      <span class="sr-only">Toggle navigation</span>
+                      <span class="icon-bar"></span>
+                      <span class="icon-bar"></span>
+                      <span class="icon-bar"></span>
+             </button> -->
+             <div class="navbar-header nav_menu_top">
+              <ul class="nav navbar-nav navbar-right clearfix">
+                <li ><a style="cursor: pointer;" (click)="navigateto('Shop_click', '/products/liveshop')">
+                  <!-- <span class="letterhide">Live</span>  -->
+                  Shop</a></li>
+                <span class="sepdev"> | </span><li><a style="cursor: pointer;" (click)="checkLogin('/sendEnquiry')"><span class="letterhide">Send an</span> Enquiry</a></li><span class="sepdev">| </span>
+                <ng-container *ngIf="userinfo">
+                  <li><a style="cursor: pointer;" (click)="openCart()">
+                    <span class="cart_icon_wrap">
+                        <span class="cart_number_bx" *ngIf="totalItem">{{totalItem}}</span>
+                      <i class="fa fa-shopping-cart"
+                    aria-hidden="true"></i></span><span class="nonetext">Cart</span></a>
+                  </li>
+                </ng-container>
+                <ng-container *ngIf="userinfo; else elseTemplate">
+                    <!-- <li><a >{{userinfo.fullName}}</a></li>
+                    <li style="cursor: pointer;"><a (click)="logout()" >Logout</a></li> -->
+                    <span class="sepdev"> | </span> <li class="custom_drop"><a id="notify_drp" data-toggle="dropdown" aria-haspopup="true"
+                      aria-expanded="false" href="javascript:void(0);">
+                      <i class="fa fa-user userdesktop" aria-hidden="true"></i>
+                      <span class="nonetext">{{userinfo.firstName}}</span><i class="fa fa-angle-down down_top"
+                          aria-hidden="true"></i></a>
+
+                  <div class="logout_popup_wrap  dropdown-menu" aria-labelledby="notify_drp">
+                      <ul>
+                          <li><a style="cursor: pointer;" (click)="navigateto('My_Orders','/orders/order-list')">My Orders </a></li>
+                          <li><a style="cursor: pointer;" (click)="navigateto('My_enquiries','/orders/enquiry-list')">My Enquiries</a></li>
+                          <li><a style="cursor: pointer;" (click)="navigateto('My_Account','/account')">My Account </a></li>
+                          <li><a style="cursor: pointer;" (click)="navigateto('FAQs','/faqs')">FAQs</a></li>
+                          <li><a style="cursor: pointer;" (click)="logout()">Signout</a></li>
+                      </ul>
+                  </div>
+              </li>
+                </ng-container>
+                <ng-template #elseTemplate>
+                    <li ><a [routerLink]="[ '/user' ]">Sign In</a></li> <span class="sepdev"> | </span>
+                    <li><a [routerLink]="[ '/user/registration' ]">Sign Up</a></li>
+                </ng-template>
+            </ul>
+
+
+                </div>
+      <div class="collapse navbar-collapse js-navbar-collapse sub_menu_wrapper">
+                <div style="clear: both;"></div>
+                   <ul class="nav navbar-nav nav_menu_bottom ">
+                      <li class="dropdown mega-dropdown" *ngFor="let item of headerCategoryArr">
+                          <a (click)="clearSearchTerm('Home_category', item.title)" [routerLink]="['/products']" [queryParams]="{categoryId: item.id}" class="active dropdown-toggle" data-toggle="dropdown"><span > {{item.title}} </span> <i class="fa fa-angle-down" aria-hidden="true"></i></a>
+                          <ul class=" custom_drop_wrap dropdown-menu mega-dropdown-menu row">
+                                    <a style="width: 200px;display: none;" class="cd-dropdown-trigger" href="javascript:void(0);">Dropdown</a>
+                                    <nav  class="cd-dropdown active dropdown-is-active custom_nav_wrap">
+                                      <!-- <h2>Title</h2>
+                                      <a href="javascript:void(0);" class="cd-close">Close</a> -->
+                                      <ul class="cd-dropdown-content">
+                                          <li class="has-children" (mouseover)="onSubCategoryHover1(i, item.subcategory.length)" *ngFor="let subitem of item.subcategory; let i = index">
+                                              <a (click)="clearSearchTerm('Home_sub-category', subitem.title)" class="subCatDropdown{{i}}" href="javascript:void(0);"
+                                              [routerLink]="['/products']" [queryParams]="{categoryId: item.id, subCategoryId: subitem.id}"> {{subitem.title}}</a>
+
+                                              <ul class="cd-secondary-dropdown is-hidden subSubCatDropdown{{i}}">
+                                                  <li class="go-back"><a href="javascript:void(0);">Menu</a></li>
+
+                                          <li class="has-children" >
+                                                      <!-- <a href="javascript:void(0);">Home Essentials</a> -->
+                                                      <ul class="is-hidden smfonts">
+                                                          <!-- <li class="go-back"><a href="javascript:void(0);">{{subsubitem.title}}</a></li> -->
+                                                          <li *ngFor="let subsubitem of subitem.subsubcategory; let i=index">
+                                                            <a (click)="clearSearchTerm('Home_sub-sub-category', subsubitem.title)" [routerLink]="['/products']"
+                                                            [queryParams]="{categoryId: item.id, subCategoryId: subitem.id, subsubcategoryId: subsubitem.id}"
+                                                            *ngIf="i <= 5">{{subsubitem.title}}</a></li>
+                                                  </ul>
+                                                  </li>
+                                                  <li class="has-children" >
+                                                    <!-- Static Menu for breack Loop -->
+                                                    <ul class="is-hidden smfonts">
+                                                      <li *ngFor="let subsubitem of subitem.subsubcategory; let i=index">
+                                                        <a (click)="clearSearchTerm('Home_sub-sub-category', subsubitem.title)" [routerLink]="['/products']"
+                                                        [queryParams]="{categoryId: item.id, subCategoryId: subitem.id, subsubcategoryId: subsubitem.id}"
+                                                        *ngIf="i > 5 && i <= 11">{{subsubitem.title}}</a></li>
+                                                   </ul>
+
+                                                  </li>
+                                                  <li class="has-children" >
+                                                    <!-- Static Menu for breack Loop -->
+                                                    <ul class="is-hidden smfonts">
+                                                      <li *ngFor="let subsubitem of subitem.subsubcategory; let i=index">
+                                                        <a (click)="clearSearchTerm('Home_sub-sub-category', subsubitem.title)" [routerLink]="['/products']"
+                                                        [queryParams]="{categoryId: item.id, subCategoryId: subitem.id, subsubcategoryId: subsubitem.id}"
+                                                        *ngIf="i > 11 && i <= 17">{{subsubitem.title}}</a></li>
+                                                   </ul>
+                                                </li>
+                                                  <!-- <li class="has-children">
+                                                      <a href="javascript:void(0);">	Eco-Friendly</a>
+                                                      <ul class="is-hidden">
+                                                          <li class="go-back"><a href="javascript:void(0);">	Eco-Friendly</a></li>
+                                                         <li><a href="javascript:void(0);">Handmade</a></li>
+                                                          <li><a href="javascript:void(0);">Social Good</a></li>
+                                                          <li><a href="javascript:void(0);">Not on Amazon</a></li>
+
+                                                      </ul>
+                                                  </li> -->
+                                                  <!-- <li class="has-children">
+                                                      <a href="javascript:void(0);">Best Sellers</a>
+                                                      <ul class="is-hidden">
+                                                          <li class="go-back"><a href="javascript:void(0);">	Best Sellers</a></li>
+                                                           <li><a href="javascript:void(0);">International Best Sellers</a></li>
+                                                          <li><a href="javascript:void(0);">All Makers</a></li>
+
+                                                      </ul>
+                                                              </li> -->
+                                                   <li class="has-children product_id ">
+                                                      <!-- <a href="javascript:void(0);"></a> -->
+
+                                                      <ul class="is-hidden product_img_wrap ">
+                                                        <div class="product_img_wrap">
+                                                        <div class="product_image headerImg">
+                                                          <img [src]="item.image" width="250" height="200" >
+                                                        </div>
+                                                        <div class="product_image subcatImg">
+                                                          <img [src]="subitem.image" width="250" height="200" >
+                                                        </div>
+                                                        <div class="producd_heading"><p>{{item.title}}</p> </div>
+                                                    </div>
+                                                  </ul>
+                                                  </li>
+                                              </ul> <!-- .cd-secondary-dropdown -->
+                                          </li> <!-- .has-children -->
+                                      </ul> <!-- .cd-dropdown-content -->
+                                  </nav> <!-- .cd-dropdown -->
+                              </ul> <!-- .cd-dropdown -->
+
+
+                      </li>
+                      <!-- <li class="dropdown mega-dropdown">
+                          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Home Decor <i class="fa fa-angle-down" aria-hidden="true"></i></a>
+                      </li>
+                      <li class="dropdown mega-dropdown">
+                          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Accessories <i class="fa fa-angle-down" aria-hidden="true"></i></a>
+                      </li>
+                      <li class="dropdown mega-dropdown">
+                          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Kitchen <i class="fa fa-angle-down" aria-hidden="true"></i> </a>
+                      </li>
+                       <li class="dropdown mega-dropdown">
+                          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Woman's Apparel  <i class="fa fa-angle-down" aria-hidden="true"></i></a>
+                      </li>
+                         <li class="dropdown mega-dropdown">
+                          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Beauty <i class="fa fa-angle-down" aria-hidden="true"></i></a>
+                      </li>
+                             <li class="dropdown mega-dropdown">
+                          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Jewelry <i class="fa fa-angle-down" aria-hidden="true"></i></a>
+                      </li>
+                             <li class="dropdown mega-dropdown">
+                          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Stationary <i class="fa fa-angle-down" aria-hidden="true"></i></a>
+                      </li>
+                         <li class="dropdown mega-dropdown">
+                          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Kids & Baby <i class="fa fa-angle-down" aria-hidden="true"></i></a>
+                      </li>
+                         <li class="dropdown mega-dropdown">
+                          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Pets <i class="fa fa-angle-down" aria-hidden="true"></i></a>
+                      </li>
+                         <li class="dropdown mega-dropdown">
+                          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Men <i class="fa fa-angle-down" aria-hidden="true"></i></a>
+                      </li> -->
+                  </ul>
+              </div>
+
+
+
+           </div>
+
+          </nav>
+      </div>
+
+      <!--Mobile Menu Start Here-->
+      <div class="menuviewwrap">
+        <div class="lal10navlogo"> <img src="assets/images/lal10_logo.png" alt="Lal10 Logo" /></div>
+        <nav class="overlay">
+          <ul>
+            <li *ngFor="let item of headerCategoryArr"><a (click)="clearSearchTerm(); removeSidePanel('Home_category', item.title)" [routerLink]="['/products']" [queryParams]="{categoryId: item.id}"> {{item.title}}</a><span class="accordion fa fa-angle-right"></span>
+            <div class="servicemenuwrap">
+                <div class="menuwrap">
+                  <ul>
+                    <li *ngFor="let subitem of item.subcategory">
+                      <a (click)="removeSidePanel('Home_sub-category', subitem.title)" [routerLink]="['/products']"
+                      [queryParams]="{categoryId: item.id, subCategoryId: subitem.id}">{{subitem.title}}</a>
+                      <span class="fa fa-angle-right"data-toggle="collapse" attr.href="#sub_sub_menu1{{subitem.id}}"
+                      role="button" aria-expanded="false" aria-controls="collapseExample"></span>
+                    <div class="subcatemenu collapse" id="sub_sub_menu1{{subitem.id}}">
+                      <ul class="clearfix">
+                       <li *ngFor="let subsubitem of subitem.subsubcategory"><a (click)="removeSidePanel('Home_sub-sub-category', subsubitem.title)" [routerLink]="['/products']" [queryParams]="{categoryId: item.id, subCategoryId: subitem.id, subsubcategoryId: subsubitem.id}">{{subsubitem.title}}</a></li>
+                        <!-- <li><a href="javascript:void(0)"> Indian Fabrics</a></li>
+                        <li><a href="javascript:void(0)">Blockchain Development</a></li>
+                        <li><a href="javascript:void(0)"> Indian Fabrics</a></li> -->
+                      </ul>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              </li>
+            <!-- <li><a href="javascript:void(0);">Indian Fabrics</a><span class="accordion fa fa-angle-right"></span>
+              <div class="servicemenuwrap">
+                <div class="menuwrap">
+                  <ul>
+                    <li><a href="javascript:void(0)">Apparels</a>
+                      <div class="subcatemenu">
+                        <ul class="clearfix">
+                         <li><a href="javascript:void(0)">Apparels</a></li>
+                          <li><a href="javascript:void(0)"> Indian Fabrics</a></li>
+                          <li><a href="javascript:void(0)">Blockchain Development</a></li>
+                          <li><a href="javascript:void(0)"> Indian Fabrics</a></li>
+                        </ul>
+                        </div>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </li> -->
+          </ul>
+        </nav>
+      </div>
+       <!--Mobile Menu End Here-->
+
+  </div>
+  <!-- Hedar Section End Here -->
+</div>
+
+<!-- <script>
+    $('#remove_label').click( function() {
+        $(this) .hide();
+    $(".middle_contant_wrap").addClass("add_height");
+} );
+</script> -->
+
+<div class="modal fade" id="noLoggedIn2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog congrats_modal_wrap_width inquiry_warning_popup" role="document">
+    <div class="modal-content congrats_modal_wrap">
+      <div class="modal-body ">
+      <div class="modal_msg">
+      <h2>Please login first!!</h2>
+      <p>Please login to add products to cart, buy products or enquire non-live products.</p>
+      </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" data-dismiss="modal" class="btn btn-primary" [routerLink]="['/user/login']">Continue</button>
+      </div>
+    </div>
+  </div>
+</div>

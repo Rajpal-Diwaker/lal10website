@@ -1,0 +1,13 @@
+
+.validation_wrap_icon{
+    position: absolute;
+    right:10px;
+    top: 16px;
+}
+.validation_wrap_icon span i{
+    font-size: 22px;
+    color:red;
+}
+.validation_wrap_icon span i.fa-check{
+    color:green;
+}

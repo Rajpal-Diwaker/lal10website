@@ -1,0 +1,418 @@
+<!--Payment Method Section Start Here -->
+<div class="my_profile_add_wrap">
+    <section>
+        <div class="row flecs_wrap">
+            <div class="col-md-3 col-xs-12 col-sm-12">
+                <div class="left_card_option_wrap">
+                    <div class="profile_user_data clearfix">
+                        <div class="user_image_warp">
+                            <div class="user_image">
+                                <img [src]="userinfo.profileImage" alt="">
+                            </div>
+                            <label for="profile_img">Change Photo</label>
+                            <input id="profile_img" type="file" style="display: none;" (change)="onImageSelect($event)" accept="image/*">
+                        </div>
+                        <div class="user_contant_warp">
+                            <p>Hello,</p>
+                            <h2>{{userinfo.firstName}} {{userinfo.lastName}}</h2>
+                        </div>
+                    </div>
+                    <ul class="nav nav-tabs">
+                        <li [ngClass]="{'active': selectedCase === 'profile'}"><a style="cursor: pointer;" (click)="selectedCase='profile'"><span
+                                    class="icons_img my_profile"></span> My Profile</a></li>
+                        <!-- <li [ngClass]="{'active': selectedCase === 'card'}"><a  (click)="selectedCase='card'"><span class="icons_img my_card"></span> Saved
+                                Cards</a></li> -->
+                        <li [ngClass]="{'active': selectedCase === 'address'}"><a style="cursor: pointer;" (click)="selectedCase='address'"><span
+                                    class="icons_img my_address"></span>Manage Addresses</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-9 col-xs-12 col-sm-12 flecs_card">
+                <div class="profile_tab_data_wrap">
+                    <div class="tab-content" [ngSwitch]="selectedCase">
+
+                      <app-address *ngSwitchCase="'address'" [selectedOption]="selectedCase"></app-address>
+                      <app-cards *ngSwitchCase="'card'" [selectedOption]="selectedCase"></app-cards>
+                      <app-profile *ngSwitchDefault [selectedOption]="selectedCase"></app-profile>
+
+                        <!-- <div id="menu1" class="tab-pane fade in active">
+                            <div class="profile_data_wrap">
+                                <div class="row">
+                                    <div class="col-md-10">
+                                        <div class="profile_heading">
+                                            <h2>Personal Details </h2> <span>Edit</span>
+                                        </div>
+                                        <div class="common_input_warp">
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label for="">First Name</label>
+                                                        <input type="text" class="form-control"
+                                                            placeholder="First Name" value="">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label for="">Last Name</label>
+                                                        <input type="text" class="form-control"
+                                                            placeholder="Last Name" value="">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label for="">Email ID</label>
+                                                        <input type="email" class="form-control"
+                                                            placeholder="Email" value="">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label for="">Phone Number</label>
+                                                        <input type="text" class="form-control"
+                                                            placeholder="Phone Number" value="">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2"></div>
+                                </div>
+                            </div>
+                            <div class="profile_data_wrap">
+                                <div class="row">
+                                    <div class="col-md-10">
+                                        <div class="profile_heading">
+                                            <h2>Business Details</h2> <span>Cancel</span>
+                                        </div>
+                                        <div class="common_input_warp">
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label for="">Store Name</label>
+                                                        <input type="text" class="form-control"
+                                                            placeholder="Store Name" value="">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label for="">Reseller ID</label>
+                                                        <input type="text" class="form-control"
+                                                            placeholder="Reseller ID" value="">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <div class="profile_save_btn">
+                                            <button>Save</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="profile_data_wrap profile_data_wrap_none">
+                                <div class="row">
+                                    <div class="col-md-10">
+                                        <div class="profile_heading">
+                                            <h2>Password</h2> <span>Change</span>
+                                        </div>
+                                        <div class="common_input_warp">
+                                            <div class="row">
+                                                <div class="col-md-6 ">
+                                                    <div class="form-group">
+                                                        <label for="">Old Password</label>
+                                                        <input type="password" class="form-control"
+                                                            placeholder="Old Password" value="">
+                                                        <i class="fa fa-eye" aria-hidden="true"></i>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 clearfix">
+                                                    <div class="form-group">
+                                                        <label for="">New Password</label>
+                                                        <input type="password" class="form-control"
+                                                            placeholder="New Password" value="">
+                                                        <i class="fa fa-eye" aria-hidden="true"></i>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label for="">Confirm Password</label>
+                                                        <input type="password" class="form-control"
+                                                            placeholder="Confirm Password" value="">
+                                                        <i class="fa fa-eye" aria-hidden="true"></i>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2"></div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div id="menu2" class="tab-pane fade">
+                            <div class="profile_data_wrap profile_data_wrap_none ">
+                                <div class="row">
+                                    <div class="col-md-12 col-lg-10">
+                                        <div class="profile_heading">
+                                            <h2>Manage Saved Cards</h2>
+                                        </div>
+                                        <div class="add_new_address_card save_card_wrap">
+                                            <p>Add A New Card</p>
+                                            <div class="common_input_warp">
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <input type="text" class="form-control"
+                                                                placeholder="Enter card Number" value="">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <div class="expairy_details clearfix">
+                                                                <span>Valid Thru</span>
+                                                                <div class="select_wrapper_wrap clearfix">
+                                                            <div class="select_wrapper ">
+                                                                  <select class="form-control" name="" id="">
+                                                                    <option value="">MM</option>
+                                                                    <option value="">JAN</option>
+                                                                        <option value="">FAB</option>
+                                                                         <option value="">MAR</option>
+                                                                        <option value="">APR</option>
+                                                                        <option value="">JUN</option>
+                                                                        <option value="">JUL</option>
+                                                                         <option value="">AUG</option>
+                                                                        <option value="">SEP</option>
+                                                                        <option value="">OCT</option>
+                                                                        <option value="">NOV</option>
+                                                                       <option value="">DEC</option>
+                                                                </select>
+                                                            </div>
+                                                                <div class="select_wrapper">
+                                                                    <select class="form-control" name="" id="">
+                                                                        <option value="">YYYY</option>
+                                                                        <option value="">2015</option>
+                                                                        <option value="">2016</option>
+                                                                         <option value="">2017</option>
+                                                                        <option value="">2018</option>
+                                                                        <option value="">2019</option>
+                                                                        <option value="">2020</option>
+                                                                         <option value="">2021</option>
+                                                                        <option value="">2022</option>
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <input type="text" class="form-control"
+                                                                placeholder="Name on Card" value="">
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <input type="text" class="form-control"
+                                                                placeholder="Bank Name" value="">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-12">
+                                                        <div class="card_content">
+                                    <p>Your card details would be securely saved for faster payments. Your CVV will not be stored</p>
+                                                        </div>
+                                                        <div class="save_btn_wrap">
+                                                            <button>SAVE THIS CARD</button>
+                                                            <label for=""> Cancel</label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                             </div>
+                                        </div>
+                                        <div class="saved_card_details_warp">
+                                            <div class="add_new_card_wrap">
+                                                <img src="assets/images/add_card_icon.png" alt="">
+                                                <h2>Add New Card</h2>
+                                            </div>
+                                            <div class="old_card_details_wrap">
+                                                <div class="card_delete_wrap">
+                                                    <img src="assets/images/delete_icons.png" alt="">
+                                                </div>
+                                                <div class="old_card_wrap">
+                                                    <h2>HDFC Bank Credit Card</h2>
+                                                    <div class="card_no_wrap">
+                                                        <img src="assets/images/visha_card_img.png" alt="">
+                                                        <span>5155 **** **** 8455</span>
+                                                    </div>
+                                                    <p>Expires on: 05/25</p>
+                                                </div>
+                                            </div>
+                                            <div class="old_card_details_wrap">
+                                                <div class="card_delete_wrap">
+                                                    <img src="assets/images/delete_icons.png" alt="">
+                                                </div>
+                                                <div class="old_card_wrap">
+                                                    <h2>ICICI Bank Debit Card</h2>
+                                                    <div class="card_no_wrap">
+                                                        <img src="assets/images/visha_card_img.png" alt="">
+                                                        <span>4900 **** **** 0192</span>
+                                                    </div>
+                                                    <p>Expires on: 10/27</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="menu3" class="tab-pane fade">
+                            <div class="add_new_address_wrap">
+                                <h2>Manage Addresses</h2>
+                                <div class="add_new_address_card">
+                                    <h2>ADD A NEW ADDRESS</h2>
+                                    <div class="location_btn_wrap">
+                                        <h2>Use my current Location</h2>
+                                        <img src="assets/images/current_loaction.png" alt="">
+                                    </div>
+                                    <div class="common_input_warp">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <input type="text" class="form-control"
+                                                        placeholder="Full Name" value="">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <input type="text" class="form-control"
+                                                        placeholder="10 Digit Mobile Number" value="">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <input type="text" class="form-control"
+                                                        placeholder="Address Line 1" value="">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <input type="text" class="form-control"
+                                                        placeholder="Street/Appartment" value="">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <div class="select_wrapper">
+                                                        <select class="form-control" name="" id="">
+                                                            <option value="">Country</option>
+                                                            <option value="">India</option>
+                                                            <option value="">USA</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <div class="select_wrapper">
+                                                        <select class="form-control" name="" id="">
+                                                            <option value="">State</option>
+                                                            <option value="">Delhi</option>
+                                                            <option value="">UP</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <div class="select_wrapper">
+                                                        <select class="form-control" name="" id="">
+                                                            <option value="">City</option>
+                                                            <option value="">Delhi</option>
+                                                            <option value="">Noida</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <input type="text" class="form-control"
+                                                        placeholder="Postal Code" value="">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                              <label for="">Address Type</label>
+                                              <div class="address_type_wrap">
+                                                <div class="select_radio_wrap">
+                                                    <input type="radio" name="value" id="my-check1" checked/>
+                                                    <label for="my-check1">Home</label>
+                                                  </div>
+                                                  <div class="select_radio_wrap">
+                                                    <input type="radio" name="value" id="my-check2" />
+                                                    <label for="my-check2">Work</label>
+                                                  </div>
+                                                  <div class="select_radio_wrap">
+                                                    <input type="radio" name="value" id="my-check3" />
+                                                    <label for="my-check3">Other</label>
+                                                  </div>
+                                            </div>
+
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <div class="save_btn_wrap">
+                                                    <button>Save</button>
+                                                    <label for=""> Cancel</label>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="complete_addresses">
+                                 <ul>
+                                     <li>
+                                        <div class="edit_del_wrap">
+                                            <span>Edit</span> <span>Delete</span>
+                                        </div>
+                                        <div class="address_label">
+                                            <p>Home</p>
+                                        </div>
+                                        <div class="address_content_wrap">
+                                            <h2>John Doe</h2>
+                                            <p>52 /ashok Bhavan, st Street, Avanashi Road</p>
+                                            <span>Tamil Nadu,641018</span>
+                                            <span>India</span>
+                                        </div>
+                                     </li>
+                                     <li>
+                                         <div class="edit_del_wrap">
+                                             <span>Edit</span> <span>Delete</span>
+                                         </div>
+                                        <div class="address_label">
+                                            <p>Office</p>
+                                        </div>
+                                        <div class="address_content_wrap">
+                                            <h2>John Doe</h2>
+                                            <p>52 /ashok Bhavan, st Street, Avanashi Road</p>
+                                            <span>Tamil Nadu,641018</span>
+                                            <span>India</span>
+                                        </div>
+                                     </li>
+                                      </ul>
+                                </div>
+                            </div>
+                        </div> -->
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+</div>
+<!-- Payment Method Section End Here -->

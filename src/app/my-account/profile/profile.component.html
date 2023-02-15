@@ -1,0 +1,196 @@
+<div id="menu1" class="tab-pane fade " [ngClass]="{'in active': selectedOption==='profile'}">
+  <div class="profile_data_wrap">
+      <div class="row ">
+          <div class="col-md-12 ">
+              <div class="profile_heading">
+                  <h2>Personal Details </h2>
+                  <ng-container *ngIf="!editingProfile">
+                    <span (click)="enableProfileEditing(); sendEvent('Edit_personal')">Edit</span>
+                  </ng-container>
+                  <ng-container *ngIf="editingProfile">
+                    <span (click)="cancelProfileEditing(); sendEvent('personal_cancel')">Cancel</span>
+                  </ng-container>
+              </div>
+              <div class="common_input_warp noEdit" [ngClass]="{'edit': editingProfile}">
+                  <div [formGroup]="editProfileForm">
+                      <div class="row">
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <div class="star_mark_field" *ngIf="editingProfile">*</div>
+                              <!-- <label for="">First Name</label> -->
+                              <input type="text" class="form-control"
+                                  placeholder="First Name" formControlName="firstName" #firstNameEle>
+                                  <ng-container *ngIf="submittedProfile && p.firstName.errors">
+                                    <div class="error" *ngIf="p.firstName.errors.required">First name is required</div>
+                                  </ng-container>
+                          </div>
+                      </div>
+                      <div class="col-md-6">
+                          <div class="form-group">
+                            <div class="star_mark_field" *ngIf="editingProfile">*</div>
+                              <!-- <label for="">Last Name</label> -->
+                              <input type="text" class="form-control"
+                                  placeholder="Last Name" formControlName="lastName">
+                                  <ng-container *ngIf="submittedProfile && p.lastName.errors">
+                                    <div class="error" *ngIf="p.lastName.errors.required">Last name is required</div>
+                                  </ng-container>
+                          </div>
+                      </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-6">
+                          <div class="form-group">
+                              <!-- <label for="">Email ID</label> -->
+                              <input type="email" class="form-control strictNoEdit"
+                                  placeholder="Email" formControlName="email">
+                                  <ng-container *ngIf="submittedProfile && p.email.errors">
+                                    <div class="error" *ngIf="p.email.errors.required">Email is required</div>
+                                  </ng-container>
+                          </div>
+                      </div>
+                      <div class="col-md-6">
+                          <div class="form-group">
+                              <!-- <label for="">Phone Number</label> -->
+                              <input type="text" class="form-control strictNoEdit"
+                                  placeholder="Phone Number" formControlName="mobile">
+                                  <!-- <ng-container *ngIf="submittedProfile && p.mobile.errors">
+                                    <div class="error" *ngIf="p.mobile.errors.required">Phone is required</div>
+                                  </ng-container> -->
+                          </div>
+                      </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+          <div class="col-md-12">
+            <ng-container *ngIf="editingProfile">
+              <div class="profile_save_btn">
+                <button (click)="submitProfile()">Save</button>
+            </div>
+            </ng-container>
+          </div>
+      </div>
+  </div>
+  <div class="profile_data_wrap">
+      <div class="row">
+          <div class="col-md-12">
+              <div class="profile_heading">
+                  <h2>Business Details</h2>
+                  <ng-container *ngIf="!editingBusiness">
+                    <span (click)="enableBusinessEditing(); sendEvent('Edit_business')">Edit</span>
+                  </ng-container>
+                  <ng-container *ngIf="editingBusiness">
+                    <span (click)="cancelBusinessEditing(); sendEvent('business_cancel')">Cancel</span>
+                  </ng-container>
+              </div>
+              <div class="common_input_warp noEdit" [ngClass]="{'edit': editingBusiness}">
+                  <div [formGroup]="editBusinessForm" class="row">
+                      <div class="col-md-6">
+                          <div class="form-group">
+                            <div class="star_mark_field" *ngIf="editingBusiness">*</div>
+                              <!-- <label for="">Store Name</label> -->
+                              <input type="text" class="form-control"
+                                  placeholder="Store Name" formControlName="storeName" #storeNameEle>
+                                  <ng-container *ngIf="submittedBusiness && b.storeName.errors">
+                                    <div class="error" *ngIf="b.storeName.errors.required">Store name is required</div>
+                                  </ng-container>
+                          </div>
+                      </div>
+                      <div class="col-md-6">
+                          <!-- <div class="form-group">
+                              <label for="">Reseller ID</label>
+                              <input type="text" class="form-control"
+                                  placeholder="Reseller ID" value="">
+                          </div> -->
+                      </div>
+                  </div>
+              </div>
+          </div>
+          <div class="col-md-12">
+              <div class="profile_save_btn">
+                  <ng-container *ngIf="editingBusiness">
+                  <button (click)="submitBusiness()">Save</button>
+                  </ng-container>
+              </div>
+          </div>
+      </div>
+  </div>
+  <div class="profile_data_wrap profile_data_wrap_none">
+      <div class="row">
+          <div class="col-md-12">
+              <div class="profile_heading">
+                  <h2>Password</h2>
+                  <ng-container *ngIf="!editingPassword">
+                    <span (click)="setEditPasswordFormField(); editingPassword=true; sendEvent('Edit_password')">Change</span>
+                  </ng-container>
+                  <ng-container *ngIf="editingPassword">
+                    <span (click)="editingPassword=false; sendEvent('password_cancel')">Cancel</span>
+                  </ng-container>
+              </div>
+              <div class="common_input_warp">
+                  <ng-container *ngIf="editingPassword">
+                    <div [formGroup]="editPasswordForm" class="row">
+                      <div class="col-md-6 ">
+                          <div class="form-group">
+                            <div class="star_mark_field" *ngIf="editingPassword">*</div>
+                              <!-- <label for="">Old Password</label> -->
+                              <input [type]="oldPasswordType ? 'text' : 'password'" class="form-control"
+                                  placeholder="Old Password" formControlName="oldPassword">
+                                  <i class="fa" [ngClass]="{
+                                    'fa-eye-slash': !oldPasswordType,
+                                    'fa-eye': oldPasswordType
+                                  }" (click)="toggleFieldTextType(1)" aria-hidden="true"></i>
+                              <ng-container *ngIf="submittedPassword && pass.oldPassword.errors">
+                                <div class="error" *ngIf="pass.oldPassword.errors.required">Old password is required</div>
+                              </ng-container>
+                          </div>
+                      </div>
+                      <div class="col-md-6 clearfix">
+                          <div class="form-group">
+                            <div class="star_mark_field" *ngIf="editingPassword">*</div>
+                              <!-- <label for="">New Password</label> -->
+                              <input [type]="newPasswordType ? 'text' : 'password'" class="form-control"
+                                  placeholder="New Password" formControlName="newPassword" [maxLength]="20">
+                                  <i class="fa" [ngClass]="{
+                                    'fa-eye-slash': !newPasswordType,
+                                    'fa-eye': newPasswordType
+                                  }" (click)="toggleFieldTextType(2)" aria-hidden="true"></i>
+                              <ng-container *ngIf="submittedPassword && pass.newPassword.errors">
+                                <div class="error" *ngIf="pass.newPassword.errors.required">New password is required</div>
+                                <div class="error" *ngIf="!pass.newPassword.errors.required && pass.newPassword.errors.minlength">
+                                  Minimum length is {{ pass.newPassword.errors.minlength.requiredLength }}
+                                </div>
+                              </ng-container>
+                          </div>
+                      </div>
+                      <div class="col-md-6">
+                          <div class="form-group">
+                            <div class="star_mark_field" *ngIf="editingPassword">*</div>
+                              <!-- <label for="">Confirm Password</label> -->
+                              <input [type]="confirmPassowrdType ? 'text' : 'password'" class="form-control"
+                                  placeholder="Confirm Password" formControlName="confirmNewPassword">
+                                  <i class="fa" [ngClass]="{
+                                    'fa-eye-slash': !confirmPassowrdType,
+                                    'fa-eye': confirmPassowrdType
+                                  }" (click)="toggleFieldTextType(3)" aria-hidden="true"></i>
+                              <ng-container *ngIf="submittedPassword && pass.confirmNewPassword.errors">
+                                <div class="error" *ngIf="pass.confirmNewPassword.errors.required">Confirm password required</div>
+                              </ng-container>
+                              <ng-container *ngIf="pass.confirmNewPassword.errors">
+                                <div class="error" *ngIf="!pass.confirmNewPassword.errors.required && pass.confirmNewPassword.errors.mustMatch">Passwords do not match</div>
+                              </ng-container>
+                          </div>
+                      </div>
+                  </div>
+                  </ng-container>
+              </div>
+          </div>
+          <div class="col-md-12">
+            <ng-container *ngIf="editingPassword">
+              <div class="common_btn">  <button (click)="submitPassword()">Save</button> </div>
+            </ng-container>
+          </div>
+      </div>
+  </div>
+
+</div>

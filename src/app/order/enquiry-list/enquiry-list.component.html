@@ -1,0 +1,70 @@
+<!--My Enquiry Section Start Here -->
+<div class="my_cart_wrap">
+  <section>
+      <div class="row">
+          <div class="col-md-12 col-lg-12 col-sm-12">
+              <div class="my_orders_wrap">
+
+               <ul class="myorderslistingwrap">
+                 <li *ngFor="let item of enquiryListArr">
+                  <div class="product_card clearfix">
+                      <div class="product_image">
+                          <img [defaultImage]="defaultImage" [lazyLoad]="item.image">
+                      </div>
+                  <div class="product_contant_wrap inqrycontcardwrap">
+                      <div class="order_details_wrap">
+                          <div class="row">
+                              <div class="col-sm-6">
+                                  <span class="enqbdr"></span>
+                                  <div class="place_order ">
+                                      <p>Enquiry Placed on : <span>{{item.created_at | date}}</span></p>
+                                   </div>
+                              </div>
+                               <div class="col-sm-6">
+                                  <div class="place_order">
+                                      <p class="place_odr_id">Order ID #<Span> {{item.uniqueId}}</Span></p>
+                                       </div>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="inqrycontwrap responsivebtn">
+                      <h2>{{item.title}}</h2>
+                      <div class="row">
+                          <div class="col-md-8 col-sm-6 col-lg-6">
+                              <div class="row clearsview">
+                            <div class="col-sm-12 col-md-6 right_no_padding"><h5><span> Quantity : </span> {{item.qty}} PCS</h5></div>
+                            <div class="col-sm-12 col-md-6 right_no_padding"> <h5><span>Exp. Price : </span> ₹ {{item.expPrice ? item.expPrice : 0}}</h5></div>
+                        </div>
+                        <div class="inqey_discription_wrap">
+                            <!-- <p>Description</p> -->
+                            <p class="desciption_card_cont">{{item.description}}</p>
+                        </div> </div>
+                          <div class="col-md-4 col-lg-6 padding_left">
+                            <div class="track_pkge_btn">
+                                <button (click)="sendEvent('My_enquiries_track_enquiry')" [routerLink]="['../track/' + item.id + '/enq']">Track Enquiry</button>
+                                <button (click)="sendEvent('My_enquiries_enquire_again')" class="right_btn" [routerLink]="['../../products/detail']" [queryParams]="{productId: item.productId}">Enquire Again</button>
+                                  </div> </div>
+                      </div>
+
+
+                </div>
+              </div>
+                     </div>
+                 </li>
+
+             </ul>
+
+              </div>
+              </div>
+         <div class="col-md-12  col-lg-3 col-sm-12">
+
+         </div>
+
+      </div>
+      <ng-container *ngIf="enquiryListArr && enquiryListArr.length === 0">
+        <div class="noData">No enquiries yet !!</div>
+      </ng-container>
+  </section>
+
+</div>
+<!-- My Enquiry Section End Here -->

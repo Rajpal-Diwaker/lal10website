@@ -1,0 +1,71 @@
+.inquiry_warning_popup .congrats_modal_wrap .modal-footer button {
+  font-size: 18px;
+  height: 55px;
+  width: 100px;
+  border-radius: 8px;
+  display: block;
+  margin: 5px auto;
+}
+agm-map {
+  height: 800px;
+}
+.show {
+  overflow: visible;
+  height: auto !important;
+}
+.showMore {
+  text-align: right;
+  padding: 0px 25px 25px 25px;
+  background-color: #fff;
+}
+.showMore span{
+  font-size: 18px;
+  cursor: pointer;
+  padding: 8px 0px;
+  color: #873F3F;
+  border-radius: 5px;
+  font-weight: bold;
+  border: 1px solid transparent;
+  background-color: transparent;
+  display: inline-block;
+  transition: .3s ease-in-out;
+}
+.showMore span:hover{
+  color: #873F3F;
+  background-color: #fff;
+}
+.onboarding_slider_wrap .owl-carousel.owl-drag .owl-item{
+   width: 100% !important;
+}
+.shop_category_wrap{
+  cursor: pointer;
+}
+@media only screen and (max-width: 1439px) {
+  .showMore span{
+    font-size: 16px;
+  }
+  .showMore {
+    padding: 0px 25px 20px 25px;
+  }
+  }
+
+  @media only screen and (max-width: 767px) {
+    .showMor{
+      padding-top: 0;
+    }
+    .showMore span{
+      font-size: 14px;
+    }
+    }
+
+@media only screen and (max-width: 767px) {
+.showMor{
+  padding-top: 0;
+}
+}
+
+@media only screen and (max-width: 400px) {
+.brand_for_mobile .news_feed_image{
+  width: 70px;
+}
+}

@@ -1,0 +1,26 @@
+<!-- About us Section Start Here -->
+<div class="about_wrap privacy_policy_wrap" *ngIf="aboutUsObj">
+  <h2>{{aboutUsObj.title}}</h2>
+  <div class="post">
+  <p [innerHTML]="aboutUsObj.description | nl2br">
+      <!-- {{aboutUsObj.description  | nl2br}} -->
+  </p>
+  <!-- <div class="our_team_wrap">
+      <h2>Our Team</h2>
+      <div class="teamdetailscardwrap clearfix">
+          <div class="teamdetailscard" *ngFor="let item of teamArr">
+              <div class="team_card_wrap">
+                  <div class="team_member_image">
+                      <img [defaultImage]="defaultImage" [lazyLoad]="item.image? item.image : defaultImage" />
+                  </div>
+                  <div class="design_header">
+                    <span class="design_title"> {{item.name}}</span>
+                    <span class="design_titleline">{{item.designation}}</span>
+                </div>
+              </div>
+          </div>
+      </div>
+  </div> -->
+  </div>
+</div>
+<!-- About us  Section End Here -->

@@ -1,0 +1,318 @@
+/* .invaildClass {
+    text-align: left!important;
+    margin-top: 5px!important;
+    color: red!important;
+}
+.common_input_warp .form-group{
+    margin-bottom: 35px;
+}
+.customer_wrapper .select_product_wrapper.customers label {
+    font-weight: normal;
+    background-color:  transparent !important;
+    display: block;
+    margin: 0 5px;
+    margin-bottom: 40px !important;
+}
+.select_product_wrapper.customers label .card-input .card_wrap{
+    border-radius: 0;
+}
+.impcustomers{
+    max-width: 1060px;
+    margin: auto;
+}
+.select_product_wrapper label .card-input .card_wrap h2{
+    margin: 0;
+    padding: 15px 0;
+}
+.select_product_wrapper.customers label .card-input .card_wrap h2{
+    margin: 0;
+    padding: 15px 0;
+    height: 60px;
+}
+.panel{
+    margin-bottom: 0;
+}
+.impcustomers .select_product_wrapper.customers label .card-input .card_wrap{
+    height: 300px;
+}
+.impcustomers .select_product_wrapper.customers label .card-input .card_wrap > img {
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    max-width: 100%;
+    max-height: 100%;
+    -o-object-fit: cover;
+    object-fit: cover;
+    -o-object-position: center center;
+    object-position: center center;
+}
+.impcustomers .select_product_wrapper.customers label .card-input h2 {
+    font-family: GothamSSmMedium;
+    font-size: 16px;
+    margin: 0px;
+    padding: 15px 0;
+    color: #414040;
+    background-color: #fff;
+}
+.impcustomers .select_product_wrapper label .card-input-element:checked + .card-input h2{
+    background-color: #ECECEC;
+}
+.select_product_wrapper.customerscare label .card-input .card_wrap {
+  height: 200px;
+}
+.select_product_wrapper.customerscare label{
+    width:100%;
+    padding: 10px;
+    margin-bottom: 20px !important;
+}
+.select_product_wrapper.customerscare label:hover{
+    background-color: #ECECEC;
+    border-radius: 0;
+}
+.select_product_wrapper label.customerscare .card-input .card_wrap > img {
+    width: 200px;
+}
+.selectprdctwrap{
+    padding: 0 400px;
+    height: 280px;
+    overflow-y: auto;
+}
+@media only screen and (max-width: 1700px) {
+    .selectprdctwrap{
+        padding: 0 350px;
+    }
+}
+@media only screen and (max-width: 1700px) {
+    .selectprdctwrap{
+        padding: 0 300px;
+    }
+}
+
+@media only screen and (max-width: 1600px) {
+.impcustomers .select_product_wrapper.customers label .card-input .card_wrap{
+    height: 260px;
+}
+.selectprdctwrap{
+    padding: 0 300px;
+}
+}
+@media only screen and (max-width: 1500px) {
+    .selectprdctwrap{
+        padding: 0 250px;
+    }
+    }
+@media only screen and (max-width: 1400px) {
+.impcustomers .select_product_wrapper.customers label .card-input .card_wrap{
+    height: 240px;
+}
+.selectprdctwrap{
+    padding: 0 150px;
+}
+}
+@media only screen and (max-width: 1200px) {
+    .selectprdctwrap{
+        padding: 0 0px;
+    }
+}
+
+@media only screen and (max-width: 1023px) {
+.impcustomers .select_product_wrapper.customers label .card-input .card_wrap{
+    height: 200px;
+}
+.select_product_wrapper.customers label .card-input {
+    height: 200px;
+}
+}
+@media only screen and (max-width: 767px) {
+.impcustomers .select_product_wrapper.customers label .card-input .card_wrap{
+    height: 160px;
+}
+.customer_wrapper .select_product_wrapper.customers label {
+    margin: 0px;
+    margin-bottom: 30px !important;
+}
+.impcustomers .select_product_wrapper.customers label .card-input h2,.select_product_wrapper label .card-input .card_wrap h2{
+    font-size: 14px;
+}
+.select_product_wrapper label .card-input .card_wrap p{
+    font-size: 13px;
+}
+.select_product_wrapper label.customerscare .card-input .card_wrap > img {
+    width: 180px;
+}
+.select_product_wrapper.customers label .card-input .card_wrap h2{
+    margin: 0;
+    padding: 10px 0;
+    height: auto;
+}
+
+} */
+
+
+
+
+
+
+/* new css */
+
+
+.invaildClass {
+  text-align: left!important;
+  margin-top: 5px!important;
+  color: red!important;
+  }
+  .common_input_warp .form-group{
+  margin-bottom: 35px;
+  }
+  .customer_wrapper .select_product_wrapper.customers label {
+  font-weight: normal;
+  background-color: transparent !important;
+  display: block;
+  margin: 0 5px;
+  margin-bottom: 20px !important;
+  }
+  .select_product_wrapper.customers label .card-input .card_wrap{
+  border-radius: 0;
+  }
+  .impcustomers{
+  max-width: 1060px;
+  margin: auto;
+  }
+  .select_product_wrapper label .card-input .card_wrap h2{
+  margin: 0;
+  padding: 15px 0;
+  }
+  .select_product_wrapper.customers label .card-input .card_wrap h2{
+  margin: 0;
+  padding: 15px 0;
+  height: 60px;
+  }
+  .panel{
+  margin-bottom: 0;
+  }
+  .impcustomers .select_product_wrapper.customers label .card-input .card_wrap{
+  height: 300px;
+  }
+  .impcustomers .select_product_wrapper.customers label .card-input .card_wrap > img {
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  max-width: 100%;
+  max-height: 100%;
+  -o-object-fit: cover;
+  object-fit: cover;
+  -o-object-position: center center;
+  object-position: center center;
+  }
+  .impcustomers .select_product_wrapper.customers label .card-input h2 {
+  font-family: GothamSSmMedium;
+  font-size: 16px;
+  margin: 0px;
+  padding: 15px 0;
+  color: #414040;
+  background-color: #fff;
+  }
+  .impcustomers .select_product_wrapper label .card-input-element:checked + .card-input h2{
+  background-color: #ECECEC;
+  }
+  .select_product_wrapper.customerscare{
+    height: 220px;
+    }
+  .select_product_wrapper.customerscare label .card-input .card_wrap {
+  height: 200px;
+  }
+  .select_product_wrapper.customerscare label{
+  width:100%;
+  padding: 10px;
+  margin-bottom: 10px !important;
+  }
+  .select_product_wrapper.customerscare label:hover, .select_product_wrapper.customers label .card-input .card_wrap:focus{
+  background-color: #ECECEC;
+  border-radius: 0;
+  overflow: hidden;
+  }
+  .select_product_wrapper.customers label .card-input .card_wrap {
+  padding: 35px 20px;
+  height: 280px;
+  }
+  .select_product_wrapper label.customerscare .card-input .card_wrap > img {
+  width: 200px;
+  height: 160px;
+  }
+  .selectprdctwrap{
+  padding: 0 0px;
+  margin: 0 300px;
+  height: 350px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  }
+  @media only screen and (max-width: 1700px) {
+  .selectprdctwrap{
+  margin: 0 350px;
+  }
+  }
+  @media only screen and (max-width: 1600px) {
+  .impcustomers .select_product_wrapper.customers label .card-input .card_wrap{
+  height: 260px;
+  }
+  }
+  @media only screen and (max-width: 1500px) {
+  .selectprdctwrap{
+  margin: 0 250px;
+  }
+  }
+  @media only screen and (max-width: 1400px) {
+  .impcustomers .select_product_wrapper.customers label .card-input .card_wrap{
+  height: 240px;
+  }
+  .selectprdctwrap{
+  margin: 0 150px;
+  }
+  }
+  @media only screen and (max-width: 1200px) {
+  .selectprdctwrap{
+  margin: 0 0px;
+  }
+  }
+  @media only screen and (max-width: 1023px) {
+  .impcustomers .select_product_wrapper.customers label .card-input .card_wrap{
+  height: 200px;
+  }
+  .select_product_wrapper.customers label .card-input {
+  height: 200px;
+  }
+  }
+  @media only screen and (max-width: 767px) {
+  .impcustomers .select_product_wrapper.customers label .card-input .card_wrap{
+  height: 160px;
+  }
+  .customer_wrapper .select_product_wrapper.customers label {
+  margin: 0px;
+  margin-bottom: 30px !important;
+  }
+  .impcustomers .select_product_wrapper.customers label .card-input h2,.select_product_wrapper label .card-input .card_wrap h2{
+  font-size: 14px;
+  }
+  .select_product_wrapper label .card-input .card_wrap p{
+  font-size: 13px;
+  }
+  .select_product_wrapper label.customerscare .card-input .card_wrap > img {
+  width: 180px;
+  }
+  .select_product_wrapper.customers label .card-input .card_wrap h2{
+  margin: 0;
+  padding: 10px 0;
+  height: auto;
+  }
+  .select_product_wrapper.customers label .card-input .card_wrap {
+  padding: 20px 20px;
+  height: 280px;
+  }
+
+  }

@@ -1,0 +1,11 @@
+.invalid {
+  color: red;
+}
+button[disabled], html input[disabled] {
+  cursor: not-allowed;
+}
+.readMore {
+  font-size: 14px;
+  color: #873f3f;
+  font-weight: bold;
+}

@@ -1,0 +1,883 @@
+<!-- <div class="registration_wrap">
+  <div class="registration_form">
+  <button  class=" button btn btn-primary" data-toggle="modal" data-target="#onboarding">Onboarding</button>
+  </div>
+</div> -->
+<div class="header_slider_wrap slide_head">
+  <!-- <div class="header_slide_wrap"> -->
+    <owl-carousel-o [options]="customOptions">
+      <ng-container *ngFor="let slide of imageSliderArr">
+        <ng-template carouselSlide [id]="slide.id">
+          <div class="item">
+            <div
+              class="slider_card"
+              [ngStyle]="{'background': 'url(' + slide.link + ') no-repeat;'}"
+               [lazyLoad]="slide.link"
+            >
+              <div class="property_loaction_rw line animated bounceInLeft">
+                <div class="container custom_cantainer">
+                  <div class="bantxtdet">
+                    <div class="loaction_head">
+                     <h2> {{slide.title}} </h2>
+                      <p [innerHTML]="slide.description | nl2br"></p>
+                    </div>
+                    <div *ngIf="!userinfo" class="smhead">
+                      <button (click)="navigateToRegistration()">
+                        SIGN UP AS RETAILER
+                      </button>
+                      <div class="clrbtnm"></div>
+                      <button>Download Seller App</button>
+                    </div>
+                    <a *ngIf="!userinfo" [routerLink]="['/user/login']"
+                      >Already on Lal10? Sign In</a
+                    >
+                  </div>
+                </div>
+              </div>
+              <div class="overbanview"></div>
+            </div>
+          </div>
+        </ng-template>
+      </ng-container>
+      <!-- <ng-template carouselSlide>
+        <div class="item">
+          <div
+            class="slider_card"
+            style="background: url(assets/images/home_banner.png) no-repeat"
+          >
+            <div class="property_loaction_rw line animated bounceInLeft">
+              <div class="container custom_cantainer">
+                <div class="bantxtdet">
+                  <div class="loaction_head">
+                    Lorem Ipsum Is <br />
+                    Simply Dummy Text
+                  </div>
+                  <div *ngIf="!userinfo" class="smhead">
+                    <button (click)="navigateToRegistration()">
+                      SIGN UP AS RETAILER
+                    </button>
+                    <button>Apply as a Maker</button>
+                  </div>
+                  <a *ngIf="!userinfo" [routerLink]="['/user/login']"
+                    >Already on lal10 ? Sign In</a
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </ng-template>
+      <ng-template carouselSlide>
+        <div class="item">
+          <div
+            class="slider_card"
+            style="background: url(assets/images/home_banner.png) no-repeat"
+          >
+            <div class="property_loaction_rw line animated bounceInLeft">
+              <div class="container custom_cantainer">
+                <div class="bantxtdet">
+                  <div class="loaction_head">
+                    Lorem Ipsum Is <br />
+                    Simply Dummy Text
+                  </div>
+                  <div *ngIf="!userinfo" class="smhead">
+                    <button (click)="navigateToRegistration()">
+                      SIGN UP AS RETAILER
+                    </button>
+                    <button>Apply as a Maker</button>
+                  </div>
+                  <a *ngIf="!userinfo" [routerLink]="['/user/login']"
+                    >Already on lal10 ? Sign In</a
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </ng-template> -->
+
+      <!-- <ng-container *ngFor="let slide of imageSliderArr">
+        <ng-template carouselSlide [id]="slide.id">
+          <div class="item">
+            <div class="slider_card" [ngStyle]="{'background': 'url(' + slide.link + ') no-repeat;'}">
+              <img class="slider_card" [src]="slide.link" [alt]="slide.alt" [title]="slide.title">
+                <div class="property_loaction_rw line animated bounceInLeft">
+                    <div class="container custom_cantainer">
+                        <div class="bantxtdet">
+                            <div class="loaction_head">
+                                {{slide.title}} <br />
+                                {{slide.name}}
+                            </div>
+                            <div *ngIf="!userinfo" class="smhead"> <button (click)="navigateToRegistration()">SIGN UP AS RETAILER</button> <button>Apply as a
+                                    Maker</button></div>
+                            <a *ngIf="!userinfo" href="javascript:void(0);">Already on lal10 ? Sign In</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </ng-template>
+      </ng-container> -->
+    </owl-carousel-o>
+  <!-- </div> -->
+</div>
+<!--Slider End Here-->
+<!-- <div class="section_wrap"> -->
+  <!-- Delivery Section Start Here -->
+  <div class="container">
+  <div class="price_card_wrap" infiniteScroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="50" (scrolled)="openBottom()">
+     <h2>Access India’s best craft products on Lal10
+    </h2>
+    <div class="container_custom">
+        <div class="row rowmn5d clearfix">
+            <div class="col-xs-4 rowpd5d ">
+                <div class="price_card">
+                    <img src="assets/images/supply.png" width="197" height="184" alt="Supply">
+                    <p>Transparent sourcing and easy checkouts</p>
+                </div>
+            </div>
+            <div class="col-xs-4 rowpd5d ">
+              <div class="price_card">
+                  <img src="assets/images/brand.png" width="197" height="184" alt="Supply Chain">
+                  <p>Simple and agile supply chain</p>
+
+              </div>
+          </div>
+                <div class="col-xs-4 rowpd5d ">
+                <div class="price_card">
+                    <img src="assets/images/chekout.png" width="197" height="184" alt="Curated Product">
+                    <p>Curated product portfolio to suit your brand</p>
+                </div>
+            </div>
+                 </div>
+    </div>
+     </div>
+    <!-- <div class="seprator_div"></div> -->
+</div>
+  <!-- Delivery Section End Here  -->
+  <!-- Shop by Category Section Start Here -->
+
+  <ng-container *ngIf="show">
+    <div id="sticky-anchor"></div>
+    <div class="container">
+  <div class="shop_category_card_wrap">
+    <h2>Shop by Category</h2>
+       <div class="row rowmn5d clearfix">
+        <div class="next_best_seller_slider_wrap">
+          <owl-carousel-o class="bestCategoriesview" [options]="bestCategories" (dragging)="isDragging = $event.dragging">
+            <ng-container *ngFor="let slide of bestsellingCategoriesArr">
+              <ng-template carouselSlide>
+                  <ng-container *ngFor="let item of slide; let i = index">
+                    <div class="item" *ngIf="i % 2 === 0">
+                      <div class="shop_category_wrap" (click)="sendEvent('Home_category_card', item.title)">
+                              <div class="category_img">
+                                  <img [defaultImage]="defaultImage" [lazyLoad]="item.image"
+                                  [owlRouterLink]="['/products']" [queryParams]="{categoryId: item.id}" [stopLink]="isDragging">
+                              </div>
+                              <div class="craft_cat_cont">
+                                  <p>{{item.title}}</p>
+                              </div>
+                      </div>
+                  </div>
+                  <div class="item" *ngIf="i % 2 !== 0">
+                    <div class="shop_category_wrap">
+                            <div class="category_img">
+                                <img [defaultImage]="defaultImage" [lazyLoad]="item.image"
+                                [owlRouterLink]="['/products']" [queryParams]="{categoryId: item.id}" [stopLink]="isDragging">
+                            </div>
+                            <div class="craft_cat_cont">
+                                <p>{{item.title}}</p>
+                            </div>
+                    </div>
+                </div>
+                  </ng-container>
+              </ng-template>
+            </ng-container>
+          </owl-carousel-o>
+    </div>
+      </div>
+    </div>
+    <!-- <div class="seprator_div"></div> -->
+  </div>
+  <!-- Shop by Category Section End Here  -->
+  <!-- Exhibition banner Section Start Here -->
+  <div class="exibition_banner_wrap">
+    <div class="container">
+    <div class="eqWrap equalHMWrap" *ngFor="let item of exhibitionArr">
+         <div class="exibition_card_left">
+            <img [defaultImage]="defaultBanner" [lazyLoad]="item.link" />
+       </div>
+      <div class="exibition_card_right">
+           <div class="exibiton_content">
+            <h2>{{item.title}}</h2>
+            <h6>{{item?.subtitle}}</h6>
+            <p>
+              {{item.description}}
+            </p>
+            <button (click)="exhibitionId=item.id; sendEvent('Exhibition_register', ''); openRegisterForm()"><span>Register</span></button>
+          </div>
+         </div>
+         </div>
+    </div>
+  </div>
+<!-- </div> -->
+<!--  Exhibition banner Section End Here -->
+<!-- Find your next best seller Section Start Here -->
+<div class="shop_category_card_wrap find_next_best_heading">
+  <h2 *ngIf="bestsellingProductsArr && bestsellingProductsArr.length">Find your next best seller</h2>
+  <div class="find_next_best_seller_wrap clearfix">
+    <div class="container">
+    <div class="next_best_seller_slider_wrap">
+        <owl-carousel-o class="bestsellerview" [options]="bestSelling" (dragging)="isDragging = $event.dragging">
+          <ng-container *ngFor="let slide of bestsellingProductsArr">
+            <ng-template carouselSlide>
+                <ng-container *ngFor="let item of slide; let i = index">
+                  <div class="item" *ngIf="i % 2 === 0">
+                    <div class="seller_card">
+                        <div class="seller_details" (click)="sendEvent('Home_best_seller', item.name)">
+                            <div class="category_img">
+                                <img [defaultImage]="defaultImage" [lazyLoad]="item.image"
+                                [owlRouterLink]="['products/detail']" [queryParams]="{productId: item.id}" [stopLink]="isDragging">
+                            </div>
+                            <div class="sale_item_name">
+                                <p>{{item.name}}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="item" *ngIf="i % 2 !== 0">
+                  <div class="seller_card">
+                      <div class="seller_details" (click)="sendEvent('Home_best_seller', item.name)">
+                          <div class="category_img">
+                              <img [defaultImage]="defaultImage" [lazyLoad]="item.image"
+                              [owlRouterLink]="['products/detail']" [queryParams]="{productId: item.id}" [stopLink]="isDragging">
+                          </div>
+                          <div class="sale_item_name">
+                              <p>{{item.name}}</p>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+                </ng-container>
+            </ng-template>
+          </ng-container>
+        </owl-carousel-o>
+
+
+   </div>
+  </div>
+    <!-- <div class="seller_card" *ngFor="let item of bestsellingProductsArr">
+      <div class="category_img" [routerLink]="['products/detail']" [queryParams]="{productId: item.id}">
+        <img [defaultImage]="defaultImage" [lazyLoad]="item.image ? item.image : defaultImage" alt="" />
+      </div>
+      <p>{{item.name}}</p>
+      <span> ₹ {{item.amount}}</span>
+    </div> -->
+    <!-- <div class="seprator_div tenm"></div> -->
+  </div>
+</div>
+<!-- Find your next best seller Section End Here -->
+<!-- Manufacturing Section End Here -->
+<div class="menufecturing_wrap">
+  <div class="container">
+  <div class="row eqWrap equalHMWrap" *ngIf="worldManufacturingArr && worldManufacturingArr.length">
+    <div class="col-sm-12">
+      <div class="menufectiring_contant">
+        <h2>Global Creative Sourcing</h2>
+        <p>
+          We enable sourcing for global retail brands by
+          connecting them to reliable manufacturers,
+          powered by a robust supply chain.
+        </p>
+      </div>
+      <div class="user_count_wrap">
+        <div class="row">
+          <div class="col-xs-6 col-sm-6 col-md-3 no_padding">
+            <div class="count_usr">
+              <h2><span class="counter-2">{{worldManufacturingArr[0].totalCountries}}</span></h2>
+              <span>Countries Exported</span>
+            </div>
+          </div>
+          <div class="col-xs-6 col-sm-6 col-md-3 no_padding">
+            <div class="count_usr">
+              <h2><span class="counter-2">{{worldManufacturingArr[0].insdustry}}</span><span>+</span></h2>
+              <span>Retailers Served</span>
+            </div>
+          </div>
+          <div class="col-xs-6 col-sm-6 col-md-3 no_padding">
+            <div class="count_usr">
+              <h2><span class="counter-2">{{worldManufacturingArr[0].totalProject}}</span><span>+</span></h2>
+              <span> Global Projects</span>
+            </div>
+          </div>
+          <div class="col-xs-6 col-sm-6 col-md-3 no_padding">
+            <div class="count_usr">
+              <h2><span class="counter-2">{{worldManufacturingArr[0].totalClients}}</span></h2>
+              <span> Large Retailers</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- <div class="col-sm-7 col-md-6">
+      <div class="mapping_img_wrap">
+        <agm-map [latitude]="lat" [longitude]="lng" [zoom]="zoom" [disableDefaultUI]="false" [streetViewControl]="false">
+          <div *ngFor="let item of worldMapArr">
+            <agm-marker [latitude]="item.lat ? item.lat : 0" [longitude]="item.lng ? item.lng : 0">
+              <agm-info-window>
+                {{item.placeName}}
+              </agm-info-window>
+            </agm-marker>
+          </div>
+        </agm-map>
+      </div>
+    </div> -->
+    <!-- <div class="col-sm-6">
+      <div class="mapping_img_wrap">
+          <img [src]="worldManufacturingArr[0].image" alt="">
+          <video autoplay loop>
+            <source src="assets/images/lal10-glob.mp4" type="video/mp4">
+            <source src="assets/images/lal10-glob.ogg" type="video/ogg">
+          Your browser does not support the video tag.
+          </video>
+      </div>
+  </div> -->
+  </div>
+</div>
+</div>
+<!-- Manufacturing Section End Here -->
+<!-- Brands That Section Start Here -->
+<div class="brand_that_wrap">
+  <div class="container">
+  <div class="map_wrap">
+    <h2>Brands that Trust Lal10</h2>
+    <div class="user_count_wrap">
+      <div class="row brand_for_mobile clearfix">
+        <!-- <div class="heightcol"></div>
+        <div class="wdbottom"></div> -->
+        <div class="next_best_seller_slider_wrap">
+          <owl-carousel-o [options]="brands" class="barndsview">
+            <ng-container *ngFor="let slide of brandsArr">
+              <ng-template carouselSlide>
+                  <!-- <ng-container *ngFor="let item of slide"> -->
+                    <div class="item">
+                      <div class="brand_icom_wrap border_left border_left_dyn">
+                            <img [defaultImage]="defaultImage" [lazyLoad]="slide.logo">
+                      </div>
+                  </div>
+                  <!-- <div class="item" *ngIf="i % 2 !== 0">
+                    <div class="brand_icom_wrap border_left border_left_dyn">
+                        <img [defaultImage]="defaultImage" [lazyLoad]="item.logo">
+                    </div>
+                </div> -->
+                  <!-- </ng-container> -->
+              </ng-template>
+            </ng-container>
+          </owl-carousel-o>
+    </div>
+
+
+
+        <!-- <div class="brand_icom_wrap border_left" [ngClass]="{'border_left_dyn': i === 0 || i === 5 || i === 10 || i === 15 || i === 20  }" *ngFor="let item of brandsArr; let i = index">
+          <img [defaultImage]="defaultImage" [lazyLoad]="item.logo ? item.logo : defaultImage" alt="" />
+          <ng-container *ngIf="i > 4">
+            <div class="row user_divder_brand"></div>
+          </ng-container>
+        </div> -->
+      </div>
+      <!-- <div class="brand_for_mobile">
+        <owl-carousel-o [options]="brands">
+          <ng-container *ngFor="let slide of brandsArr">
+            <ng-template carouselSlide >
+              <div class="item">
+                <div class="news_feed_card">
+                  <div class="news_feed_image">
+                    <img [defaultImage]="defaultImage" [lazyLoad]="slide.logo ? slide.logo : defaultImage" alt="" />
+                  </div>
+                </div>
+              </div>
+            </ng-template>
+          </ng-container>
+        </owl-carousel-o>
+      </div> -->
+    </div>
+   </div>
+  </div>
+   <!-- <div class="seprator_div"></div> -->
+</div>
+
+
+
+<!-- Brands That Section End Here -->
+<!-- Manufacturing Section End Here -->
+<div class="menufecturing_wrap menufecturing_wrap_india">
+  <div class="container">
+  <div class="row eqWrap equalHMWrap" *ngIf="servicingIndiaArr">
+    <!-- <div class="col-sm-7 col-md-6">
+      <div class="mapping_img_wrap">
+        <agm-map [latitude]="28.5169834" [longitude]="77.2580442" [zoom]="10" [disableDefaultUI]="false" [streetViewControl]="false">
+          <div *ngFor="let item of indiaMapArr">
+            <agm-marker [latitude]="item.lat ? item.lat : 0" [longitude]="item.lng ? item.lng : 0">
+              <agm-info-window>
+                {{item.placeName}}
+              </agm-info-window>
+            </agm-marker>
+          </div>
+        </agm-map>
+      </div>
+    </div> -->
+    <div class="col-sm-12">
+      <div class="menufectiring_contant">
+        <h2>Empowering Indian SMEs</h2>
+        <p>
+          Providing a unified platform for the Indian Small and
+          Medium-Scale Enterprises by creating access to global
+          business opportunities.
+        </p>
+      </div>
+      <div class="user_count_wrap">
+        <div class="row">
+          <div class="col-xs-6 col-sm-6 col-md-3 no_padding">
+            <div class="count_usr">
+              <h2><span class="counter-2">{{servicingIndiaArr[0]?.totalArtisan}}</span><span>+</span></h2>
+              <span>Rural SMEs</span>
+            </div>
+          </div>
+          <div class="col-xs-6 col-sm-6 col-md-3 no_padding">
+            <div class="count_usr">
+              <h2><span class="counter-2">{{servicingIndiaArr[0]?.totalProducts}}</span></h2>
+              <span>Product Categories</span>
+            </div>
+          </div>
+          <div class="col-xs-6 col-sm-6 col-md-3 no_padding">
+            <div class="count_usr">
+              <h2><span class="counter-2">{{servicingIndiaArr[0]?.unitsDelivered}}</span><span>+</span></h2>
+              <span>Digitised Inventory</span>
+            </div>
+          </div>
+          <div class="col-xs-6 col-sm-6 col-md-3 no_padding">
+            <div class="count_usr">
+              <h2><span class="counter-2">{{servicingIndiaArr[0]?.totalCountries}}</span></h2>
+              <span> Indian States</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- <div class="col-sm-6">
+      <div class="mapping_img_wrap">
+          <img [src]="servicingIndiaArr[0].image ? servicingIndiaArr[0].image : defaultImage" alt="">
+          <video autoplay loop>
+            <source src="assets/images/indian-office.mp4" type="video/mp4">
+            <source src="assets/images/indian-office.ogg" type="video/ogg">
+          Your browser does not support the video tag.
+          </video>
+      </div>
+  </div> -->
+  </div>
+</div>
+  <!-- Manufacturing Section End Here -->
+</div>
+
+<!-- Custom slider Section Start Here -->
+<div class="custom_slider_wrap" id="avenueCust">
+  <h2>Success Stories</h2>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="slider_wrap_circle">
+        <main class="page">
+          <div class="container">
+            <!-- <div class="circle-carousel" data-speed="2000" data-autoplay="250000"> -->
+            <div
+              class="circle-carousel"
+              data-speed="2000"
+              data-autoplay="250000"
+            >
+              <div class="slides">
+                <div class="slide" *ngFor="let item of avenueArr; let i = index">
+                  <div class="slider_heading_wrap">
+                    <div class="row">
+                      <div class="col-md-12 avanue_heading">
+                        <div class="slide_count_wrap">
+                          <!-- <span class="big_slide_count">0{{i+1}}</span> -->
+                          <h2>0{{i+1}}</h2>
+                        </div>
+                        <h5>{{item.title}}</h5>
+                        <h6>{{item.subtitle}}</h6>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-12">
+                        <p>
+                          <!-- {{item.description}} -->
+                          {{(item.description.length > 400) ? item.description.substr(0, 400) + '&hellip;' : item.description}}
+                          <!-- <span (click)="openNews(item.url)"> See more story >></span> -->
+
+                        </p>
+                      </div>
+
+                      <!-- <div class="col-md-12"> <div class="full_story_btn"><p (click)="openNews(item.url)">See {{item.name}}’s story >></p></div></div> -->
+                    </div>
+                    <!-- <div class="nextprev_wrap">
+                      <div class="next">
+                        <i class="fa fa-angle-right" aria-hidden="true"></i>
+                      </div>
+                      <div class="prev">
+                        <i class="fa fa-angle-left" aria-hidden="true"></i>
+                      </div>
+                    </div> -->
+                  </div>
+
+                </div>
+              </div>
+              <div class="img_slider_wrap">
+                <div class="pagination">
+                  <div class="item" *ngFor="let item of avenueArr">
+                    <div class="dot">
+                      <img
+                        [defaultImage]="defaultImage" [lazyLoad]="item.image ? item.image : defaultImage"
+                        alt=""
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="nextprev_wrap">
+                <div class="next" (click)="handleAvenueNavigation()">
+                  <i class="fa fa-angle-right" aria-hidden="true"></i>
+                </div>
+                <div class="prev" (click)="handleAvenueNavigation()">
+                  <i class="fa fa-angle-left" aria-hidden="true"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+        </main>
+      </div>
+    </div>
+
+</div>
+  <!-- <div class="seprator_div"></div> -->
+</div>
+<!-- Custom slider Section End Here  -->
+
+<!-- News Feed Section End Here -->
+<div class="container">
+<div class="news_feed_wrap" id="newsScroll">
+  <h2>Newsfeed</h2>
+
+  <div class="news_feed_slider">
+    <owl-carousel-o class="newsfeedview" [options]="newsFeedOptions">
+      <ng-container *ngFor="let slide of newsfeedArr">
+        <ng-template carouselSlide >
+          <div class="item">
+            <div class="news_feed_card">
+              <div class="news_feed_image">
+                <img [defaultImage]="defaultImage" [lazyLoad]="slide.image ? slide.image : defaultImage" alt="" />
+              </div>
+              <div class="news_feed_contant containerKK" [class.show]="slide.visible">
+                <h6>{{slide.title}}</h6>
+                <p>
+                  <!-- {{slide.description}} -->
+                  {{(slide.description.length > 210) ? slide.description.substr(0, 209) + '&hellip;' : slide.description}}
+                </p>
+                <ng-container *ngIf="slide.showBtn">
+                  <!-- <span class="showMore" (click)="slide.visible = !slide.visible">{{ slide.visible ? 'Show less': 'Show more..' }}</span> -->
+                </ng-container>
+              </div>
+              <div class="showMore"><span (click)="openNews(slide.url)">Read more >></span></div>
+            </div>
+          </div>
+        </ng-template>
+      </ng-container>
+    </owl-carousel-o>
+  </div>
+  </div>
+  <!-- <div class="seprator_div tenm"></div> -->
+</div>
+<!-- News Feed Section End Here -->
+<!-- Customer Feedback Section Start Here -->
+<div class="container">
+<div class="customer_feedbackwrap" id="custFeed">
+  <h2>Customer Feedback</h2>
+
+    <div class="feeback_slider_wrap">
+      <owl-carousel-o [options]="customerFeedbackOptions">
+        <ng-container *ngFor="let slide of customerFeedbackArr">
+          <ng-template carouselSlide >
+            <div class="item">
+              <div class="feedback_card">
+                <!-- <div class="quets_mark">
+                  <i class="fa fa-quote-left" aria-hidden="true"></i>
+                </div> -->
+                <div class="user_name_img eqWrap equalHMWrap clearfix">
+
+                  <div class="feedbk_user_image">
+                    <img [defaultImage]="defaultImage" [lazyLoad]="slide.image ? slide.image : defaultImage" alt="" />
+                  </div>
+                  <div class="customer_name ">
+                    <p>
+                     {{slide.customerName}}
+                    <!-- <span>{{(slide.customerName.length > 35) ? slide.customerName.substr(0, 35) + '&hellip;' : slide.customerName}}</span> -->
+                  </p>
+                 </div>
+
+              </div>
+                <div class="customer_contant">
+                  <p>
+                    {{slide.feedback}}
+                    <!-- {{(slide.feedback.length > 115) ? slide.feedback.substr(0, 115) + '&hellip;' : slide.feedback}} -->
+                  </p>
+                  <!-- <div class="showMore"><span (click)="openNews(slide.url)">Read more..</span></div> -->
+                </div>
+                <p *ngIf="slide.title">{{ slide.title}}</p>
+                <!-- <p *ngIf="slide.title">{{(slide.title.length > 17) ? slide.title.substr(0, 17) + '&hellip;' : slide.title}}</p> -->
+                <!-- <p *ngIf="!slide.title">Mr. X, Fashion Designer</p> -->
+              </div>
+            </div>
+          </ng-template>
+        </ng-container>
+
+      </owl-carousel-o>
+    </div>
+  </div>
+    <!-- <div class="seprator_div"></div> -->
+</div>
+<!-- Customer Feedback Section End Here -->
+<!-- Serving Sectors like Section Start Here -->
+<div class="serviving_section_wrap">
+  <h2>Serving Sectors Like</h2>
+  <div class="serving_slider_wrap">
+    <div class="row eqWrap equalHMWrap clearfix">
+      <div class="col-sm-6 col-md-3" *ngFor="let item of serviceSectorArr">
+        <div class="serviving_card">
+          <div class="serviving_contant">
+               <div class="serving_wrap_heading">
+            <h2>{{item.industryName}}</h2>
+          </div>
+            <p class="industry_content">
+              {{item.description}}
+            </p>
+          </div>
+        </div>
+      </div>
+      <div>
+    </div>
+    </div>
+  </div>
+</div>
+<div id="subscribeNow"></div>
+<!-- Serving Sectors like Section End Here -->
+  </ng-container>
+
+<!--Onboarding Modal Section Start Here  -->
+<div
+  class="modal fade"
+  id="onboarding"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog onboarding_modal_wrap_width" role="document">
+    <div class="modal-content onboarding_modal_wrap">
+      <div
+        type="button"
+        class="close_btn"
+        data-dismiss="modal"
+        aria-label="Close"
+      >
+        <i class="fa fa-times" aria-hidden="true"></i>
+      </div>
+      <div class="modal-body clearfix">
+        <div class="onboarding_left_sec">
+          <div class="onboarding_slider_wrap">
+
+            <!-- <owl-carousel-o [options]="onboardingPopup">
+      <ng-container *ngFor="let slide of onboardingPopupArr">
+        <ng-template carouselSlide >
+          <div class="onboarding_slider_card">
+            <img [src]="slide.image" >
+          </div>
+        </ng-template>
+      </ng-container>
+    </owl-carousel-o> -->
+
+    <div id="myCarousel" class="carousel slide" data-ride="carousel">
+      <div class="carousel-inner">
+       <div class="item " [ngClass]="{'active': i === 0}" *ngFor="let item of onboardingPopupArr; let i = index">
+
+         <img [defaultImage]="defaultImage" [lazyLoad]="item.image" height="100%" width="100%">
+         <!-- <picture>
+          <source type="image/webp" srcset="1.webp"/>
+          <source type="image/jpeg" srcset="1.jpeg"/>
+          <img src="1.jpeg" alt="">
+       </picture> -->
+       </div>
+         <!-- <div class="item ">
+           <img src="assets/images/home_banner.png" alt="Los Angeles" style="width:100%;">
+         </div> -->
+       </div>
+       <!-- <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+         <span><i class="fa fa-angle-left" aria-hidden="true"></i></span>
+         <span class="sr-only">Previous</span>
+       </a>
+       <a class="right carousel-control" href="#myCarousel" data-slide="next">
+         <span><i class="fa fa-angle-right" aria-hidden="true"></i></span>
+         <span class="sr-only">Next</span>
+       </a> -->
+     </div>
+
+    </div>
+
+          <!-- <div class="onboarding_slider_wrap owl-carousel owl-theme" >
+
+        <div class="onboarding_slider_card">
+            <img src="assets/images/onboarding_img.png" alt="">
+        </div>
+
+
+      <div class="onboarding_slider_card">
+        <img src="assets/images/home_banner.png" alt="">
+    </div> -->
+
+          <!-- <owl-carousel-o [options]="customOptions1">
+
+      <ng-container *ngFor="let slide of onboardingPopupArr">
+        <ng-template carouselSlide [id]="slide.id">
+          <img [src]="slide.image" >
+          <h1>{{slide.description}}</h1>
+        </ng-template>
+      </ng-container>
+
+    </owl-carousel-o> -->
+
+          <!-- </div> -->
+
+          <!-- <img src="assets/images/login_left_img.png" alt="" /> -->
+        </div>
+        <div class="onboarding_right_sec">
+          <div class="modal_msg" *ngIf="onboardingPopupArr && onboardingPopupArr.length">
+            <h2>{{onboardingPopupArr[0].title}}</h2>
+            <p>
+              {{onboardingPopupArr[0].description}}
+              <!-- <span id="read_more">Read more</span> -->
+            </p>
+          </div>
+          <div [formGroup]="subscribeEmailForm" (ngSubmit)="submit()">
+            <div class="subscribe_btn">
+              <input
+                class="form-control"
+                type=""
+                name=""
+                placeholder="Enter your email here."
+                formControlName="email"
+              />
+              <button type="button" class="btn btn-primary" (click)="submit()">
+                Subscribe
+              </button>
+            </div>
+            <div class="error_field_wrap">
+              <div *ngIf="submitted && f.email.errors" class="invalid">
+                <div class="validation_tag" *ngIf="f.email.errors.required">
+                  <p style="color: red;">Email is required</p>
+                </div>
+                <div class="validation_tag" *ngIf="f.email.errors.pattern">
+                  <p style="color: red; margin-left: 60px">Email not valid</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div
+  class="modal fade"
+  id="emailNotVerified"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div
+    class="modal-dialog congrats_modal_wrap_width inquiry_warning_popup"
+    role="document"
+  >
+    <div class="modal-content congrats_modal_wrap">
+      <div class="modal-body">
+        <div class="modal_msg">
+          <h2>Please Verfiy email !</h2>
+          <p>
+            An email with verification link has been sent to your registered
+            email Id.
+          </p>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">
+          OK
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Onboarding Modal Section End Here  -->
+
+<!-- Register Section Start Here  -->
+<ng-container *ngIf="exhibitionPopup">
+  <div class="modal fade register_form_wrap" id="register_form" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog congrats_modal_wrap_width" role="document">
+      <div class="modal-content congrats_modal_wrap">
+      <div type="button" class="close_btn" data-dismiss="modal" aria-label="Close">
+         <i class="fa fa-times" aria-hidden="true"></i>
+          </div>
+        <div class="modal-body ">
+          <div class="modal_msg">
+            <h2>Register For Exhibition</h2>
+            </div>
+            <div class="register_fields_wrap">
+          <div [formGroup]="exhibitionRegisterForm" class="common_input_warp">
+            <div class="form-group">
+              <div class="star_mark_field">*</div>
+                <input type="text" class="form-control" placeholder="Full Name" formControlName="name" maxlength="50"
+                onkeypress='return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode == 32))'>
+                <ng-container *ngIf="submitted2 && ex.name.errors">
+                  <div class="error" *ngIf="ex.name.errors.required">Name is required</div>
+                  <div class="error" *ngIf="!ex.name.errors.required && ex.name.errors.pattern">Please enter valid name</div>
+                </ng-container>
+            </div>
+            <div class="form-group">
+              <div class="star_mark_field">*</div>
+                <input type="email" class="form-control" placeholder="Email" formControlName="email">
+                <ng-container *ngIf="submitted2 && ex.email.errors">
+                  <div class="error" *ngIf="ex.email.errors.required">Email is required</div>
+                  <div class="error" *ngIf="!ex.email.errors.required && ex.email.errors.pattern">Please enter valid email</div>
+                </ng-container>
+            </div>
+            <div class="form-group">
+              <div class="star_mark_field">*</div>
+                <input (keypress)="numberOnly($event)" type="text" class="form-control" placeholder="Mobile No." formControlName="mobile">
+                <ng-container *ngIf="submitted2 && ex.mobile.errors">
+                  <div class="error" *ngIf="ex.mobile.errors.required">Phone is required</div>
+                  <div class="error" *ngIf="ex.mobile.errors.minlength">Minimum length is
+                        {{ex.mobile.errors.minlength.requiredLength}}
+                </div>
+                <div class="error" *ngIf="ex.mobile.errors.maxlength">Maximum length is
+                        {{ex.mobile.errors.maxlength.requiredLength}}
+                </div>
+                </ng-container>
+            </div>
+            <button class="exhibition" (click)="submitExhibitionForm()">Register for Showcase</button>
+        </div>
+      </div>
+        </div>
+        <div class="modal-footer">
+       </div>
+      </div>
+    </div>
+  </div>
+</ng-container>
+<!--Register Section End Here  -->

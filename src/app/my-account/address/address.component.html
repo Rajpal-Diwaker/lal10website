@@ -1,0 +1,224 @@
+<div id="menu3" class="tab-pane fade" [ngClass]="{'in active': selectedOption==='address'}">
+  <div class="add_new_address_wrap">
+      <h2>Manage Addresses</h2>
+      <ng-container *ngIf="addFlag || editFlag">
+        <div class="add_new_address_card">
+          <h2>{{editFlag ? 'EDIT' : 'ADD A NEW'}} ADDRESS</h2>
+          <div class="location_btn_wrap" (click)="findMe()">
+              <h2>Use my current Location</h2>
+              <img src="assets/images/current_loaction.png" alt="">
+          </div>
+          <div class="common_input_warp">
+              <div [formGroup]="addAddressForm">
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <div class="star_mark_field">*</div>
+                          <input type="text" class="form-control"
+                              placeholder="Full Name" formControlName="fullName" maxlength="50" onkeypress='return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode == 32))'>
+                          <ng-container *ngIf="submitted && this.f.fullName.errors">
+                            <div class="error" *ngIf="this.f.fullName.errors.required">Name is required</div>
+                            <div class="error" *ngIf="!this.f.fullName.errors.required && this.f.fullName.errors.pattern">Please enter valid name</div>
+                          </ng-container>
+                      </div>
+                  </div>
+                  <div class="col-md-6">
+                      <div class="form-group">
+                        <div class="star_mark_field">*</div>
+                          <input (keypress)="numberOnly($event)" type="text" class="form-control"
+                              placeholder="10 Digit Mobile Number" formControlName="mobile">
+                              <ng-container *ngIf="submitted && this.f.mobile.errors">
+                                <div class="error" *ngIf="this.f.mobile.errors.required">Mobile is required</div>
+                                <div class="error" *ngIf="f.mobile.errors.minlength">Minimum length is
+                                      {{f.mobile.errors.minlength.requiredLength}}
+                              </div>
+                              <div class="error" *ngIf="f.mobile.errors.maxlength">Maximum length is
+                                      {{f.mobile.errors.maxlength.requiredLength}}
+                              </div>
+                              </ng-container>
+                      </div>
+                  </div>
+                  <div class="col-md-12">
+                      <div class="form-group">
+                        <div class="star_mark_field">*</div>
+                          <input type="text" class="form-control"
+                              placeholder="Address Line 1" formControlName="line1">
+                              <ng-container *ngIf="submitted && this.f.line1.errors">
+                                <div class="error" *ngIf="this.f.line1.errors.required">Address line is required</div>
+                              </ng-container>
+                      </div>
+                  </div>
+                  <div class="col-md-12">
+                      <div class="form-group">
+                        <div class="star_mark_field">*</div>
+                          <input type="text" class="form-control"
+                              placeholder="Street/Appartment" formControlName="street">
+                              <ng-container *ngIf="submitted && this.f.street.errors">
+                                <div class="error" *ngIf="this.f.street.errors.required">This is required field</div>
+                              </ng-container>
+                      </div>
+                  </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <div class="star_mark_field">*</div>
+                          <div class="select_wrapper">
+                              <select class="form-control classic" id="" formControlName="country" (change)="getStateList(this.f.country.value)">
+                                  <option value="">Country</option>
+                                  <option [value]="item.name" *ngFor="let item of countryListArr">{{item.name}}</option>
+                              </select>
+                              <ng-container *ngIf="submitted && this.f.country.errors">
+                                <div class="error" *ngIf="this.f.country.errors.required">Country is required</div>
+                              </ng-container>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="col-md-6">
+                      <div class="form-group">
+                        <div class="star_mark_field">*</div>
+                          <div class="select_wrapper">
+                              <select class="form-control classic" id="" formControlName="state" (change)="getCityList(this.f.state.value)">
+                                  <option value="">State</option>
+                                  <option [value]="item.name" *ngFor="let item of stateListArr">{{item.name}}</option>
+                              </select>
+                              <ng-container *ngIf="submitted && this.f.state.errors">
+                                <div class="error" *ngIf="this.f.state.errors.required">State is required</div>
+                              </ng-container>
+                          </div>
+                      </div>
+                  </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <div class="star_mark_field">*</div>
+                          <div class="select_wrapper">
+                              <select class="form-control classic" id="" formControlName="city">
+                                  <option value="">City</option>
+                                  <option [value]="item.name" *ngFor="let item of cityListArr">{{item.name}}</option>
+                              </select>
+                              <ng-container *ngIf="submitted && this.f.city.errors">
+                                <div class="error" *ngIf="this.f.city.errors.required">City is required</div>
+                              </ng-container>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="col-md-6">
+                      <div class="form-group">
+                        <div class="star_mark_field">*</div>
+                          <input type="number" class="form-control" formControlName="pin"
+                              placeholder="Postal Code" onKeyPress="if(this.value.length==6) return false;">
+                              <ng-container *ngIf="submitted && this.f.pin.errors">
+                                <div class="error" *ngIf="this.f.pin.errors.required">Pincode is required</div>
+                                <div class="error" *ngIf="!this.f.pin.errors.required && this.f.pin.errors.pattern">Please enter valid 6 digit pincode</div>
+                              </ng-container>
+                      </div>
+                  </div>
+                  <div class="col-md-12">
+                      <div class="form-group">
+                        <div class="star_mark_field">*</div>
+                    <label for="">Address Type</label>
+                    <div class="address_type_wrap">
+                      <div class="select_radio_wrap">
+                          <ng-container *ngIf="!addressTypeHomeFlag">
+                            <input type="radio" id="my-check1" value="Home" checked formControlName="type" />
+                            <label for="my-check1">Home</label>
+                          </ng-container>
+                          <ng-container *ngIf="addressTypeHomeFlag">
+                            <input type="radio" id="my-check1" value="Home" checked formControlName="type" disabled/>
+                            <label (click)="addressExist('Home')" class="noCheck" for="my-check1">Home</label>
+                          </ng-container>
+                          <!-- <ng-container *ngIf="addressTypeHomeFlag && editFlag">
+                            <input type="radio" id="my-check1" value="Home" checked formControlName="type">
+                            <label for="my-check1">Home</label>
+                          </ng-container> -->
+                        </div>
+                        <div class="select_radio_wrap">
+                          <ng-container *ngIf="!addressTypeWorkFlag">
+                            <input type="radio" id="my-check2" value="Work" formControlName="type" />
+                            <label for="my-check2">Work</label>
+                          </ng-container>
+                          <ng-container *ngIf="addressTypeWorkFlag">
+                            <input type="radio" id="my-check2" value="Work" formControlName="type" disabled/>
+                            <label (click)="addressExist('Work')" class="noCheck" for="my-check2">Work</label>
+                          </ng-container>
+                          <!-- <ng-container *ngIf="addressTypeWorkFlag && editFlag">
+                            <input type="radio" id="my-check2" value="Work" formControlName="type">
+                            <label for="my-check2">Work</label>
+                          </ng-container> -->
+                        </div>
+                        <div class="select_radio_wrap">
+                          <input type="radio" id="my-check3" value="Other" formControlName="type" />
+                          <label for="my-check3">Other</label>
+                        </div>
+                        <div class="select_radio_wrap" *ngIf="f.type.value === 'Other'">
+                          <label for="">&nbsp;</label>
+                          <input class="form-control other_radio_input" type="text" placeholder="Others" formControlName="addressName" />
+                          <ng-container *ngIf="submitted && this.f.addressName.errors">
+                            <div class="error other_radio_error" *ngIf="this.f.addressName.errors.required">This field is required</div>
+                          </ng-container>
+                        </div>
+                  </div>
+                  <ng-container *ngIf="submitted && this.f.type.errors">
+                    <div class="error" *ngIf="this.f.type.errors.required">Address type is required</div>
+                  </ng-container>
+
+                      </div>
+                  </div>
+                  <div class="col-md-12">
+                      <div class="save_btn_wrap">
+                          <button (click)="submit()">Save</button>
+                          <label for="" (click)="addFlag=false;editFlag=false;getAddressList()"> Cancel</label>
+                      </div>
+                  </div>
+                  </div>
+              </div>
+
+          </div>
+      </div>
+      </ng-container>
+      <ng-container *ngIf="!addFlag">
+        <div  class="add_new_card_wrap" (click)="addFlag=true;setAddressForm(); sendEvent('Manage_Address_Add_new')">
+          <!-- <img alt="" src="assets/images/add_card_icon.png"> -->
+          <i class="fa fa-plus" aria-hidden="true"></i>
+          <h2>Add New Address</h2>
+        </div>
+      </ng-container>
+      <div class="complete_addresses">
+       <ul>
+           <li *ngFor="let item of addressListArr">
+              <div class="edit_del_wrap">
+                  <span (click)="addFlag=true;editFlag=true;setAddressForm(item);scrollTop();
+                  addressTypeHomeFlag = item.addressType === 'Home' ? false : addressTypeHomeFlag;
+                  addressTypeWorkFlag = item.addressType === 'Work' ? false : addressTypeWorkFlag; sendEvent('Address_edit')">Edit</span>
+                  <span (click)="deleteAddress(item.id)">Delete</span>
+              </div>
+              <div class="address_label">
+                  <p>{{item.addressType === 'Other' ? item.addressName : item.addressType}}</p>
+              </div>
+              <div class="address_content_wrap">
+                  <h2>{{item.name}}</h2>
+                  <p>{{item.street}}, {{item.addLine1}}, {{item.cityId}}</p>
+                  <span>{{item.stateId}}, {{item.zip}}</span>
+                  <span>{{item.countryId}}</span>
+              </div>
+           </li>
+           <!-- <li>
+               <div class="edit_del_wrap">
+                   <span>Edit</span> <span>Delete</span>
+               </div>
+              <div class="address_label">
+                  <p>Office</p>
+              </div>
+              <div class="address_content_wrap">
+                  <h2>John Doe</h2>
+                  <p>52 /ashok Bhavan, st Street, Avanashi Road</p>
+                  <span>Tamil Nadu,641018</span>
+                  <span>India</span>
+              </div>
+           </li> -->
+            </ul>
+      </div>
+  </div>
+</div>

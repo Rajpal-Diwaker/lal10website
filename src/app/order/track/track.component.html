@@ -1,0 +1,109 @@
+<!--My Enquiry Section Start Here -->
+<div class="my_cart_wrap">
+  <section>
+    <div class="trackorderwrap">
+    <div class="row" *ngIf="enqDetailObj">
+      <div class=" col-lg-12">
+        <div class="product_card inqry_detals_card ">
+          <div class="order_details_wrap padmn">
+            <div class="row eqWrap equalHMWrap">
+              <div class="col-md-6 col-sm-6 divflex">
+                <span class="enqbdr"></span>
+                <div class="place_order">
+                  <!-- <h2>{{type==='enq' ? 'Enquiry' : 'Order'}} Status - Order approved</h2> -->
+                  <a href="javascript:void(0);"
+                  >{{type==='enq' ? 'Enquiry' : 'Order'}} on {{ enqDetailObj.created_at | date }}</a
+                >
+                </div>
+              </div>
+              <div class="col-md-6 col-sm-6">
+                <div class="order_id_details clearfix">
+                  <p>
+                    {{type==='enq' ? 'Enquiry' : 'Order'}} ID #<Span> {{ enqDetailObj.uniqueId }}</Span>
+                  </p>
+                 
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="inqerycardcontant">
+            <div class="product_inqry_wrap">
+              <div class="product_images">
+                <img
+                  [defaultImage]="defaultImage"
+                  [lazyLoad]="enqDetailObj.image"
+                  alt=""
+                />
+              </div>
+              <div class="producnameview">{{ enqDetailObj.title }}</div>
+            </div>
+            <div class="product_contant_wrap">
+              <div class="enqdet">{{type==='enq' ? 'Enquiry' : 'Order'}} Details</div>
+              <p>{{ enqDetailObj.description }}</p>
+            </div>
+            <div class="inqrydatetime">
+              <p *ngIf="type === 'enq'">{{ enqDetailObj.update_status === '' ? 'enquiry forwarded to artisan' : enqDetailObj.update_status }}</p>
+              <p *ngIf="type === 'order'">{{ enqDetailObj.update_status === '' ? 'order forwarded to artisan' : enqDetailObj.update_status }}</p>
+              <span> {{enqDetailObj.created_at2 | date: 'fullDate'}} at {{enqDetailObj.created_at2 | date: 'shortTime'}}</span>
+            </div>
+            <div class="stap_form_wrap">
+              <form id="msform">
+                <ul id="progressbar">
+                  <li
+                    [ngClass]="{
+                      'active':
+                        enqDetailObj.update_status === '' ||
+                        enqDetailObj.update_status === 'enquiry forwarded to artisan' ||
+                        enqDetailObj.update_status === 'enquiry converted to order' ||
+                        enqDetailObj.update_status === 'order confirmed' ||
+                        enqDetailObj.update_status === 'order dipatch' ||
+                        enqDetailObj.update_status === 'order delivered'
+                    }"
+                  ></li>
+                  <li
+                    [ngClass]="{
+                      'active':
+                        enqDetailObj.update_status === 'enquiry converted to order' ||
+                        enqDetailObj.update_status === 'order confirmed' ||
+                        enqDetailObj.update_status === 'order dipatch' ||
+                        enqDetailObj.update_status === 'order delivered'
+                    }"
+                  ></li>
+                  <li
+                    [ngClass]="{
+                      'active':
+                        enqDetailObj.update_status === 'order confirmed' ||
+                        enqDetailObj.update_status === 'order dipatch' ||
+                        enqDetailObj.update_status === 'order delivered'
+                    }"
+                  ></li>
+                  <li
+                    [ngClass]="{
+                      'active':
+                        enqDetailObj.update_status === 'order dipatch' ||
+                        enqDetailObj.update_status === 'order delivered'
+                    }"
+                  ></li>
+                  <li
+                    [ngClass]="{
+                      'active':
+                        enqDetailObj.update_status === 'order delivered'
+                    }"
+                  ></li>
+                </ul>
+              </form>
+            </div>
+            <div class="againinqrybtn">
+              <button [routerLink]="['../../../../products/detail']" [queryParams]="{productId: enqDetailObj.productId}">
+                {{type==='enq' ? 'Enquire' : 'Buy'}} again</button>
+            </div>
+          </div>
+         
+        </div>
+        
+      </div>
+    </div>
+  </div>
+  </section>
+</div>
+<!-- My Enquiry Section End Here -->

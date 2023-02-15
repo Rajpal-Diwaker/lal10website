@@ -1,0 +1,531 @@
+<!-- Middle Contant  Section Start Here -->
+<!-- <div class="middle_contant_wrap clearfix"> -->
+<!--My Cart-2 Section Start Here -->
+<div class="mycartall">
+  <section>
+    <div [formGroup]="enquiryForm">
+      <div class="row" *ngIf="liveCartArr && liveCartArr.length ">
+        <div class="bdr_cart_top"></div>
+        <div class="col-md-12 col-lg-9 col-sm-12 bdr_cart_left cart_left_sec">
+          <div class="cart_card_wrap">
+            <h2>My Cart</h2>
+            <!-- <p>Select the products which you want to enquire/order</p> -->
+            <p id="mbileview">Shopping Cart</p>
+            <div class="selected_card_label">
+              <label class="checkbox-container ">
+                <input checked disabled class="inpthide" type="checkbox">
+                <span class="checkmark" style="cursor: default;"></span>
+              </label>
+              <span>{{liveCartToBuyArr.length}}/{{liveCartArr.length}} Products selected for order</span>
+            </div>
+            <br>
+            <ul>
+              <!-- <li>
+                <div class="product_card " formArrayName="productLiveDetail"
+                  *ngFor="let item of enquiryForm.get('productLiveDetail')['controls']; let i = index;">
+                  <div [formGroup]="productLiveDetail.controls[i]">
+                    <div class="product_image" style="cursor: pointer;" alt=""
+                      (click)="openProductDetail(item.controls.productId.value)">
+                      <img [src]="item.controls.image.value">
+                    </div>
+                    <div class="product_contant_wrap">
+                      <h2 style="cursor: pointer;" (click)="openProductDetail(item.controls.productId.value)">
+                        {{item.controls.name.value}}</h2>
+                      <img (click)="clickEditIconLive(i)" src="assets/images/edit_inqry.png" alt=""
+                        *ngIf="item.controls.editing.value === false && item.controls.isChecked.value === false">
+
+                      <div class="select_card_wrap">
+                        <p>{{item.controls.uniqueId.value}}</p>
+                        <label id="checkLivee{{i}}" class="checkbox-container " [ngClass]="{'enqSelect': item.controls.isChecked.disabled}">
+                          <input class="inpthide" type="checkbox"  formControlName="isChecked"
+                            (change)="checkLiveProduct($event, item.controls)"
+                            value="{{ item.controls.isChecked.value}}">
+                          <span class="checkmark"></span>
+                        </label>
+                      </div>
+                      <div class="pricing_wrap edit_price row">
+                        <div class="qntity_wrap responsvie_cls col-md-12">
+                          <div class="edit_price_input_bx">
+                            <label for="">Quantity :</label>
+                            <input [ngClass]="{'editing': item.controls.editing.value}" type="text"
+                              placeholder="Enter QTY" formControlName="qty" (keypress)="numberOnly($event)"
+                              maxlength="5" [disabled]="item.controls.editing.value">
+                            <div *ngIf="submitted2 && l[i].controls.editing.value && l[i].controls.qty.errors"
+                              class="invalid row error_wrap_inqry">
+                              <div class="col-md-12" *ngIf="l[i].controls.qty.errors.required">Quantity is required
+                              </div>
+                              <div class="col-md-12"
+                                *ngIf="!l[i].controls.qty.errors.required && l[i].controls.qty.errors.pattern">Quantity
+                                should be greater than 0</div>
+                            </div>
+                          </div>
+                          <button *ngIf="item.controls.editing.value === true"
+                            (click)="updateCartDataLive(i)">Done</button>
+                        </div>
+                        <div class="qntity_wrap responsvie_cls pricewrap col-md-12">
+                          <div class="qntity_input_bx">
+                            <label for="">Rs.</label>
+                            <p>{{item.controls.amount.value}}</p>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="remove_card_wrap_cont">
+                        <div class="remove_divder"></div>
+                        <label for="" (click)="removeLiveItem(l[i].controls.id.value)">Remove From cart</label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </li> -->
+              <!-- start new live cart -->
+              <li formArrayName="productLiveDetail"
+              *ngFor="let item of enquiryForm.get('productLiveDetail')['controls']; let i = index;">
+                <div [formGroup]="productLiveDetail.controls[i]" class="product_card_new_cart">
+               <div class="product_image_card" style="cursor: pointer;"
+               (click)="openProductDetail(item.controls.productId.value)">
+                      <img [src]="item.controls.image.value" (error)="onImageError($event)">
+                    </div>
+                    <div class="product_contant_wrap_new">
+                      <h2 style="cursor: pointer;" (click)="openProductDetail(item.controls.productId.value)">
+                        {{item.controls.name.value}}</h2>
+                    <div class="select_card_wrap">
+                        <p>{{item.controls.uniqueId.value}}</p>
+                        <label id="checkLivee{{i}}" class="checkbox-container " [ngClass]="{'enqSelect': item.controls.isChecked.disabled}">
+                          <input class="inpthide" type="checkbox" formControlName="isChecked"
+                          (change)="checkLiveProduct($event, item.controls)"
+                            value="{{ item.controls.isChecked.value}}">
+                          <span class="checkmark"></span>
+                        </label>
+                      </div>
+                      <div class=" row details_card_height">
+                        <div class="col-md-6 col-sm-6">
+                          <div class="new_card_wrap_card ">
+                            <div class="edit_qty_wrap" *ngIf="item.controls.editing.value">
+                            <label for="">{{item.controls.editing.value ? 'Qty' : 'Quantity'}} :</label>
+                            <div class="star_mark_field">*</div>
+                            <input [ngClass]="{'editing': item.controls.editing.value}" class="form-control" type="text"
+                              placeholder="QTY" formControlName="qty" (keypress)="numberOnly($event)"
+                              maxlength="5" [disabled]="item.controls.editing.value">
+
+                           </div>
+                           <h5 *ngIf="!item.controls.editing.value">Quantity: <span> {{item.controls.qty.value}} Pcs. </span></h5>
+                          </div>
+                        </div>
+                        <div class=" col-md-6 col-sm-6">
+                          <div class="new_card_wrap_card">
+                            <h5>Exp. Price : ₹ <span> {{item.controls.amount.value}} </span></h5>
+                          </div>
+                        </div>
+                        <div  *ngIf="submitted2 && l[i].controls.editing.value && l[i].controls.qty.errors"
+                              class="invalid row error_wrap_inqry error_form_buy">
+                              <div class="" *ngIf="l[i].controls.qty.errors.required">Quantity is required
+                              </div>
+                              <div class=""
+                                *ngIf="!l[i].controls.qty.errors.required && l[i].controls.qty.errors.pattern">Quantity
+                                should be greater than 0</div>
+                            </div>
+                      </div>
+                      <div class="remove_and_edit_card">
+                        <div class="remove_divder"></div>
+                        <div class="row flex_data">
+                          <div class="col-md-6 col-sm-6 col-xs-4 left_seperator">
+                            <label *ngIf="item.controls.editing.value"
+                            (click)="sendEvent('Click_save'); updateCartDataLive(i)">Save</label>
+                            <label [ngClass]="{'disableLabel': item.controls.isChecked.value}"
+                            (click)="item.controls.isChecked.value ? $event.preventDefault() : clickEditIconLive(i)">Edit</label>
+                          </div>
+                          <div class="col-md-6 col-sm-6 col-xs-8 "><label
+                            (click)="sendEvent('Click_Rmv_frm_cart'); removeLiveItem(l[i].controls.id.value)">Remove From cart</label> </div>
+                        </div>
+                      </div>
+                    </div>
+
+                </div>
+              </li>
+              <!-- <li>
+                <div class="product_card_new_cart">
+               <div class="product_image_card">
+                      <img [src]="item.controls.image.value">
+                    </div>
+                    <div class="product_contant_wrap_new">
+                      <h2>Custom Heading</h2>
+                    <div class="select_card_wrap">
+                        <p>Cart ID</p>
+                        <label class="checkbox-container ">
+                          <input class="inpthide" type="checkbox">
+                          <span class="checkmark"></span>
+                        </label>
+                      </div>
+                      <div class=" row details_card_height">
+                        <div class="col-md-4 col-sm-6">
+                          <div class="new_card_wrap_card ">
+                            <h5>Quantity: <span> 20 Pcs. </span></h5>
+                         </div>
+                        </div>
+                        <div class=" col-md-8 col-sm-6">
+                          <div class="new_card_wrap_card">
+                            <h5>Rs. <span> 4544 </span></h5>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="remove_and_edit_card">
+                        <div class="remove_divder"></div>
+                        <div class="row flex_data">
+                          <div class="col-md-6 col-sm-6 col-xs-4 left_seperator"><label for="">Edit</label> </div>
+                          <div class="col-md-6 col-sm-6 col-xs-8 "><label for="">Remove From cart</label> </div>
+                        </div>
+                      </div>
+                    </div>
+
+                </div>
+              </li> -->
+            </ul>
+          </div>
+        </div>
+        <div class="col-md-12 col-lg-3 col-sm-12 cart_right_sec ">
+          <div class="card_value_wrap">
+            <!-- <h2>Cart Value</h2> -->
+            <div class="total_value_card" [ngClass]="{'noProceed': !liveCartToBuyArr.length}">
+              <h2 class="cart_heading">Shopping Cart Details</h2>
+              <div class="Sub_total_price dflex dflex_bet" *ngFor="let item of liveCartToBuyArr">
+                <label for=""><span> {{item.qty.value}} item</span></label> <span> ₹
+                  {{item.amount.value}}</span>
+              </div>
+              <div class="total_price dflex dflex_bet">
+                <label for=""> Total </label> <span> ₹ {{totalLiveCartPrice}}</span>
+              </div>
+              <button (click)="checkInventory()" [disabled]="!liveCartToBuyArr.length">Proceed to Buy</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="bdr_cart_top_cart"></div>
+      <div class="row " *ngIf="enquiryForm.get('productEnqDetail')['controls'].length">
+        <div class="bdr_cart_top_inqry"></div>
+        <div class="col-md-12 col-lg-9 col-sm-12 bdr_cart_left height_class cart_left_sec">
+          <div class="cart_card_wrap inqryheadingwrap">
+            <ul>
+              <li>
+                <div class="card_heading">
+                  <p> Made-to-order Cart</p>
+                  <div class="maddeto_to_order_wrap">
+                    <div class="selected_card_label">
+                      <label class="checkbox-container ">
+                        <input checked disabled class="inpthide" type="checkbox">
+                        <span class="checkmark" style="cursor: default;"></span>
+                      </label>
+                      <span>{{enqCartToSendArr.length}}/{{enquiryForm.get('productEnqDetail')['controls'].length}} Products selected for Enquiry</span>
+                    </div>
+
+                  <div class="product_card inqry_cart_wrap_edit" formArrayName="productEnqDetail"
+                    *ngFor="let item of enquiryForm.get('productEnqDetail')['controls']; let i = index;">
+                    <ng-container [formGroupName]="i">
+                      <!-- <div class="product_image">
+                        <img src="{{ enquiryForm.get('productEnqDetail')['controls'][i].controls.image.value}}" alt="">
+                      </div>
+                      <div class="enqiry_cart_details_edit">
+                        <div class="product_contant_wrap">
+                          <h2> {{ enquiryForm.get('productEnqDetail')['controls'][i].controls.name.value}}</h2>
+                          <img (click)="clickEditIcon(i, 'pencil')" src="assets/images/edit_inqry.png" alt=""
+                            *ngIf="enquiryForm.get('productEnqDetail')['controls'][i].controls.editing.value === false && item.controls.isChecked.value === false">
+
+                        <div class="select_card_wrap">
+                          <p>{{ enquiryForm.get('productEnqDetail')['controls'][i].controls.uniqueId.value}}</p>
+                          <label class="checkbox-container "
+                            [ngClass]="{'enqSelect': item.controls.isChecked.disabled}">
+                            <input type="checkbox" formControlName="isChecked" (change)="checkEnq(i, $event)"
+                              value="{{ enquiryForm.get('productEnqDetail')['controls'][i].controls.isChecked.value}}">
+                            <span class="checkmark"></span>
+                          </label>
+                        </div>
+                        <div class="pricing_wrap edit_price row">
+                          <div class="qntity_wrap responsvie_cls col-md-6">
+                            <div class="edit_price_input_bx">
+                              <label for="">Quantity :</label>
+                              <div class="star_mark_field">*</div>
+                              <input
+                                [ngClass]="{'editing': enquiryForm.get('productEnqDetail')['controls'][i].controls.editing.value}"
+                                type="text" placeholder="Enter QTY" formControlName="qty"
+                                (keypress)="numberOnly($event)" maxlength="5"
+                                [disabled]="enquiryForm.get('productEnqDetail')['controls'][i].controls.editing.value">
+                              <div *ngIf="submitted && f[i].controls.editing.value && f[i].controls.qty.errors"
+                                class="invalid row error_wrap_inqry">
+                                <div class="col-md-12" *ngIf="f[i].controls.qty.errors.required">Quantity is required
+                                </div>
+                                <div class="col-md-12"
+                                  *ngIf="!f[i].controls.qty.errors.required && f[i].controls.qty.errors.pattern">
+                                  Quantity should be greater than 0</div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="qntity_wrap expectprice responsvie_cls col-md-6">
+                            <div class="qntity_input_bx">
+                              <label for="">Expected Price :</label>
+                              <input
+                                [ngClass]="{'editing': enquiryForm.get('productEnqDetail')['controls'][i].controls.editing.value}"
+                                type="text" placeholder="Enter Price" formControlName="expectedPrice"
+                                (keypress)="numberOnly($event)" [maxLength]="6">
+                            </div>
+                          </div>
+                        </div>
+                        <div class="discription_wrap">
+                          <div class="star_mark_field">*</div>
+                          <textarea class="form-control"
+                            [ngClass]="{'editing': enquiryForm.get('productEnqDetail')['controls'][i].controls.editing.value}"
+                            name="" id="" cols="30" rows="10" placeholder="Enter Enquiry Description"
+                            formControlName="description"></textarea>
+                          <button
+                            *ngIf="enquiryForm.get('productEnqDetail')['controls'][i].controls.editing.value === true"
+                            (click)="clickEditIcon(i, 'btn'); updateCartData(i)">Done</button>
+                          <div class="remvoe_card_inqry">
+                            <div class="row">
+                              <div class="col-md-6 col-sm-6">
+                                <div
+                                  *ngIf="submitted && f[i].controls.editing.value && f[i].controls.description.errors"
+                                  class="invalid error_wrap_inqry">
+                                  <div *ngIf="f[i].controls.description.errors.required">Description is required</div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          </div>
+                          <div class="remove_card_wrap_cont removecrdinqry">
+                            <div class="remove_divder"></div>
+                            <label for="" (click)="removeLiveItem(f[i].controls.id.value)" class="removeEnq">Remove From
+                              cart</label>
+                          </div>
+                        </div>
+
+
+                      </div> -->
+
+                      <!-- ********* new enquiry start ******************-->
+
+                      <div class="product_card_new_cart" *ngIf="!item.controls.editing.value">
+                        <div class="product_image_card">
+                               <img [src]="item.controls.image.value"
+                               (error)="onImageError($event)">
+                             </div>
+                             <div class="product_contant_wrap_new">
+                               <h2>{{item.controls.name.value}}</h2>
+                             <div class="select_card_wrap">
+                                 <p>{{item.controls.uniqueId.value}}</p>
+                                 <label class="checkbox-container ">
+                                   <input class="inpthide" type="checkbox"
+                                   formControlName="isChecked" (change)="checkEnq(i, $event)"
+                              [value]="item.controls.isChecked.value">
+                                   <span class="checkmark"></span>
+                                 </label>
+                               </div>
+                               <div class=" row details_card_height">
+                                 <div class="col-md-6 col-sm-6">
+                                   <div class="new_card_wrap_card ">
+                                     <h5>Quantity: <span> {{item.controls.qty.value}} Pcs. </span></h5>
+
+                                  </div>
+                                 </div>
+                                 <div class="col-md-6 col-sm-6">
+                                   <div class="new_card_wrap_card">
+                                     <h5>Exp. Price : ₹<span> {{item.controls.expectedPrice.value}} </span></h5>
+                                   </div>
+                                 </div>
+                                 <div class=" col-md-12">
+                                  <div class="new_card_wrap_card decription_card">
+                                 <label for=""> {{item.controls.description.value}}</label>
+                                  </div>
+                                </div>
+                               </div>
+                               <div class="remove_and_edit_card">
+                                 <div class="remove_divder"></div>
+                                 <div class="row flex_data">
+                                   <div class="col-md-6 col-sm-6 col-xs-4 left_seperator"><label
+                                    (click)="item.controls.isChecked.value ? $event.preventDefault() : clickEditIcon(i, 'pencil')"
+                                    [ngClass]="{'disableLabel': item.controls.isChecked.value}">Edit</label> </div>
+                                   <div class="col-md-6 col-sm-6 col-xs-8"><label
+                                    (click)="sendEvent('Click_Rmv_frm_cart'); removeLiveItem(f[i].controls.id.value)">Remove From cart</label> </div>
+                                 </div>
+                               </div>
+                             </div>
+                         </div>
+
+                         <!-- Edit starts -->
+                   <div class="product_card_new_cart" *ngIf="item.controls.editing.value">
+                    <div class="product_image_card">
+                      <img [src]="item.controls.image.value"
+                      (error)="onImageError($event)">
+                         </div>
+                         <div class="product_contant_wrap_new">
+                          <h2>{{item.controls.name.value}}</h2>
+                         <div class="select_card_wrap">
+                          <p>{{item.controls.uniqueId.value}}</p>
+                             <label class="checkbox-container enqSelect">
+                               <input class="inpthide" type="checkbox" disabled>
+                               <span class="checkmark"></span>
+                             </label>
+                           </div>
+                           <div class=" row details_card_height">
+                            <div class="col-md-6 col-sm-6">
+                               <div class="new_card_wrap_card ">
+                                  <div class="edit_qty_wrap">
+                                 <div class="star_mark_field">*</div>
+                                 <input class="form-control" type="text"
+                                   placeholder="Quantity" formControlName="qty"
+                                   (keypress)="numberOnly($event)" maxlength="5">
+                                   <div *ngIf="submitted && f[i].controls.editing.value && f[i].controls.qty.errors"
+                                   class="invalid row error_wrap_inqry error_form_inqery">
+                                   <div class="" *ngIf="f[i].controls.qty.errors.required">Quantity is required
+                                   </div>
+                                   <div class=""
+                                     *ngIf="!f[i].controls.qty.errors.required && f[i].controls.qty.errors.pattern">
+                                     Quantity should be greater than 0</div>
+                                 </div>
+                                </div>
+                              </div>
+                             </div>
+                             <div class="col-md-6 col-sm-6">
+                               <div class="new_card_wrap_card">
+                                <div class="edit_qty_wrap">
+                                <div class="star_mark_field">*</div>
+                                  <input class="form-control" type="text"
+                                    placeholder="Expected price" formControlName="expectedPrice"
+                                    (keypress)="numberOnly($event)" [maxLength]="6" >
+                                 </div>
+                               </div>
+                             </div>
+                             <div class=" col-md-12">
+                              <div class="new_card_wrap_card decription_card">
+                                <div class="star_mark_field">*</div>
+                             <textarea class="form-control" placeholder="Description" cols="30" rows="10"
+                             formControlName="description"></textarea>
+                             <div
+                                  *ngIf="submitted && f[i].controls.editing.value && f[i].controls.description.errors"
+                                  class="invalid error_wrap_inqry descriptionerror">
+                                  <div *ngIf="f[i].controls.description.errors.required">Description is required</div>
+                                </div>
+                              </div>
+                            </div>
+                           </div>
+                           <div class="remove_and_edit_card">
+                             <div class="remove_divder"></div>
+                             <div class="row flex_data">
+                             <div class="col-md-6 col-sm-6 col-xs-4 left_seperator"><label
+                              (click)="sendEvent('Click_save'); clickEditIcon(i, 'btn'); updateCartData(i)">Save</label> </div>
+                               <div class="col-md-6 col-sm-6 col-xs-8"><label
+                                (click)="sendEvent('Click_Rmv_frm_cart'); removeLiveItem(f[i].controls.id.value)">Remove From cart</label> </div>
+                             </div>
+                           </div>
+                         </div>
+                      </div>
+                    </ng-container>
+                  </div>
+                </div>
+                    <br>
+                </div>
+
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="col-md-12 col-lg-3 col-sm-12 height_class cart_right_sec">
+          <div class="inqry_cart_wrap">
+            <div class="card_value_wrap">
+              <h2>Enquiry details</h2>
+              <div class="total_value_card" [ngClass]="{'noProceed': !enqCartToSendArr.length}">
+                <!-- <h2>Enquiry Cart Details </h2> -->
+                <div class="Sub_total_price madetocart">
+                  <div class="row">
+                    <div class="col-md-6 col-xs-6 col-sm-6">
+                      <label for="">{{enqCartToSendArr.length}} Item </label>
+                    </div>
+                    <div class="col-md-6 col-xs-6 col-sm-6">
+                      <label class="count_enqry" for="">₹ 0</label>
+                    </div>
+                  </div>
+                  <!-- <label for="">Enquiry ({{enqCartToSendArr.length}} item) </label> -->
+                </div>
+                <button  (click)="submitEnquiryCart()" *ngIf="enqCartToSendArr.length">Enquire Now</button>
+                <!-- <button data-toggle="modal" data-target="#exampleModal">Open Modal</button> -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="emptyCart"
+      *ngIf="liveCartArr && liveCartArr.length === 0 && !enquiryForm.get('productEnqDetail')['controls'].length">
+      Your Cart is empty !
+    </div>
+  </section>
+
+</div>
+<!-- My Cart-2 Section End Here -->
+<!-- </div> -->
+<!-- Middle Contant Section End Here -->
+
+
+<!-- Modal Section Start Here, data-backdrop="static"  -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true" data-keyboard="false" >
+  <div class="modal-dialog congrats_modal_wrap_width" role="document">
+    <div class="modal-content congrats_modal_wrap">
+      <!-- <div type="button" class="close_btn" data-dismiss="modal" aria-label="Close">
+                 <i class="fa fa-times" aria-hidden="true"></i>
+        </div> -->
+      <div class="modal-body ">
+        <div class="congats_logo">
+          <img src="assets/images/congrats_icon.png" alt="" />
+        </div>
+        <div class="modal_msg">
+          <h2>Congratulation Your Enquiry is
+            Successfully Sent!!!!</h2>
+          <p>Enquiry ID:{{sentEnqID}}</p>
+          <p>Thank you for placing an enquiry with us. You can track your
+            enquiry status on ‘My Enquiries’ section in your account</p>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button routerLink="./" type="button" class="btn btn-primary" (click)="clickContinue()">Continue
+          Shopping</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<div class="modal fade" id="emailNotVerified" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog congrats_modal_wrap_width inquiry_warning_popup" role="document">
+    <div class="modal-content congrats_modal_wrap">
+      <div class="modal-body ">
+        <div class="modal_msg">
+          <h2>Please Verfiy email !</h2>
+          <p>Please verify your email id before placing order or generating product enquiries. Please check your email
+            for verification.</p>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">OK</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="doableQty" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog congrats_modal_wrap_width inquiry_warning_popup" role="document">
+    <div class="modal-content congrats_modal_wrap">
+      <div class="modal-body ">
+        <div class="modal_msg" *ngIf="doableQtyCommon">
+          <h2>Please Note !</h2>
+          <p>The minimum order quantity for this product is {{doableQtyCommon}} nos.</p>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">OK</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Modal Section End Here  -->

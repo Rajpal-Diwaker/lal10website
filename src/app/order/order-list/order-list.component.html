@@ -1,0 +1,109 @@
+<!--My Orders Section Start Here -->
+<div class="my_cart_wrap">
+    <section>
+        <div class="row">
+            <div class="col-md-12 col-lg-12 col-sm-12">
+                <div class="my_orders_wrap">
+                    <!-- <h2>My Orders</h2> -->
+                    <ul class="myorderslistingwrap orderlistview">
+                        <li *ngFor="let item of orderListArr">
+                            <div class="product_image">
+                                <img [defaultImage]="defaultImage" [lazyLoad]="item.image" />
+                            </div>
+                            <div class="product_contant_wrap">
+                                <div class="order_details_wrap">
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <span class="enqbdr"></span>
+                                            <div class="place_order">
+                                                <p>Order Placed on <span>{{item.created_at | date}}</span></p>
+                                            </div>
+                                        </div>
+                                        <!-- <div class="col-md-4 col-sm-4">
+                                            <span class="enqbdr"></span>
+                                            <div class="place_order">
+                                                <p>Total Amount: ₹ <span>{{item.expPrice ? item.expPrice : 0}}</span></p>
+                                            </div>
+                                        </div> -->
+                                        <div class="col-sm-6">
+                                            <div class="place_order">
+                                                <p class="place_odr_id">Order ID #<span> {{item.uniqueId}}</span></p>
+                                                <!-- <h2> Order Details</h2> <a href="javascript:void(0);"> Invoice</a> -->
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="content_order_wrap">
+                                    <div class="row">
+                                        <div class="col-md-8 col-lg-6">
+                                            <h2>{{item.productName}}</h2>
+                                           <div class="row clearsview">
+                            <div class="col-sm-5 col-md-6"><h5><span> Quantity : </span> {{item?.qty}} PCS</h5></div>
+                            <div class="col-sm-7 col-md-6"> <h5><span>Price : </span> ₹ {{item.expPrice ? item.expPrice : 0}}</h5></div>
+                        </div>
+
+
+                                         </div>
+                                        <div class="col-md-4 col-lg-6 padding_left">
+                                            <div class="track_pkge_btn">
+                                                <button (click)="sendEvent('My_Orders_track_package')" [routerLink]="['../track/' + item.id + '/order']">Track Package</button>
+                                                <button (click)="sendEvent('My_Orders_buy_again')" class="right_btn" [routerLink]="['../../products/detail']" [queryParams]="{productId: item.productId}">Buy it again</button>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                            </div>
+                            </div>
+                        </li>
+                        <!-- <li>
+                  <div class="product_card ">
+iv class="product_card clearfix">
+                        <d                      <div class="order_details_wrap">
+                          <div class="row">
+                              <div class="col-md-4 col-sm-4">
+                                  <div class="place_order">
+                                      <p>Order Placed on</p>
+                                      <h2>17 March 2020</h2>
+                                  </div>
+                              </div>
+                              <div class="col-md-4 col-sm-4">
+                              <div class="total_amnt">
+                                  <h2>TOTAL <Span>499.00</Span></h2>
+                              </div>
+                              </div>
+                              <div class="col-md-4 col-sm-4">
+                                  <div class="order_id_details clearfix">
+                                      <p>Order ID #<Span> 406-6333599-2975523</Span></p>
+                                       <h2> Order Details</h2> <a href="javascript:void(0);"> Invoice</a>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="product_image">
+                          <img src="assets/images/product_9.png" alt="">
+                      </div>
+                      <div class="product_contant_wrap">
+                      <h2>Hand Bags</h2>
+                      <p>₹ 200.00</p>
+                      <div class="track_pkge_btn">
+                          <button [routerLink]="['../track']">Track Package</button>
+                          <button> By it again</button>
+                            </div>
+                      </div>
+
+                     </div>
+                 </li> -->
+                    </ul>
+                </div>
+                <div class="col-md-12 col-lg-3 col-sm-12"></div>
+            </div>
+        </div>
+    </section>
+
+    <ng-container *ngIf="orderListArr && orderListArr.length === 0">
+        <div class="noData">No orders yet !!</div>
+    </ng-container>
+
+    <!-- My Orders Section End Here -->
+</div>

@@ -1,0 +1,75 @@
+  <div class="logo_wrap_bg">
+    <div class="login_wrap">
+      <div class="left_side_wrap">
+      </div>
+      <div class="right_side_wrap">
+        <form [formGroup]="loginFrmGrp">
+          <div class="lal_10_logo" [routerLink]="['/']">
+            <img style="cursor: pointer;" src="assets/images/lal10_logo.png" alt="">
+          </div>
+
+          <ng-container *ngIf="page1; else elseTemplate">
+            <div class="welcome_cont">
+              <h2> Welcome Back!!</h2>
+              <p>Please enter your registered email ID</p>
+            </div>
+            <div class="common_input_warp">
+              <div class="form-group">
+                <input type="email"  formControlName="email"
+                  class="form-control" placeholder="Email ID">
+                <div class="validation_wrap_icon">
+                  <span *ngIf="!f.email.errors && !correct && isEmailChecked"><i class="fa fa-check" aria-hidden="true"> </i></span>
+                  <span [hidden]="!correct"><i class="fa fa-window-close" aria-hidden="true"></i></span>
+
+                </div>
+
+                <div *ngIf="submitted && f.email.errors" class="invalid">
+                  <div class="validation_tag" *ngIf="f.email.errors.required">
+                    <p style="color: red;">Email is required</p>
+                  </div>
+                  <div class="validation_tag" *ngIf="f.email.errors.pattern">
+                    <p style="color: red;">Email not valid</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="continue_btn"> <button (click)="checkEmail()"> GET STARTED</button></div>
+            <div class="create_aconut_link">
+              <h2>New to Lal10? <a class="pointer" (click)="navigateToRegisteration()"> Create an Account</a></h2>
+            </div>
+          </ng-container>
+          <ng-template #elseTemplate>
+
+            <div class="welcome_cont">
+              <h2>Enter Your Password</h2>
+              <p>Please enter your password </p>
+            </div>
+            <div class="common_input_warp">
+              <div class="form-group">
+                <input [type]="fieldTextType ? 'text' : 'password'" formControlName="password" class="form-control"
+                  placeholder="Password" appPassword>
+                <div class="show_pass"><i class="fa" [ngClass]="{
+                    'fa-eye-slash': !fieldTextType,
+                    'fa-eye': fieldTextType
+                  }" (click)="toggleFieldTextType()" aria-hidden="true"></i></div>
+
+                <div *ngIf="submitted && f.password.errors" class="invalid">
+                  <div class="validation_tag" *ngIf="f.password.errors.required">
+                    <p style="color: red;">Password is required</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="continue_btn"> <button (click)="login(loginFrmGrp.value)">Continue</button></div>
+            <div class="create_aconut_link">
+              <h2><a class="pointer" (click)="forgotPassword(loginFrmGrp.value)">Forgot
+                  Password?</a></h2>
+            </div>
+          </ng-template>
+
+
+        </form>
+      </div>
+
+    </div>
+  </div>

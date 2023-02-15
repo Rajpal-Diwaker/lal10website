@@ -1,0 +1,227 @@
+<!-- All Producr Section Start Here -->
+<!-- <div class="middle_contant_wrap clearfix"> -->
+  <!-- <div class="filter_wrap_left">
+    <div class="filter_wrap_left_panel">
+
+      <div class="filter_data_search">
+        <input type="text" class="form-control" placeholder="Search any filter">
+        <i class="fa fa-search" aria-hidden="true"></i>
+      </div>
+
+      <ul>
+        <li>
+          <div class="engagedwrapbx engaged_tablewrap clearfix">
+            <div class="specific_item clearfix">
+              <div class="panel-group" id="accordion">
+                <div class="panel">
+                  <div class="collapse_icon collapsed" data-toggle="collapse" data-parent="#accordion" href="#pro1"> Sub
+                    Categories
+                    <i class="fa fa-angle-up" aria-hidden="true"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div id="pro1" class="panel-collapse collapse">
+              <div class="panel-body">
+                <div class="collapse_bx_cont">
+                  <div class="check_bx_wrap">
+                    <div class="form-group" *ngFor="let item of subCategoryArr; let i = index">
+                      <input type="checkbox" (change)="filterSubCategory($event, item.id)" id="option_1{{i}}" />
+                      <label for="option_1{{i}}">{{item.title}}</label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </li>
+        <li>
+          <div class="engagedwrapbx engaged_tablewrap clearfix">
+            <div class="specific_item  clearfix">
+              <div class="delete_collapse_cont clearfix">
+                <div class="panel-group" id="accordion">
+                  <div class="panel">
+                    <div class="collapse_icon collapsed" data-toggle="collapse" data-parent="#accordion" href="#pro2">
+                      Crafts
+                      <i class="fa fa-angle-up" aria-hidden="true"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div id="pro2" class="panel-collapse collapse">
+              <div class="panel-body">
+                <div class="collapse_bx_cont">
+                  <div class="check_bx_wrap">
+                    <div class="form-group" *ngFor="let item of craftListArr; let i = index">
+                      <input type="checkbox" (change)="filterCraft($event, item.id)" id="optionCraft_1{{i}}" />
+                      <label for="optionCraft_1{{i}}">{{item.title}}</label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </li>
+        <li>
+          <div class="engagedwrapbx engaged_tablewrap clearfix">
+            <div class="specific_item clearfix">
+              <div class="delete_collapse_cont clearfix">
+                <div class="panel-group" id="accordion">
+                  <div class="panel">
+                    <div class="collapse_icon collapsed" data-toggle="collapse" data-parent="#accordion" href="#pro3">
+                      Material
+                      <i class="fa fa-angle-up" aria-hidden="true"></i>
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div id="pro3" class="panel-collapse collapse">
+              <div class="panel-body">
+                <div class="collapse_bx_cont">
+                  <div class="check_bx_wrap">
+                    <div class="form-group" *ngFor="let item of materialListArr; let i = index">
+                      <input type="checkbox" (change)="filterMaterial($event, item.id)" id="optionMat_1{{i}}" />
+                      <label for="optionMat_1{{i}}">{{item.title}}</label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </li>
+        <li>
+          <div class="engagedwrapbx engaged_tablewrap clearfix">
+            <div class="specific_item clearfix">
+
+              <div class="panel-group" id="accordion">
+                <div class="panel">
+                  <div class="collapse_icon collapsed" data-toggle="collapse" data-parent="#accordion" href="#pro4">
+                    Price
+                    <i class="fa fa-angle-up" aria-hidden="true"></i>
+                  </div>
+
+                </div>
+              </div>
+
+            </div>
+            <div id="pro4" class="panel-collapse collapse">
+
+              <div class="price_ranger_wrap">
+
+                <div class="selector">
+                  <div class="price-slider">
+                      <ng5-slider (userChangeEnd)="sliderPriceChagne(value, highValue)" [(value)]="value" [(highValue)]="highValue" [options]="options"></ng5-slider>
+                  </div>
+                </div>
+
+              </div>
+
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div> -->
+  <div class="product_detail_wrap_right">
+    <!-- <div class="banner_all_products" *ngIf="banner">
+      <img [defaultImage]="defaultBanner" [lazyLoad]="banner.banner">
+    </div> -->
+    <div class="product_items_wrap">
+      <div class="row">
+        <div class="col-md-6 col-sm-6 ">
+          <div class="new_arrive_cont" *ngIf="searchTerm">
+            <h2>All Products</h2>
+            <p>List of products with "{{searchTerm}}" name</p>
+          </div>
+        </div>
+        <!-- <div class="col-md-6 col-sm-6">
+          <div class="sort_data_drop">
+            <div class="common_input_warp">
+              <div class="form-group">
+                <div class="select_wrapper">
+                  <select class="form-control" name="" id="">
+                    <option value="">Sort by:</option>
+                    <option value="">Option-1</option>
+                    <option value="">Option-1</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div> -->
+      </div>
+      <div class="product_card_wrap">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="tab_data_wapper search_mark">
+              <div class="tabbable-panel">
+                <div class="tabbable-line">
+                  <ul class="nav nav-tabs ">
+                    <li class="active">
+                      <a href="#tab_default_2" data-toggle="tab">
+                        Make-To-Order</a>
+                    </li>
+                    <li class="">
+                      <a href="#tab_default_1" data-toggle="tab">
+                        SHOP</a>
+                    </li>
+                  </ul>
+                  <div class="tab-content">
+                    <div class="tab-pane " id="tab_default_1">
+                      <div class="product_item_wrapper clearfix">
+                        <div class="product_item_wrap" *ngFor="let item of liveProductArr">
+                          <div class="product_item_card">
+                            <div class="item_image">
+                              <img [defaultImage]="defaultImage" [lazyLoad]="item.image"
+                              routerLink="../products/detail" [queryParams]="{productId: item.id}">
+                            </div>
+                            <div class="price_details_wrap">
+                              <h4>LAL10</h4>
+                              <div class="procardnm">{{item.name}}</div>
+                                        <p> <span>₹</span> {{item.amount}}</p>
+                          </div>
+                          </div>
+                        </div>
+                        <div *ngIf="liveProductArr && liveProductArr.length === 0">
+                          No products found
+                        </div>
+                      </div>
+
+                    </div>
+                    <div class="tab-pane active" id="tab_default_2">
+                      <div class="product_item_wrapper clearfix">
+                        <div class="product_item_wrap" *ngFor="let item of nonLiveProductArr">
+                          <div class="product_item_card">
+                            <div class="item_image">
+                              <img [defaultImage]="defaultImage" [lazyLoad]="item.image"
+                              routerLink="../products/detail" [queryParams]="{productId: item.id}">
+                            </div>
+                            <div class="price_details_wrap">
+                            <h2>{{item.name}}</h2>
+                            </div>
+                            <!-- <p> <span>₹</span> {{item.amount}}</p> -->
+                          </div>
+                        </div>
+                        <div *ngIf="nonLiveProductArr && nonLiveProductArr.length === 0">
+                          No products found
+                        </div>
+
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+<!-- </div> -->
+<!-- All Producr Section End Here -->

@@ -1,0 +1,171 @@
+   <!-- Footer Section start Here -->
+   <div class="web_footer_wrap">
+    <div class="subscribe_wrapper">
+     <div class="row">
+        <div [formGroup]="susbcribeForm" class="col-md-6 col-sm-7">
+            <div class="subscribe_wrap clearfix">
+                <h2>Subscribe to Our Newsletter</h2>
+                <input class="form-control" name="" placeholder="Enter your email" formControlName="email">
+                <button (click)="submit()"><span>Subscribe</span></button>
+            </div>
+            <ng-container *ngIf="submitted && f.email.errors">
+              <div class="error" *ngIf="f.email.errors.required">Email required</div>
+              <div class="error" *ngIf="!f.email.errors.required && f.email.errors.pattern">Please enter valid email</div>
+            </ng-container>
+        </div>
+         <div class="col-md-6 col-sm-5">
+             <div class="find_us_wrap">
+            <h2>Find Us on</h2>
+            <div class="contact_no">
+              <a href="tel:+918047275792"><span><i class="fa fa-phone" aria-hidden="true"></i></span>+91 8047275792</a>
+              <a href="mailto:contact@lal10.com"><span><i class="fa fa-envelope" aria-hidden="true"></i></span>contact@lal10.com</a>
+
+              <ul>
+                <li> <a href="https://twitter.com/lal10_india" target="blank"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+                <li> <a href="https://www.instagram.com/lal10_official/" target="blank"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
+                <li><a href="https://www.facebook.com/Lal10.Official/" target="blank"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+                <li><a href="https://www.linkedin.com/company/lal10-com/"  target="blank"><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>
+                <li> <a href="https://in.pinterest.com/Lal10india" target="blank"><i class="fa fa-pinterest-p" aria-hidden="true"></i></a></li>
+                </ul>
+                                     </div>
+          </div>
+
+         </div>
+     </div>
+     </div>
+     <div class="footer_menu_wrap clearfix">
+         <ul class=" clearfix">
+            <li class="">
+                 <div class="menu_listing">
+                    <ul>
+                        <li><h2>About Lal 10</h2></li>
+                        <li> <a (click)="goto('page/about', 'Footer_who_we_are')">Who We Are</a></li>
+                        <li> <a (click)="showComingSoon('Footer_blogs'); blogsFalg=true">Blogs</a></li>
+                        <!-- <li> <a (click)="goto('page/blogs')">Blogs</a></li> -->
+                        <li> <a (click)="scrollGoTo('newsScroll', 'Footer_newsfeed')">Newsfeed</a></li>
+                        <li> <a (click)="showComingSoon('Footer_careers'); blogsFalg=false">Careers</a></li>
+                        <!-- <li> <a (click)="goto('page/career')">Careers</a></li> -->
+                        <li> <a style="cursor: pointer;" (click)="goto('page/sitemap', 'Footer_sitemap')">SiteMap</a></li>
+                    </ul>
+                 </div>
+            </li>
+              <li class="">
+                            <div class="menu_listing">
+                    <ul>
+                        <li><h2>For Buyers</h2></li>
+                        <li> <a (click)="showDownlaodCatPopup()">Download Catalog</a></li>
+                        <li> <a (click)="scrollGoTo('custFeed', 'Footer_Customer_Testimonials')">Customer Testimonials</a></li>
+                        <li> <a (click)="goto('page/return&refund', 'Footer_Return & Refund Policy')">Return & Refund Policy</a></li>
+                        <li> <a (click)="goto('page/privacy', 'Footer_privacy_policy')">Privacy Policy</a></li>
+                   </ul>
+                 </div>
+              </li>
+              <li class="cleasrrow"></li>
+               <li class="">
+                             <div class="menu_listing">
+                    <ul>
+                        <li><h2> For Sellers</h2></li>
+                        <li> <a (click)="scrollGoTo('avenueCust', 'Footer_success_stories')">Success Stories</a></li>
+                        <li> <a href="javascript:void(0);" (click)="sendEvent('Footer_download_app', '')">Download Seller App</a></li>
+                          </ul>
+                 </div>
+               </li>
+                 <li class="2">
+                <div class="menu_listing">
+                    <ul>
+                        <li><h2>Contact Us</h2></li>
+                        <li> <a style="cursor: pointer;" (click)="checkLogin('sendEnquiry'); sendEvent('Footer_send_an_enquiry', '')">Send an Enquiry</a></li>
+                        <li> <a (click)="goto('faqs'); sendEvent('Footer_faq', '')">FAQs</a></li>
+                    </ul>
+                 </div>
+                 </li>
+                   <li class="contact_last">
+                       <!-- <div class="contact_no">
+<a href="tel:+918047275792"><span><i class="fa fa-phone" aria-hidden="true"></i></span>+91 8047275792</a>
+<a href="mailto:contact@lal10.com"><span><i class="fa fa-envelope" aria-hidden="true"></i></span>contact@lal10.com</a>
+                       </div> -->
+                   </li>
+         </ul>
+         <div class="copyright_wrap">
+          <h2>Copyrights 2020@lal10</h2>
+      </div>
+     </div>
+     <!-- <div class="product_wrap">
+         <h2>PRODUCTS</h2>
+         <ul>
+             <li *ngFor="let item of headerCategoryArr"> <a [routerLink]="['/products']" [queryParams]="{categoryId: item.id}"> {{item.title}} </a></li>
+
+              <li> <a href="javascript:void(0);">Home Décor</a> </li>
+               <li><a href="javascript:void(0);"> Accessories </a></li>
+                <li> <a href="javascript:void(0);"> Kitchen</a></li>
+                 <li> <a href="javascript:void(0);"> Women's Apparel</a></li>
+                  <li><a href="javascript:void(0);">  Beauty</a></li>
+                   <li> <a href="javascript:void(0);">Jewelry</a> </li>
+                    <li> <a href="javascript:void(0);">Stationery</a> </li>
+                     <li> <a href="javascript:void(0);">Kids & Baby</a> </li>
+                      <li> <a href="javascript:void(0);">Pets </a></li>
+                         <li> <a href="javascript:void(0);">Men </a></li>
+         </ul>
+     </div> -->
+
+ </div>
+
+<!-- Footer Section End Here -->
+
+<div class="modal fade" id="noLoggedIn1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog congrats_modal_wrap_width inquiry_warning_popup" role="document">
+    <div class="modal-content congrats_modal_wrap">
+      <div class="modal-body ">
+      <div class="modal_msg">
+      <h2>Please login first!!</h2>
+      <p>Please login to add products to cart, buy products or enquire non-live products.</p>
+      </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" data-dismiss="modal" class="btn btn-primary" (click)="goto('/user/login')">Continue</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="downCat" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog congrats_modal_wrap_width inquiry_warning_popup" role="document">
+    <div class="modal-content congrats_modal_wrap">
+      <div class="modal-body ">
+      <div class="modal_msg">
+      <h2>You are downloading the catalogs from Lal10</h2>
+      <p>Click Continue to proceed</p>
+      </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" (click)="downloadCatalogue()" data-dismiss="modal">Continue</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="comingSoon" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog congrats_modal_wrap_width inquiry_warning_popup" role="document">
+    <div class="modal-content congrats_modal_wrap">
+      <div class="modal-body ">
+      <ng-container *ngIf="blogsFalg">
+        <div class="modal_msg">
+          <h2>We are coming up with a dedicated blog page on our website soon</h2>
+          <p>Till then, please check out our blogs on our Medium Profile:
+            <a href="https://lal10official.medium.com/" target="_blank">https://lal10official.medium.com/</a>'</p>
+          </div>
+      </ng-container>
+      <ng-container *ngIf="!blogsFalg">
+        <div class="modal_msg">
+          <h2>We are coming up with a dedicated career page on our website soon</h2>
+          <p>Till then, please check out the openings at Lal10 on our Angellist Profile:
+            <a href="https://angel.co/company/lal10/jobs" target="_blank">https://angel.co/company/lal10/jobs</a>'</p>
+          </div>
+      </ng-container>
+      </div>
+      <!-- <div class="modal-footer">
+        <button type="button" class="btn btn-primary" (click)="downloadCatalogue()" data-dismiss="modal">Continue</button>
+      </div> -->
+    </div>
+  </div>
+</div>

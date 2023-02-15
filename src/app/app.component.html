@@ -1,0 +1,11 @@
+<ngx-spinner type="null" overla>
+  <img src="assets/images/lal.gif" height="130px" width="130px"/>
+</ngx-spinner>
+<!-- <router-outlet></router-outlet> -->
+<div id="wrapper">
+  <app-header *ngIf="showHead"></app-header>
+  <div [ngClass]="{'middle_contant_wrap clearfix': showHead}">
+    <router-outlet></router-outlet>
+  </div>
+  <app-footer *ngIf="showHead"></app-footer>
+</div>

@@ -1,0 +1,20 @@
+.imageName {
+  margin-top: 10px;
+  font-size: 16px;
+  position: relative;
+  max-width: 350px;
+}
+.imageName .fa {
+  position: absolute;
+  right: 0px;
+  top: 0px;
+  font-size: 18px;
+  color: red;
+  cursor: pointer;
+}
+.imageName p {
+  max-width: 300px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

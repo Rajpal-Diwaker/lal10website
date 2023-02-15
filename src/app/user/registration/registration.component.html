@@ -1,0 +1,794 @@
+    <div class="registration_wrap">
+        <div class="registration_form">
+            <div class="lal_10_logo"  [routerLink]="['/']">
+                <img style="cursor: pointer;" src="assets/images/lal10_logo.png" alt="" />
+            </div>
+            <div class="stap_form_wrap">
+                <div class="custom_wrap">
+                    <!-- multistep form -->
+                    <form id="msform" [formGroup]="registerFrmGrp">
+                        <!-- progressbar -->
+                        <ul id="progressbar">
+                            <li class="active"></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <!-- <li></li>
+                            <li></li>
+                            <li></li> -->
+                        </ul>
+                        <!-- fieldsets -->
+                        <fieldset>
+                            <div class="form_details_wrap">
+                                <div class="form_heading">
+                                    <h2>Welcome to Lal10</h2>
+                                    <p> Your shop, your craft, online.</p>
+                                </div>
+                                <div class="common_input_warp">
+                                    <div class="form-group">
+                                        <div class="star_mark_field">*</div>
+                                        <input type="text" class="form-control" formControlName="name"
+                                            placeholder="First Name" value="" />
+
+                                        <div *ngIf="submitted && f.name.errors " class="invalid">
+                                            <div class="validation_tag" *ngIf="f.name.errors.required">
+                                                <p style="color: red;">First name is required</p>
+                                            </div>
+                                            <div class="validation_tag" *ngIf="f.name.errors.pattern">
+                                                <p style="color: red;">Only alphabets are allowed</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                      <div class="star_mark_field">*</div>
+                                      <input type="text" class="form-control" formControlName="name2"
+                                          placeholder="Last Name" value="" />
+
+                                      <div *ngIf="submitted && f.name2.errors " class="invalid">
+                                          <div class="validation_tag" *ngIf="f.name2.errors.required">
+                                              <p style="color: red;">Last name is required</p>
+                                          </div>
+                                          <div class="validation_tag" *ngIf="f.name.errors.pattern">
+                                              <p style="color: red;">Only alphabets are allowed</p>
+                                          </div>
+                                      </div>
+                                  </div>
+                                    <div class="form-group">
+                                        <div class="star_mark_field">*</div>
+                                        <input type="email" (input)="correct=false" class="form-control" formControlName="email"
+                                            placeholder="Email" value="" />
+                                        <div class="validation_wrap_icon" >
+                                            <span *ngIf="!f.email.errors && correct && isEmailChecked"><i class="fa fa-check" aria-hidden="true"> </i></span>
+                                            <span *ngIf="correct === false && isEmailChecked"><i class="fa fa-window-close"
+                                                    aria-hidden="true"></i></span>
+                                        </div>
+                                        <div *ngIf="submitted && f.email.errors" class="invalid">
+                                            <div class="validation_tag" *ngIf="f.email.errors.required">
+                                                <p style="color: red;">Email is required</p>
+                                            </div>
+                                            <div class="validation_tag" *ngIf="f.email.errors.pattern">
+                                                <p style="color: red;">Email not valid</p>
+                                            </div>
+                                            <!-- <div class="validation_tag">
+                                                <p style="color: red;">{{correct}}</p>
+                                            </div> -->
+                                        </div>
+                                        <!-- <div class="validation_tag" *ngIf="correct">
+                                            <p style="color: red;">{{correct}}</p>
+                                        </div> -->
+                                    </div>
+                                    <!-- <div class="form-group">
+                                        <input type="text" class="form-control" formControlName="phone"
+                                            placeholder="Phone Number" value="" numberonly />
+                                        <div *ngIf="f.phone.errors && f.phone.touched" class="invalid">
+                                            <div *ngIf="f.phone.errors.required">
+                                                <p style="color: red;">Phone is required</p>
+                                            </div>
+                                            <div *ngIf="f.phone.errors.minlength">
+                                                <p style="color: red;">Minimum length is
+                                                    {{f.phone.errors.minlength.requiredLength}}</p>
+                                            </div>
+                                            <div *ngIf="f.phone.errors.maxlength">
+                                                <p style="color: red;">Maximum length is
+                                                    {{f.phone.errors.maxlength.requiredLength}}</p>
+                                            </div>
+                                        </div>
+                                    </div> -->
+                                    <div class="form-group">
+                                        <div class="star_mark_field">*</div>
+                                        <input type="Password" class="form-control" formControlName="password"
+                                            placeholder="Password" value="" />
+                                        <div *ngIf="submitted && f.password.errors" class="invalid">
+                                            <div class="validation_tag" *ngIf="f.password.errors.required">
+                                                <p style="color: red;">Password is required</p>
+                                            </div>
+                                            <div class="validation_tag" *ngIf="f.password.errors.minlength">
+                                                <p style="color: red;">Minimum length is
+                                                    {{ f.password.errors.minlength.requiredLength }}</p>
+                                            </div>
+                                            <div class="validation_tag" *ngIf="f.password.errors.maxlength">
+                                                <p style="color: red;">Maximum length is
+                                                    {{ f.password.errors.maxlength.requiredLength }}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="star_mark_field">*</div>
+                                        <input type="Password" class="form-control" formControlName="cnfrmPassword"
+                                            placeholder="Confirm Password" value="" />
+                                        <div *ngIf="submitted && f.cnfrmPassword.errors" class="invalid">
+                                            <div class="validation_tag" *ngIf="f.cnfrmPassword.errors.required">
+                                                <p style="color: red;">Confirm Password is required</p>
+                                            </div>
+
+                                        </div>
+                                        <div class="invalid" *ngIf="f.cnfrmPassword.errors">
+                                          <div class="validation_tag" *ngIf="f.cnfrmPassword.errors.mustMatch">
+                                            <p style="color: red;">Passwords do not match</p>
+                                        </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                      <div class="star_mark_field">*</div>
+                                        <div class="select_wrapper">
+                                            <!-- <img src="assets/images/angle_arrow_down_red.png" alt=""> -->
+                                            <select class="form-control classic" formControlName="country" style="cursor: pointer;">
+                                                <option value="">Select Country</option>
+                                                <option value="India">India</option>
+                                                <option value="United States">United States</option>
+                                                <option [value]="item.name" *ngFor="let item of countryListArr">{{item.name}}</option>
+                                            </select>
+                                            <div *ngIf="submitted && f.country.errors" class="invalid">
+                                                <div class="validation_tag" *ngIf="f.country.errors.required">
+                                                    <p style="color: red;">Country is required</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group mobile_code_wrap">
+                                      <div class="star_mark_field">*</div>
+                                        <input type="text" class="form-control" (input)="correctPhone=false" numberonly formControlName="mobile"
+                                             placeholder="Mobile No."
+                                            value="" />
+                                        <div class="validation_wrap_icon">
+                                            <span *ngIf="!f.mobile.errors && correctPhone && isMobileChecked"><i class="fa fa-check" aria-hidden="true">
+                                                </i></span>
+                                            <span *ngIf="correctPhone === false && isMobileChecked"><i class="fa fa-window-close"
+                                                    aria-hidden="true"></i></span>
+                                        </div>
+                                        <div class="form-group mobile_code">
+                                            <div class="select_wrapper">
+                                                <select formControlName="countryCode" class="form-control classic" name=""
+                                                    id="">
+                                                    <option value="">Country Code</option>
+                                                    <option *ngFor="let country of codeArray" [value]="country.code">
+                                                        {{country.code}}</option>
+                                                </select>
+                                                <div *ngIf="submitted && f.countryCode.errors"
+                                                    class="invalid">
+                                                    <div class="validation_tag" *ngIf="f.countryCode.errors.required">
+                                                        <p style="color: red;">countryCode is required</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div *ngIf="submitted && f.mobile.errors" class="invalid">
+                                            <div class="validation_tag" *ngIf="f.mobile.errors.required">
+                                                <p style="color: red;">Mobile is required</p>
+                                            </div>
+                                            <div class="validation_tag" *ngIf="f.mobile.errors.minlength">
+                                                <p style="color: red;">Minimum length is
+                                                    {{f.mobile.errors.minlength.requiredLength}}</p>
+                                            </div>
+                                            <div class="validation_tag" *ngIf="f.mobile.errors.maxlength">
+                                                <p style="color: red;">Maximum length is
+                                                    {{f.mobile.errors.maxlength.requiredLength}}</p>
+                                            </div>
+                                        </div>
+                                        <!-- <div class="validation_tag" *ngIf="correctPhone">
+                                            <p style="color: red;">{{correctPhone}}</p>
+                                        </div> -->
+                                    </div>
+                                </div>
+                            </div>
+                            <input type="button" (click)="next('1'); sendEvent('Welcome_next')" name="next" class="next action-button scroll_top_data" value="Next" id="1" />
+                        </fieldset>
+                        <!-- What Type Of Store Do You Have -->
+                        <fieldset [scrollTop]="0">
+                            <div class="form_details_wrap">
+                                <div class="form_heading">
+                                    <h2>What Type Of Store Do You Have?</h2>
+                                    <!-- <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.</p> -->
+                                </div>
+                            </div>
+                            <!-- <div class="store_card_wrapper">
+                                <div class="row custom_radio_center_wrap clearfix">
+                                    <div class="col-md-6 col-lg-3 col-sm-6 custom_radio_center" *ngFor="let item of typeOfStoreArr">
+                                        <div class="select_product_wrapper">
+                                            <label>
+                                                <input type="radio" name="store_type" value="{{item.name}}"
+                                                    formControlName="store_type" class="card-input-element" />
+                                                <div class="panel panel-default card-input">
+                                                    <div class="card_wrap">
+                                                        <div *ngIf="item.id === 1">
+                                                          <img class="hover_img" src="assets/images/icon_first_w.png" />
+                                                          <img class="fix_img" src="assets/images/icon_first.png" />
+                                                          <img class="clickImg" src="assets/images/icon_first_w.png" style="display: none;">
+                                                        </div>
+                                                        <div *ngIf="item.id === 2">
+                                                          <img class="hover_img" src="assets/images/icon_second_w.png" />
+                                                          <img class="fix_img" src="assets/images/icon_second.png" />
+                                                          <img class="clickImg" src="assets/images/icon_second_w.png" style="display: none;">
+                                                        </div>
+                                                        <div *ngIf="item.id === 3">
+                                                          <img class="hover_img" src="assets/images/icon_three_w.png" />
+                                                          <img class="fix_img" src="assets/images/icon_three.png" />
+                                                          <img class="clickImg" src="assets/images/icon_three_w.png" style="display: none;">
+                                                        </div>
+                                                        <div *ngIf="item.id === 4">
+                                                          <img class="hover_img" src="assets/images/icon_four_w.png" />
+                                                          <img class="fix_img" src="assets/images/icon_four.png" />
+                                                          <img class="clickImg" src="assets/images/icon_four_w.png" style="display: none;">
+                                                        </div>
+                                                        <h2>{{ item.name | titlecase }}</h2>
+                                                        <p>{{ item.description | titlecase }}</p>
+                                                    </div>
+                                                </div>
+                                            </label>
+                                        </div>
+
+                                    </div>
+                                   </div>
+                                <div *ngIf="submitted && f.store_type.errors " class="invalid">
+                                    <div class="validation_tag_center" *ngIf="f.store_type.errors.required">
+                                        <p style="color: red;">Type Of Store Name is required</p>
+                                    </div>
+                                </div>
+                            </div> -->
+
+
+                            <div class="store_card_wrapper">
+                              <div class="row">
+                                  <div class="col-md-3 col-sm-6 col-xs-6">
+                                      <div class="select_product_wrapper">
+                                          <label>
+                                              <input type="radio" name="store_type" class="card-input-element" formControlName="store_type" value="Retail Store"/>
+                                              <div (click)="sendEventSelectStore('Store_select_retail')" class="panel panel-default card-input">
+                                                  <div class="card_wrap">
+                                                      <img class="fix_img" src="assets/images/about_store_1.png" />
+                                                      <h2>Retail Store</h2>
+                                                <p>Do you have a retail store with
+                                                    outlets at one or multiple
+                                                    locations? </p>
+                                                  </div>
+                                              </div>
+                                          </label>
+                                      </div>
+                                  </div>
+
+                                  <div class="col-md-3 col-sm-6 col-xs-6">
+                                       <div class="select_product_wrapper">
+                                          <label>
+                                              <input type="radio" name="store_type" class="card-input-element" formControlName="store_type" value="Resellers" />
+                                              <div (click)="sendEventSelectStore('Store_select_reseller')" class="panel panel-default card-input">
+                                                  <div class="card_wrap">
+                                                      <img class="fix_img" src="assets/images/about_store_3.png" />
+                                                      <h2>Reseller</h2>
+                                                     <p> Are you an individual selling
+                                                      products through multiple
+                                                      channels?</p>
+                                                  </div>
+                                              </div>
+                                          </label>
+                                      </div>
+                                  </div>
+                                  <div class="col-md-3 col-sm-6 col-xs-6">
+                                    <div class="select_product_wrapper">
+                                        <label>
+                                            <input type="radio" name="store_type" class="card-input-element" formControlName="store_type" value="Online Store" />
+                                            <div (click)="sendEventSelectStore('Store_select_online')" class="panel panel-default card-input">
+                                                <div class="card_wrap">
+                                                        <img class="fix_img" src="assets/images/about_store_2.png" />
+                                                          <h2>Online Store</h2>
+                                                  <p>
+                                                    Do you have a web or a social
+                                                    media powered online store?</p>
+                                                </div>
+                                            </div>
+                                        </label>
+                                    </div>
+                                </div>
+                                  <div class="col-md-3 col-sm-6 col-xs-6">
+                                      <div class="select_product_wrapper">
+                                          <label>
+                                              <input type="radio" name="store_type" class="card-input-element" formControlName="store_type" value="Others"/>
+                                              <div (click)="sendEventSelectStore('Store_select_others')" class="panel panel-default card-input">
+                                                  <div class="card_wrap">
+                                                   <img class="fix_img" src="assets/images/about_store_4.png" />
+                                                       <h2>Others</h2>
+                                                                    <p>Are you selling via channels
+                                                       beyond those listed above? </p>
+                                                  </div>
+                                              </div>
+                                          </label>
+                                      </div>
+                                  </div>
+                              </div>
+                              <div *ngIf="submitted && f.store_type.errors " class="invalid">
+                                <div class="validation_tag_center" *ngIf="f.store_type.errors.required">
+                                    <p style="color: red;">Type Of Store is required</p>
+                                </div>
+                            </div>
+                          </div>
+
+                            <input type="button" name="next" class="next action-button scroll_top_data" value="Next"
+                                (click)="stateCondition();next('2'); nextClickEvent()"  id="2" />
+                            <input type="button" (click)="prevClickEvent()" name="previous" class="previous action_button_back" value="Back" />
+                        </fieldset>
+                        <!-- What Type Of Store Do You Have end here-->
+                        <!-- bricks and mortal start here -->
+                        <fieldset>
+                            <ng-container *ngIf="state=='Retail Store'">
+                                <!-- <fieldset *ngIf="state=='Retail Store'"> -->
+                                <div class="form_details_wrap">
+                                    <div class="form_heading">
+                                        <h2>Tell us about your
+                                            business </h2>
+                                        <p>Let’s build the story</p>
+                                    </div>
+                                    <div class="common_input_warp">
+                                        <div class="form-group">
+                                            <div class="star_mark_field">*</div>
+                                            <input type="text" formControlName="store_name" class="form-control"
+                                                placeholder="What’s your Store Name" value="" />
+                                            <div *ngIf="submitted &&  f.store_name.errors" class="invalid">
+                                                <div class="validation_tag" *ngIf="f.store_name.errors.required">
+                                                    <p style="color: red;">Store Name is required</p>
+                                                </div>
+                                                <div class="validation_tag" *ngIf="f.store_name.errors.pattern">
+                                                    <p style="color: red;">Only alphabets are allowed</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="star_mark_field">*</div>
+                                          <input type="text" class="form-control" numberonly
+                                              formControlName="store_postal_code" placeholder="Provide Postal Code"
+                                              value="" />
+                                          <div *ngIf="submitted && f.store_postal_code.errors"
+                                              class="invalid">
+                                              <div class="validation_tag" *ngIf="f.store_postal_code.errors.required">
+                                                  <p style="color: red;">Store postal code is required</p>
+                                              </div>
+                                              <div class="validation_tag"
+                                                  *ngIf="f.store_postal_code.errors.maxlength">
+                                                  <p style="color: red;">Maximum length is
+                                                      {{f.store_postal_code.errors.maxlength.requiredLength}}</p>
+                                              </div>
+                                          </div>
+                                      </div>
+                                    </div>
+                                </div>
+                                <input type="button" (click)="next('3')" name="next" class="next action-button scroll_top_data" value="Next" id="3" />
+                                <input type="button" name="previous" class="previous action_button_back" value="Back" />
+                            </ng-container>
+                            <!-- </fieldset> -->
+                            <!-- bricks and mortal end here -->
+                            <!-- popup shop start here -->
+                            <!-- <fieldset *ngIf="state=='Online Store'"> -->
+                            <!-- <fieldset> -->
+                            <ng-container *ngIf="state=='Online Store'">
+                                <div class="form_details_wrap">
+                                    <div class="form_heading">
+                                        <h2>Tell Us About Your Store</h2>
+                                        <p>Let’s build the story</p>
+                                    </div>
+                                    <div class="common_input_warp">
+                                        <div class="form-group">
+                                            <div class="star_mark_field">*</div>
+                                            <input type="text" class="form-control" formControlName="store_name"
+                                                [value]="f.store_name.value" placeholder="What’s your Store Name" />
+                                            <div *ngIf="submitted && f.store_name.errors " class="invalid">
+                                                <div class="validation_tag" *ngIf="f.store_name.errors.required">
+                                                    <p style="color: red;">Store name is required</p>
+                                                </div>
+                                                <div class="validation_tag" *ngIf="f.store_name.errors.pattern">
+                                                    <p style="color: red;">Only alphabets are allowed</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                          <div class="star_mark_field">*</div>
+                                          <input type="text" class="form-control" placeholder="Provide Website URL"
+                                              formControlName="store_website_url" />
+                                          <div *ngIf="submitted && f.store_website_url.errors "
+                                              class="invalid">
+                                              <div class="validation_tag" *ngIf="f.store_website_url.errors.required">
+                                                  <p style="color: red;">Store website url is required</p>
+                                              </div>
+                                              <div class="validation_tag" *ngIf="f.store_website_url.errors.pattern">
+                                                  <p style="color: red;">Not a valid URL</p>
+                                              </div>
+                                          </div>
+                                      </div>
+
+                                    </div>
+                                </div>
+                                <input type="button"  (click)="next('4')" name="next" class="next action-button scroll_top_data" value="Next" id="4" />
+                                <input type="button" name="previous" class="previous action_button_back" value="Back" />
+                            </ng-container>
+                            <!-- </fieldset> -->
+                            <!-- popup shop start here end here-->
+                            <!-- Resellers start here -->
+                            <!-- <fieldset *ngIf="state=='Resellers'"> -->
+                            <!-- <fieldset> -->
+                            <ng-container *ngIf="state=='Resellers'">
+                                <div class="form_details_wrap">
+                                    <div class="form_heading">
+                                        <h2>Tell Us About Your Business</h2>
+                                        <p>Let’s build the story</p>
+                                    </div>
+                                    <div class="common_input_warp">
+                                        <!-- <div class="form-group">
+                                            <div class="star_mark_field">*</div>
+                                            <input type="text" class="form-control" formControlName="store_name"
+                                                placeholder="Store Name" [value]="f.store_name.value" />
+                                            <div *ngIf="submitted && f.store_name.errors " class="invalid">
+                                                <div class="validation_tag" *ngIf="f.store_name.errors.required">
+                                                    <p style="color: red;">Store name is required</p>
+                                                </div>
+                                                <div class="validation_tag" *ngIf="f.store_name.errors.pattern">
+                                                    <p style="color: red;">Only alphabets are allowed</p>
+                                                </div>
+                                            </div>
+                                        </div> -->
+                                        <div class="form-group">
+                                          <div class="star_mark_field">*</div>
+                                          <input type="text" class="form-control" numberonly
+                                              formControlName="store_postal_code" placeholder="Provide Postal Code"
+                                              value="" />
+                                          <div *ngIf="submitted && f.store_postal_code.errors"
+                                              class="invalid">
+                                              <div class="validation_tag" *ngIf="f.store_postal_code.errors.required">
+                                                  <p style="color: red;">Store postal code is required</p>
+                                              </div>
+                                              <div class="validation_tag"
+                                                  *ngIf="f.store_postal_code.errors.maxlength">
+                                                  <p style="color: red;">Maximum length is
+                                                      {{f.store_postal_code.errors.maxlength.requiredLength}}</p>
+                                              </div>
+                                          </div>
+                                      </div>
+
+                                    </div>
+                                </div>
+                                <input type="button" name="next" (click)="next('5')" class="next action-button scroll_top_data" value="Next" id="5" />
+                                <input type="button" name="previous" class="previous action_button_back" value="Back" />
+                            </ng-container>
+                            <!-- </fieldset> -->
+                            <!-- Resellers end here -->
+                            <!-- others start here -->
+                            <!-- <fieldset *ngIf="state=='Others'"> -->
+                            <!-- <fieldset> -->
+                            <ng-container *ngIf="state=='Others'">
+                                <div class="form_details_wrap">
+                                    <div class="form_heading">
+                                        <h2>Tell Us About Your Store</h2>
+                                        <p>Let’s build the story</p>
+                                    </div>
+                                    <div class="common_input_warp">
+                                        <div class="form-group">
+                                            <div class="star_mark_field">*</div>
+                                            <input type="text" class="form-control" formControlName="store_name"
+                                                placeholder="What’s your Store Name" [value]="f.store_name.value" />
+                                            <div *ngIf="submitted && f.store_name.errors " class="invalid">
+                                                <div class="validation_tag" *ngIf="f.store_name.errors.required">
+                                                    <p style="color: red;">Store name is required</p>
+                                                </div>
+                                                <div class="validation_tag" *ngIf="f.store_name.errors.pattern">
+                                                    <p style="color: red;">Only alphabets are allowed</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="star_mark_field">*</div>
+                                            <textarea class="form-control" rows="14" cols="14" formControlName="store_describe"
+                                                placeholder="Tell us more about your store"></textarea>
+                                            <div *ngIf="submitted && f.store_describe.errors"
+                                                class="invalid">
+                                                <div class="validation_tag" *ngIf="f.store_describe.errors.required">
+                                                    <p style="color: red;">Store describe is required</p>
+                                                </div>
+                                                <div class="validation_tag" *ngIf="f.store_describe.errors.maxlength">
+                                                    <p style="color: red;">Maximum length is
+                                                        {{f.store_describe.errors.maxlength.requiredLength}}</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <input type="button" name="next" (click)="next('6')" class="next action-button scroll_top_data" value="Next" id="6" />
+                                <input type="button" name="previous" class="previous action_button_back" value="Back" />
+                                <!-- </fieldset> -->
+                            </ng-container>
+                        </fieldset>
+                        <!-- others end here -->
+                        <fieldset>
+                            <div class="form_details_wrap">
+                                <div class="form_heading">
+                                    <h2>How did you Hear about Us?</h2>
+                                    <p class="blf">Select all that Apply</p>
+                                </div>
+                            </div>
+                            <div class="about_us_wrap">
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <div class="check_bx_wrap">
+                                            <div class="form-group" formArrayName="about_us"
+                                                *ngFor="let item of registerFrmGrp.get('about_us')?.controls; let i = index;">
+                                                <ng-container [formGroupName]="i">
+                                                    <input (change)="next('7'); sendEventHearFrom(registerFrmGrp.controls.about_us.controls[i].controls.type.value)"
+                                                    type="checkbox" id="option_{{i}}" formControlName="isChecked"
+                                                    value="{{ registerFrmGrp.controls.about_us.controls[i].controls.isChecked.value}}" />
+                                                    <label
+                                                        for="option_{{i}}"><span>{{ registerFrmGrp.controls.about_us.controls[i].controls.type.value }}</span></label>
+                                                </ng-container>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div *ngIf="aboutUsErr" class="invalid">
+                                        <div class="validation_tag_checks">
+                                            <p style="color: red;">Atleast one option is required</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <input type="button" name="next"  (click)="next('7'); sendEventHearFrom('Hear_from_Next')" class="next action-button scroll_top_data" value="Next" id="7" />
+                            <input type="button" name="previous" (click)="sendEventHearFrom('Hear_from_Back')" class="previous action_button_back" value="Back" />
+                        </fieldset>
+                        <fieldset>
+                            <div class="form_details_wrap">
+                                <div class="form_heading">
+                                    <h2>What types of products do you sell?</h2>
+                                    <p class="blf">Select All That Apply</p>
+                                </div>
+                            </div>
+                            <!-- <div class="product_select_wrap clearfix">
+                               <ul>
+                                    <li formArrayName="product_types"
+                                        *ngFor="let item of registerFrmGrp.get('product_types')?.controls; let i = index;">
+                                        <ng-container [formGroupName]="i" >
+                                            <div class="whatstype_wrap select_product_wrapper">
+                                                 <label class=" panel panel-default card-input" for="myCheckbox{{i}}">
+                                                <input type="checkbox" (change)="next('8')" id="myCheckbox{{i}}" formControlName="isChecked"
+                                                value="{{ registerFrmGrp.controls.product_types.controls[i].controls.isChecked.value}}" class="card-input-element" />
+                                                <div class="product_card">
+                                                    <div class="product_image">
+                                                        <img (error)="def($event, i)"
+                                                            src="{{registerFrmGrp.controls.product_types.controls[i].controls.image.value}}" />
+                                                   </div>
+                                                    <p>{{ registerFrmGrp.controls.product_types.controls[i].controls.name.value }}
+                                                    </p>
+                                                </div>
+                                            </label>
+                                        </div>
+                                        </ng-container>
+                                    </li>
+                                </ul>
+
+                            </div> -->
+                            <div class="selectprdctwrap clearfix">
+                                <div class="row clearfix">
+                                     <div class="col-md-4 col-xs-6 col-sm-4" formArrayName="product_types"
+                                         *ngFor="let item of registerFrmGrp.get('product_types')?.controls; let i = index;">
+                                         <ng-container [formGroupName]="i" >
+                                            <div class="customer_wrapper">
+                                                <div class="select_product_wrapper customers">
+                                                  <label  for="myCheckbox{{i}}">
+                                                 <input type="checkbox" (change)="next('8'); sendEventProductSold(registerFrmGrp.controls.product_types.controls[i].controls.name.value)"
+                                                 id="myCheckbox{{i}}" formControlName="isChecked"
+                                                 value="{{ registerFrmGrp.controls.product_types.controls[i].controls.isChecked.value}}" class="card-input-element" />
+                                                 <div class="panel panel-default card-input">
+                                                    <div class="card_wrap">
+                                                         <img (error)="def($event, i)"
+                                                             src="{{registerFrmGrp.controls.product_types.controls[i].controls.image.value}}" />
+                                                    <h2>
+                                                      <!-- {{ registerFrmGrp.controls.product_types.controls[i].controls.name.value }} -->
+                                                      {{(registerFrmGrp.controls.product_types.controls[i].controls.name.value.length > 33) ? registerFrmGrp.controls.product_types.controls[i].controls.name.value.substr(0, 33) + '&hellip;' : registerFrmGrp.controls.product_types.controls[i].controls.name.value}}
+                                                    </h2>
+                                                   </div>
+                                                 </div>
+                                             </label>
+                                             </div>
+                                         </div>
+                                         </ng-container>
+                                     </div>
+                                 </div>
+
+                             </div>
+                            <div class="validation_tag" *ngIf="productTypeErr" class="invalid">
+                                <div class="validation_tag_center">
+                                    <p style="color: red;">Atleast one option is required</p>
+                                </div>
+                            </div>
+                            <input type="button" name="next" (click)="next('8'); sendEventProductSold('Products_sell_next')" class="next action-button scroll_top_data" value="Next" id="8" />
+                            <input type="button" name="previous" (click)="sendEventProductSold('Products_sell_back')" class="previous action_button_back" value="Back" />
+                        </fieldset>
+                        <fieldset>
+                            <div class="form_details_wrap">
+                                <div class="form_heading">
+                                    <h2>What do your customers care about?</h2>
+                                    <p>How do they search for your products </p>
+                                </div>
+                            </div>
+                            <div class="customer_wrap impcustomers">
+                                <div class="row">
+                                    <div class="col-md-4 col-sm-4  col-xs-6"  formArrayName="cust_important"
+                                    *ngFor="let item of registerFrmGrp.get('cust_important')?.controls; let i = index;">
+                                        <ng-container [formGroupName]="i">
+                                          <div class="customer_wrapper">
+                                            <div class="select_product_wrapper customerscare">
+                                                <label>
+                                                    <input (change)="next('9'); sendEventCustCareAbout(registerFrmGrp.controls.cust_important.controls[i].controls.name.value)"
+                                                    type="checkbox"  formControlName="isChecked" name="isChecked"
+                                                        value={{registerFrmGrp.controls.cust_important.controls[i].isChecked}} class="card-input-element" />
+                                                    <div class="panel panel-default card-input">
+                                                        <div class="card_wrap">
+                                                            <!-- <div *ngIf="i === 0"> -->
+                                                              <img (error)="def($event, i)"
+                                                              src="{{registerFrmGrp.controls.cust_important.controls[i].controls.image.value}}" />
+                                                              <!-- </div> -->
+                                                         <h2>{{registerFrmGrp.controls.cust_important.controls[i].controls.name.value}}</h2>
+                                                        </div>
+                                                    </div>
+                                                </label>
+                                            </div>
+                                        </div>
+                                        </ng-container>
+                                    </div>
+                                    <!-- <div class="col-md-6 col-lg-4 col-sm-6">
+                                        <div class="customer_wrapper">
+                                            <div class="select_product_wrapper">
+                                                <label>
+                                                    <input type="checkbox" formControlName="customer" name="customer"
+                                                        value="social good" class="card-input-element" />
+                                                    <div class="panel panel-default card-input">
+                                                        <div class="card_wrap">
+                                                            <img class="hover_img" src="assets/images/good_w.png" />
+                                                            <img class="fix_img" src="assets/images/good.png" />
+                                                            <img class="clickImg" src="assets/images/good_w.png" style="display: none;">
+                                                            <h2>Social Goods</h2>
+                                                        </div>
+                                                    </div>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div> -->
+                                    <!-- <div class="col-md-6 col-lg-4 col-sm-6">
+                                        <div class="customer_wrapper">
+                                            <div class="select_product_wrapper">
+                                                <label>
+                                                    <input type="checkbox" formControlName="customer" name="customer"
+                                                        value="made in india" class="card-input-element" />
+                                                    <div class="panel panel-default card-input">
+                                                        <div class="card_wrap">
+                                                            <img class="hover_img"
+                                                                src="assets/images/india_flag_w.png" />
+                                                            <img class="fix_img" src="assets/images/india_flag.png" />
+                                                            <img class="clickImg" src="assets/images/india_flag_w.png" style="display: none;">
+                                                            <h2>Made In India</h2>
+                                                        </div>
+                                                    </div>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div> -->
+                                    <!-- <div class="col-md-6 col-lg-4 col-sm-6">
+                                        <div class="customer_wrapper">
+                                            <div class="select_product_wrapper">
+                                                <label>
+                                                    <input type="checkbox" formControlName="customer" name="customer"
+                                                        value="made locally" class="card-input-element" />
+                                                    <div class="panel panel-default card-input">
+                                                        <div class="card_wrap">
+                                                            <img class="hover_img" src="assets/images/locally_w.png" />
+                                                            <img class="fix_img" src="assets/images/locally.png" />
+                                                            <img class="clickImg" src="assets/images/locally_w.png" style="display: none;">
+                                                            <h2>Made Locally</h2>
+                                                        </div>
+                                                    </div>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div> -->
+                                    <!-- <div class="col-md-6 col-lg-4 col-sm-6">
+                                        <div class="customer_wrapper">
+                                            <div class="select_product_wrapper">
+                                                <label>
+                                                    <input type="checkbox" formControlName="customer" name="customer"
+                                                        value="eco friendly" class="card-input-element" />
+                                                    <div class="panel panel-default card-input">
+                                                        <div class="card_wrap">
+                                                            <img class="hover_img"
+                                                                src="assets/images/eco_friendly_w.png" />
+                                                            <img class="fix_img" src="assets/images/eco_friendly.png" />
+                                                            <img class="clickImg" src="assets/images/eco_friendly_w.png" style="display: none;">
+                                                            <h2>Eco-Friendly</h2>
+                                                        </div>
+                                                    </div>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div> -->
+                                    <!-- <div class="col-md-6 col-lg-4 col-sm-6">
+                                        <div class="customer_wrapper">
+                                            <div class="select_product_wrapper">
+                                                <label>
+                                                    <input type="checkbox" formControlName="customer" name="customer"
+                                                        value="not on amazon" class="card-input-element" />
+                                                    <div class="panel panel-default card-input">
+                                                        <div class="card_wrap">
+                                                            <img class="hover_img"
+                                                                src="assets/images/note_solid_w.png" />
+                                                            <img class="fix_img" src="assets/images/note_solid.png" />
+                                                            <img class="clickImg" src="assets/images/note_solid_w.png" style="display: none;">
+                                                            <h2>Not Sold <br> On Amazon</h2>
+                                                        </div>
+                                                    </div>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div> -->
+                                </div>
+                                <!-- <div *ngIf="submitted && f.customer.errors" class="invalid">
+                                    <div class="validation_tag_center" *ngIf="f.customer.errors.required">
+                                        <p style="color: red;">Atleast one option is required</p>
+                                    </div>
+                                </div> -->
+                                <div *ngIf="custImpErr" class="invalid">
+                                  <div class="validation_tag_checks" style="margin-left: 0px;">
+                                      <p style="color: red;">Atleast one option is required</p>
+                                  </div>
+                              </div>
+                            </div>
+                            <input type="button" name="next"  (click)="next('9'); sendEventCustCareAbout('Cust_CareAbout_Next')" class="next action-button submit scroll_top_data " value="Next" id="9"
+                                (click)="submit()" />
+                            <input type="button" name="previous" (click)="sendEventCustCareAbout('Cust_CareAbout_Back')" class="previous action_button_back" value="Back" />
+                        </fieldset>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+<input type="hidden" id="srcId" value="">
+<input type="hidden" id="srcId1" value="">
+<!-- Modal Section Start Here  -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog congrats_modal_wrap_width" role="document">
+        <div class="modal-content congrats_modal_wrap">
+            <!-- <div type="button" class="close_btn" data-dismiss="modal" aria-label="Close" (click)="goto('/')">
+                <i class="fa fa-times" aria-hidden="true"></i>
+            </div> -->
+            <div class="modal-body ">
+                <div class="congats_logo">
+                    <img src="assets/images/congrats_icon.png" alt="" />
+                </div>
+                <div class="modal_msg">
+                    <h2>Congratulations!!</h2>
+                    <p>You are now live on Lal10. Enjoy the
+                      Lal10 experience</p>
+                    <p><b>A verification link has been sent to your Registered email ID</b></p>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="navigateToHome()">Continue
+                    Shopping</button>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,66 @@
+.invalid {
+  color: red;
+  font-size: 14px;
+}
+/* .card_value_wrap .noProceed button {
+  background-color: #ccc;
+  border: 1px solid rgb( 92, 92, 92 );
+  cursor: not-allowed;
+} */
+.cart_card_wrap .edit_price .qntity_wrap input.editing {
+  border: 1px solid #873f3f;
+  background-color: #fff;
+  margin-right: 0px;
+}
+.discription_wrap textarea.editing {
+  border: 1px solid #873f3f;
+  background-color: #fff;
+  width: calc(100% - 120px);
+}
+.emptyCart {
+  text-align: center;
+  padding: 50px;
+  font-size: 30px;
+}
+.cart_card_wrap .pricing_wrap .qntity_wrap input.liveCartQty {
+  background-color: rgb(255, 255, 255);
+  border: 0px solid #873f3f;
+  cursor: not-allowed;
+}
+.removeEnq {
+  color: #873f3f;
+  font-size: 15px;
+  cursor: pointer;
+  margin-top: 0px;
+  width: 100%;
+  text-align:right;
+}
+.qntity_wrap .edit_price_input_bx {
+  position: relative !important;
+}
+.qntity_wrap .edit_price_input_bx .star_mark_field {
+  position: absolute;
+  right: -5px;
+  top: -15px;
+  font-size: 20px;
+  color: #ff0200;
+}
+.cart_card_wrap .discription_wrap {
+  position: relative !important;
+}
+.cart_card_wrap .discription_wrap .star_mark_field {
+  position: absolute;
+  right: 10px;
+  top: -20px;
+  font-size: 20px;
+  color: #ff0200;
+  /* font-weight: bold; */
+}
+.disableLabel {
+  color: #70707096 !important;
+  cursor: not-allowed !important;
+}
+/*
+.cart_card_wrap .product_card, .product_card_new_cart {
+  height: auto !important;
+} */

@@ -1,0 +1,451 @@
+<!-- All Producr Section Start Here -->
+<!-- <div class="middle_contant_wrap clearfix"> -->
+  <div class="trackdata">Home / Bags & Handbags / Live Shop</div>
+  <div class="filter_wrap_left destkop_view_filter">
+    <div class="filter_wrap_left_panel">
+      <div class="filtermobilebtn">Filters <i aria-hidden="true" class="fa fa-angle-down"></i></div>
+      <div class="filterslides">
+      <div class="row">
+        <div class="col-md-6">
+          <div class="filterText"><span>Filters</span></div>
+        </div>
+        <div class="col-md-6">
+          <div class="clearFilter" (click)="clearAllFilter()"
+          *ngIf="subcategoryIdFilter.length || craftFilter.length || materialFilter.length ||
+          priceFilter[0] !== 0 || priceFilter[1] !== 100000"><span>CLEAR ALL</span></div>
+        </div>
+      </div>
+      <ul class="clearfix">
+        <li>
+          <div class="engagedwrapbx engaged_tablewrap clearfix">
+            <div class="specific_item clearfix">
+              <div class="panel-group" id="accordion">
+                <div class="panel">
+                  <div (click)="sendEvent('Cat_Filter_sub-category', '')" class="collapse_icon collapsed" id="subCatTrigger" data-toggle="collapse" data-parent="#accordion" href="#pro1"> Sub
+                    Categories
+                    <i class="fa fa-angle-up" aria-hidden="true"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div id="pro1" class="panel-collapse collapse collpase_data_wrap">
+              <div class="panel-body">
+                <div class="collapse_bx_cont">
+                  <div class="filter_data_search">
+                    <input type="text" (input)="searchSubCat($event)" class="form-control" placeholder="Search sub category">
+                    <i class="fa fa-search" aria-hidden="true"></i>
+                  </div>
+                  <div class="check_bx_wrap clearfix">
+                    <div class="form-group" *ngFor="let item of sortedSubCatArr; let i = index">
+                      <input type="checkbox" [checked]="item.id === subCategoryId" (change)="filterSubCategory($event, item.id)" id="option_1{{i}}" />
+                      <label for="option_1{{i}}"> <span> {{item.title}} </span></label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </li>
+        <li>
+          <div class="engagedwrapbx engaged_tablewrap clearfix">
+            <div class="specific_item  clearfix">
+              <div class="delete_collapse_cont clearfix">
+                <div class="panel-group" id="accordion">
+                  <div class="panel">
+                    <div (click)="sendEvent('Cat_Filter_craft', '')" class="collapse_icon collapsed" data-toggle="collapse" data-parent="#accordion" href="#pro2">
+                      Crafts
+                      <i class="fa fa-angle-up" aria-hidden="true"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div id="pro2" class="panel-collapse collapse collpase_data_wrap">
+              <div class="panel-body">
+                <div class="collapse_bx_cont">
+                  <div class="filter_data_search">
+                    <input type="text" (input)="searchCraft($event)" class="form-control" placeholder="Search Crafts">
+                    <i class="fa fa-search" aria-hidden="true"></i>
+                  </div>
+                  <div class="check_bx_wrap">
+                    <div class="form-group" *ngFor="let item of sortedCraftListArr; let i = index">
+                      <input type="checkbox" (change)="filterCraft($event, item.id)" id="optionCraft_1{{i}}" />
+                      <label for="optionCraft_1{{i}}"><span>{{item.title}}</span></label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </li>
+        <li>
+          <div class="engagedwrapbx engaged_tablewrap clearfix">
+            <div class="specific_item clearfix">
+              <div class="delete_collapse_cont clearfix">
+                <div class="panel-group" id="accordion">
+                  <div class="panel">
+                    <div (click)="sendEvent('Cat_Filter_material', '')" class="collapse_icon collapsed" data-toggle="collapse" data-parent="#accordion" href="#pro3">
+                      Material
+                      <i class="fa fa-angle-up" aria-hidden="true"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div id="pro3" class="panel-collapse collapse collpase_data_wrap">
+              <div class="panel-body">
+                <div class="collapse_bx_cont">
+                  <div class="filter_data_search">
+                    <input type="text" (input)="searchMaterial($event)" class="form-control" placeholder="Search Material">
+                    <i class="fa fa-search" aria-hidden="true"></i>
+                  </div>
+                  <div class="check_bx_wrap">
+                    <div class="form-group" *ngFor="let item of sortedMaterialListArr; let i = index">
+                      <input type="checkbox" (change)="filterMaterial($event, item.id)" id="optionMat_1{{i}}" />
+                      <label for="optionMat_1{{i}}"><span>{{item.title}}</span> </label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </li>
+        <li>
+          <div class="engagedwrapbx engaged_tablewrap clearfix">
+            <div class="specific_item clearfix">
+
+              <div class="panel-group" id="accordion">
+                <div class="panel">
+                  <div (click)="sendEvent('Cat_Filter_price', '')" class="collapse_icon collapsed" data-toggle="collapse" data-parent="#accordion" href="#pro4">
+                    Price
+                    <i class="fa fa-angle-up" aria-hidden="true"></i>
+                  </div>
+
+                </div>
+              </div>
+
+            </div>
+            <div id="pro4" class="panel-collapse collapse">
+
+              <div class="price_ranger_wrap">
+
+                <div class="selector">
+                  <div class="price-slider">
+                    <!-- <div id="slider-range"
+                      class="ui-slider ui-corner-all ui-slider-horizontal ui-widget ui-widget-content">
+                      <div class="ui-slider-range ui-corner-all ui-widget-header"></div>
+                      <span tabindex="0" class="ui-slider-handle ui-corner-all ui-state-default"></span><span
+                        tabindex="0" class="ui-slider-handle ui-corner-all ui-state-default"></span>
+                    </div>
+                    <span id="min-price" data-currency="Rs." class="slider-price">Rs.200</span><span id="max-price"
+                      data-currency="Rs." data-max="3500" class="slider-price">Rs. 500 </span> -->
+                      <ng5-slider (userChangeEnd)="sliderPriceChagne(value, highValue)" [(value)]="value" [(highValue)]="highValue" [options]="options"></ng5-slider>
+                  </div>
+                </div>
+
+              </div>
+
+            </div>
+          </div>
+        </li>
+      </ul>
+      </div>
+    </div>
+  </div>
+  <div class="product_detail_wrap_right">
+    <div class="banner_all_products" *ngIf="banner">
+      <img [defaultImage]="defaultBanner" [lazyLoad]="banner.banner">
+    </div>
+    <div class="product_items_wrap">
+          <div class="new_arrive_cont" *ngIf="banner">
+            <h2>{{banner.title}}</h2>
+            <p>Fresh new arrival in {{banner.title}}</p>
+          </div>
+      <div class="seprator_div_all_prducts"></div>
+      <div class="product_card_wrap">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="tab_data_wapper allproductswrap">
+              <div class="tabbable-panel">
+                <div class="tabbable-line">
+                  <div class="filter_wrap_left mobile_id_wrap">
+                    <div class="filter_wrap_left_panel">
+                      <div class="filtermobilebtn">Filters <i aria-hidden="true" class="fa fa-angle-down"></i></div>
+                      <div class="filterslides">
+                      <div class="row">
+                        <div class="col-md-6">
+                          <div class="filterText"><span>Filters</span></div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="clearFilter" (click)="clearAllFilter()"
+                          *ngIf="subcategoryIdFilter.length || craftFilter.length || materialFilter.length ||
+                          priceFilter[0] !== 0 || priceFilter[1] !== 100000"><span>CLEAR ALL</span></div>
+                        </div>
+                      </div>
+                      <ul class="clearfix">
+                        <li>
+                          <div class="engagedwrapbx engaged_tablewrap clearfix">
+                            <div class="specific_item clearfix">
+                              <div class="panel-group" id="accordion">
+                                <div class="panel">
+                                  <div (click)="sendEvent('Cat_Filter_sub-category', '')" class="collapse_icon collapsed" id="subCatTrigger" data-toggle="collapse" data-parent="#accordion" href="#prom1"> Sub
+                                    Categories
+                                    <i class="fa fa-angle-up" aria-hidden="true"></i>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <div id="prom1" class="panel-collapse collapse collpase_data_wrap">
+                              <div class="panel-body">
+                                <div class="collapse_bx_cont">
+                                  <div class="filter_data_search">
+                                    <input type="text" (input)="searchSubCat($event)" class="form-control" placeholder="Search sub category">
+                                    <i class="fa fa-search" aria-hidden="true"></i>
+                                  </div>
+                                  <div class="check_bx_wrap clearfix">
+                                    <div class="form-group" *ngFor="let item of sortedSubCatArr; let i = index">
+                                      <input type="checkbox" [checked]="item.id === subCategoryId" (change)="filterSubCategory($event, item.id)" id="option_1m{{i}}" />
+                                      <label for="option_1m{{i}}"><span>{{item.title}}</span></label>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </li>
+                        <li>
+                          <div class="engagedwrapbx engaged_tablewrap clearfix">
+                            <div class="specific_item  clearfix">
+                              <div class="delete_collapse_cont clearfix">
+                                <div class="panel-group" id="accordion">
+                                  <div class="panel">
+                                    <div (click)="sendEvent('Cat_Filter_craft', '')" class="collapse_icon collapsed" data-toggle="collapse" data-parent="#accordion" href="#prom2">
+                                      Crafts
+                                      <i class="fa fa-angle-up" aria-hidden="true"></i>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <div id="prom2" class="panel-collapse collapse collpase_data_wrap">
+                              <div class="panel-body">
+                                <div class="collapse_bx_cont">
+                                  <div class="filter_data_search">
+                                    <input type="text" (input)="searchCraft($event)" class="form-control" placeholder="Search Crafts">
+                                    <i class="fa fa-search" aria-hidden="true"></i>
+                                  </div>
+                                  <div class="check_bx_wrap">
+                                    <div class="form-group" *ngFor="let item of sortedCraftListArr; let i = index">
+                                      <input type="checkbox" (change)="filterCraft($event, item.id)" id="optionCraft_1m{{i}}" />
+                                      <label for="optionCraft_1m{{i}}"><span>{{item.title}}</span></label>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </li>
+                        <li>
+                          <div class="engagedwrapbx engaged_tablewrap clearfix">
+                            <div class="specific_item clearfix">
+                              <div class="delete_collapse_cont clearfix">
+                                <div class="panel-group" id="accordion">
+                                  <div class="panel">
+                                    <div (click)="sendEvent('Cat_Filter_material', '')" class="collapse_icon collapsed" data-toggle="collapse" data-parent="#accordion" href="#prom3">
+                                      Material
+                                      <i class="fa fa-angle-up" aria-hidden="true"></i>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <div id="prom3" class="panel-collapse collapse collpase_data_wrap">
+                              <div class="panel-body">
+                                <div class="collapse_bx_cont">
+                                  <div class="filter_data_search">
+                                    <input type="text" (input)="searchMaterial($event)" class="form-control" placeholder="Search Material">
+                                    <i class="fa fa-search" aria-hidden="true"></i>
+                                  </div>
+                                  <div class="check_bx_wrap">
+                                    <div class="form-group" *ngFor="let item of sortedMaterialListArr; let i = index">
+                                      <input type="checkbox" (change)="filterMaterial($event, item.id)" id="optionMat_1m{{i}}" />
+                                      <label for="optionMat_1m{{i}}"><span>{{item.title}}</span></label>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </li>
+                        <li>
+                          <div class="engagedwrapbx engaged_tablewrap clearfix">
+                            <div class="specific_item clearfix">
+
+                              <div class="panel-group" id="accordion">
+                                <div class="panel">
+                                  <div (click)="sendEvent('Cat_Filter_price', '')" class="collapse_icon collapsed" data-toggle="collapse" data-parent="#accordion" href="#prom4">
+                                    Price
+                                    <i class="fa fa-angle-up" aria-hidden="true"></i>
+                                  </div>
+
+                                </div>
+                              </div>
+
+                            </div>
+                            <div id="prom4" class="panel-collapse collapse">
+                              <div class="price_ranger_wrap">
+                                   <div class="selector">
+                                  <div class="price-slider">
+                                    <!-- <div id="slider-range"
+                                      class="ui-slider ui-corner-all ui-slider-horizontal ui-widget ui-widget-content">
+                                      <div class="ui-slider-range ui-corner-all ui-widget-header"></div>
+                                      <span tabindex="0" class="ui-slider-handle ui-corner-all ui-state-default"></span><span
+                                        tabindex="0" class="ui-slider-handle ui-corner-all ui-state-default"></span>
+                                    </div>
+                                    <span id="min-price" data-currency="Rs." class="slider-price">Rs.200</span><span id="max-price"
+                                      data-currency="Rs." data-max="3500" class="slider-price">Rs. 500 </span> -->
+                                      <ng5-slider (userChangeEnd)="sliderPriceChagne(value, highValue)" [(value)]="value" [(highValue)]="highValue" [options]="options"></ng5-slider>
+                                  </div>
+                                </div>
+
+                              </div>
+
+                            </div>
+                          </div>
+                        </li>
+                      </ul>
+                      </div>
+                    </div>
+                  </div>
+                 <div class="sortbyrow for_mobile_sort" *ngIf="liveProductFlag">
+                    <!-- <div class="sortbyview">Sort by:</div> -->
+                    <div class="sort_data_drop">
+                      <!-- <div class="common_input_warp">
+                        <div class="form-group">
+                          <div class="select_wrapper">
+                            <select (change)="selectSortBy($event.target.value)" class="form-control classic">
+
+                              <option value="1">Price : Low to High</option>
+                              <option value="2">Price : High to Low</option>
+                            </select>
+                          </div>
+                        </div>
+                      </div> -->
+                      <div class="custom_dropdown">
+                        <div class="sortbyview">Sort by:</div>
+                      <div class="drop-down">
+                        <div class="selected">
+                          <a href="javascript:void(0);"><span>Price : Low to High</span></a>
+                        </div>
+                        <div class="options">
+                          <ul>
+                            <li (click)="selectSortBy('1'); sendEvent('Filter_low_to_high','')"><a href="javascript:void(0);">Price : Low to High</a></li>
+                            <li (click)="selectSortBy('2'); sendEvent('Filter_high_to_low','')"><a href="javascript:void(0);">Price : High to Low</a></li>
+                               </ul>
+                        </div>
+                      </div>
+                    </div>
+                    </div>
+                </div>
+                  <ul class="nav nav-tabs ">
+                    <li class="active">
+                      <a href="#tab_default_2" data-toggle="tab" (click)="toggleLive('nonlive')">
+                        Make-to-Order</a>
+                    </li>
+                    <li class="">
+                      <a href="#tab_default_1" data-toggle="tab" (click)="toggleLive('live')">
+                        SHOP</a>
+                    </li>
+                   
+                  </ul>
+                  <div class="sortbyrow for_desktop_sort " *ngIf="liveProductFlag">
+                    <!-- <div class="sortbyview">Sort by:</div> -->
+                    <div class="sort_data_drop">
+                      <!-- <div class="common_input_warp">
+                        <div class="form-group">
+                          <div class="select_wrapper">
+                            <select (change)="selectSortBy($event.target.value)" class="form-control classic">
+
+                              <option value="1">Price : Low to High</option>
+                              <option value="2">Price : High to Low</option>
+                            </select>
+                          </div>
+                        </div>
+                      </div> -->
+                      <div class="custom_dropdown">
+                        <div class="sortbyview">Sort by:</div>
+                      <div class="drop-down">
+                        <div class="selected">
+                          <a href="javascript:void(0);"><span>Price : Low to High</span></a>
+                        </div>
+                        <div class="options">
+                          <ul>
+                            <li (click)="selectSortBy('1'); sendEvent('Filter_low_to_high','')"><a href="javascript:void(0);">Price : Low to High</a></li>
+                            <li (click)="selectSortBy('2'); sendEvent('Filter_high_to_low','')"><a href="javascript:void(0);">Price : High to Low</a></li>
+                               </ul>
+                        </div>
+                      </div>
+                    </div>
+                    </div>
+                   </div>
+                  <div class="tab-content">
+                    <div class="tab-pane " id="tab_default_1" infiniteScroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="50" (scrolled)="onScrollLive()" *ngIf="liveProductFlag">
+                      <div class="product_item_wrapper clearfix">
+                        <div class="product_item_wrap" *ngFor="let item of liveProductArr">
+                          <div class="product_item_card" (click)="navigateto('products/detail', 'Click_card', item)">
+                            <div class="item_image">
+                              <img [defaultImage]="defaultImage" [lazyLoad]="item.image">
+                            </div>
+                            <div class="price_details_wrap">
+                              <h4>LAL10</h4>
+                            <div class="procardnm">{{item.name}}</div>
+                            <p> <span>₹</span> {{item.amount}}</p>
+                          </div>
+                          </div>
+                        </div>
+                        <ng-container *ngIf="showLoader">
+                          <img src="assets/images/Rolling-1s-51px.gif" class="loaderCenter">
+                        </ng-container>
+                        <div class="no_data_found_div" *ngIf="liveProductArr && liveProductArr.length === 0">
+                          No products found
+                        </div>
+                      </div>
+
+                    </div>
+                    <div class="tab-pane active" id="tab_default_2" infiniteScroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="50" (scrolled)="onScrollLive()" *ngIf="!liveProductFlag">
+                      <div class="product_item_wrapper clearfix">
+                        <div class="product_item_wrap" *ngFor="let item of nonLiveProductArr">
+                          <div class="product_item_card" (click)="navigateto('products/detail', 'Click_card', item)">
+                            <div class="item_image">
+                              <img [defaultImage]="defaultImage" [lazyLoad]="item.image">
+                            </div>
+                            <div class="price_details_wrap">
+                              <!-- <h4>LAL10</h4> -->
+                            <h2>{{item.name}}</h2>
+                            <!-- <p> <span>₹</span> {{item.amount}}</p> -->
+                          </div>
+                          </div>
+                        </div>
+                        <ng-container *ngIf="showLoader">
+                          <img src="assets/images/Rolling-1s-51px.gif" class="loaderCenter">
+                        </ng-container>
+                        <div class="no_data_found_div" *ngIf="nonLiveProductArr && nonLiveProductArr.length === 0">
+                          No products found
+                        </div>
+
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+<!-- </div> -->
+<!-- All Producr Section End Here -->

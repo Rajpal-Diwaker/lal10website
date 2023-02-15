@@ -1,0 +1,89 @@
+
+.filtermobilebtn{
+  position: relative;
+  padding: 12px 15px;
+  color: #555;
+  background-color: #fff;
+  box-shadow: 0 0 0 rgba(0,0,0,0.1);
+  transition: .3s ease-in-out;
+  display: none;
+}
+.filtermobilebtn .fa {
+  position: absolute;
+  font-size: 22px;
+  right: 25px;
+  top: 10px;
+  color: #873f3fc2;
+  transition: .3s ease-in-out;
+}
+.filtermobilebtn.active .fa{
+  -webkit-transform: rotate(180deg);
+  transform: rotate(180deg);
+}
+.filterText span{
+  font-family: GothamSSmBook;
+  font-size: 16px;
+  padding: 0 20px 0 0;
+  color: #777;
+  text-transform: uppercase;
+}
+.clearFilter span{
+  font-size: 11.5px;
+  /* padding: 0 20px 0 0; */
+  color:#873f3f;
+  /* text-align: right !important; */
+  float: right;
+  cursor: pointer;
+  font-weight: bold;
+  margin-top: 4px;
+}
+.filterText{
+  margin-bottom: 8px;
+}
+.collapse_icon{
+  cursor: pointer;
+}
+.loaderCenter {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+
+@media only screen and (max-width: 991px) {
+  .custom_dropdown .drop-down{
+    top: 10px;
+  }
+  .custom_dropdown .drop-down .options ul{
+    left: 0px;
+  }
+ }
+@media only screen and (max-width: 767px) {
+.clearFilter span{
+  margin-bottom: 10px;
+}
+.filterText{
+  display: none !important;
+}
+.clearFilter{
+  padding-top: 10px;
+}
+.filtermobilebtn{
+  display: block;
+}
+.filterslides{
+  display: none;
+}
+.custom_dropdown .drop-down{
+  top: 5px;
+}
+.custom_dropdown .drop-down .options ul{
+  left: 0px;
+  width: 100%;
+}
+.custom_dropdown{
+   margin-bottom: 50px;
+}
+
+}
+

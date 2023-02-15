@@ -1,0 +1,84 @@
+.nav_menu_top{
+    margin-top: 4px;
+}
+.nav_menu_top .navbar-nav > li > a{
+    font-family: 'GothamSSmLight';
+    font-size: 16px;
+    padding: 8px 0;
+    color: #414040;
+    margin-left: 20px;
+}
+.nav_menu_top .navbar-nav > li > a .fa {
+    font-size: 18px;
+    padding: 0 5px;
+}
+.nav_menu_top .navbar-nav > li > a:first-child a {
+    margin-left: 0;
+}
+.nav_menu_top .navbar-nav > li > a .cart_icon_wrap {
+    position: relative;
+}
+.nav_menu_top .navbar-nav > li > a .cart_icon_wrap .cart_number_bx {
+    position: absolute;
+    top: -16px;
+    right: -5px;
+    width: 18px;
+    height: 18px;
+    font-size: 10px;
+    line-height: 18px;
+    border-radius: 100%;
+    text-align: center;
+    color: #ffff;
+    cursor: pointer;
+    background-color: #873F3F;
+}
+.nav_menu_top .navbar-nav > li > a:after {
+    background: none repeat scroll 0 0 transparent;
+    bottom: 3px;
+    content: "";
+    display: block;
+    height: 2px;
+    left: 50%;
+    position: absolute;
+    background: rgb(135 63 63);
+    transition: width 0.3s ease 0s, left 0.3s ease 0s;
+    width: 0;
+}
+.nav_menu_top .navbar-nav > li > a:hover:after {
+    width: 100%;
+    left: 0;
+}
+@media only screen and (max-width: 1600px) {
+    .nav_menu_top .navbar-nav > li > a{
+        font-size: 14px;
+    }
+}
+@media only screen and (max-width: 1023px) {
+.nav_menu_top .navbar-nav > li > a {
+    font-size: 13px;
+    margin-right: 5px;
+    margin-top: 2px;
+}
+.navbar-right{
+    margin-right: 0;
+}
+}
+
+@media only screen and (max-width: 767px) {
+.nav_menu_top .navbar-nav > li > a {
+    font-size: 12px !important;
+    padding: 8px 4px;
+}
+.navbar-right{
+    margin-right: 0;
+}
+}
+@media only screen and (max-width: 359px) {
+.header_wrap .navbar-brand {
+    left: 46px;
+}
+.nav_menu_top .navbar-nav > li > a {
+    font-size: 11px !important;
+    padding: 8px 2px;
+}
+}

@@ -1,0 +1,133 @@
+<!-- Careers Section Start Here -->
+<div class="careers_wrap clearfix">
+  <h2 id="topOp">Careers</h2>
+  <div class="row">
+      <div class="col-md-12">
+          <div class="job_details_wrap">
+              <h2>Opening</h2>
+              <ul>
+                  <li class="clearfix" *ngFor="let item of careerArr">
+                      <div class="job_wrap clearfix ">
+                          <div class="job_heading_wrap">
+                              <h3>{{item.title}}</h3>
+                          </div>
+                          <div class="job_contant_wrap clearfix">
+                              <p>{{item.description}}
+                              </p>
+                              <div class="cont_button_wrap clearfix">
+                              <div class="continue_details_job"><span>Position : {{item.position}}</span> <span class="divderojob"></span>
+                                <span>  Total Opening :{{item.totalOpening}}</span></div>
+                              <div class="continue_details_btn"><button class="button"
+                                      (click)="checkDetails(item)"> Check Details </button>
+                               </div>
+                          </div>  
+                        </div>
+                      </div>
+                  </li>
+              </ul>
+          </div>
+      </div>
+    </div>
+  <div class="row" id="jobDiscrip">
+      <ng-container *ngIf="selectedJob">
+        <div class="col-md-12">
+          <div class="job_details_wrap">
+              <!-- <h2>Job Description</h2> -->
+              <ul>
+                  <li class="send_form_wrap">
+                      <div class="job_wrap ">
+                          <div class="job_heading_wrap">
+                              <h3>{{selectedJob.title}}</h3>
+                          </div>
+                          <div class="job_contant_wrap ">
+                              <p>{{selectedJob.description}}
+                              </p>
+                          <div class="cont_button_wrap clearfix">
+                                  <div class="continue_details_job"><span>Position : {{selectedJob.position}}</span><span class="divderojob"></span>
+                                    <span>  Total Opening :{{selectedJob.totalOpening}}</span></div>
+                                 
+                              </div> 
+                              
+                          </div>
+                        <div class="row clearfix">
+                        <div class="col-md-8">
+                          <div class="apply_form_wrap enquary_details_wrap descriptionjob">
+                              <h2>Fill this form and send</h2>
+                              <div [formGroup]="careerForm" class="common_input_warp">
+                                  <div class="form-group">
+
+                                      <div _ngcontent-wss-c10="" class="star_mark_field">*</div>
+                                      <input type="text" class="form-control" placeholder="Full Name" formControlName="name"
+                                      onkeypress='return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode == 32))'>
+                                      <ng-container *ngIf="submitted && f.name.errors">
+                                        <div class="error" *ngIf="f.name.errors.required">Name is required</div>
+                                        <div class="error" *ngIf="!f.name.errors.required && f.name.errors.pattern">Please enter valid name</div>
+                                      </ng-container>
+                                  </div>
+                                  <div class="form-group">
+                                      <div _ngcontent-wss-c10="" class="star_mark_field">*</div>
+                                      <input (keypress)="numberOnly($event)" type="text" class="form-control" placeholder="Phone No." formControlName="mobile">
+                                      <ng-container *ngIf="submitted && f.mobile.errors">
+                                        <div class="error" *ngIf="f.mobile.errors.required">Phone no. is required</div>
+                                        <div class="error" *ngIf="!f.mobile.errors.required && f.mobile.errors.pattern">Please enter valid phone no.</div>
+                                      </ng-container>
+                                  </div>
+                                  <div class="form-group">
+
+                                      <div _ngcontent-wss-c10="" class="star_mark_field">*</div>
+                                      <input type="text" class="form-control" placeholder="Email" formControlName="email">
+                                      <ng-container *ngIf="submitted && f.email.errors">
+                                        <div class="error" *ngIf="f.email.errors.required">Email is required</div>
+                                        <div class="error" *ngIf="!f.email.errors.required && f.email.errors.pattern">Please enter valid email</div>
+                                      </ng-container>
+                                  </div>
+
+                                  <div class="form-group">
+
+                                      <div _ngcontent-wss-c10="" class="star_mark_field">*</div>
+                                      <input type="text" class="form-control" placeholder="Subject" formControlName="subject">
+                                      <ng-container *ngIf="submitted && f.subject.errors">
+                                        <div class="error" *ngIf="f.subject.errors.required">Subject is required</div>
+                                        <!-- <div class="error" *ngIf="!f.email.errors.required && f.email.errors.pattern">Please enter valid email</div> -->
+                                      </ng-container>
+                                  </div>
+                                  <div class="form-group">
+
+                                      <div _ngcontent-wss-c10="" class="star_mark_field">*</div>
+                                      <textarea class="form-control" placeholder="Write" formControlName="write" cols="30"
+                                          rows="10"></textarea>
+                                          <ng-container *ngIf="submitted && f.write.errors">
+                                            <div class="error" *ngIf="f.write.errors.required">This field is required</div>
+                                            <!-- <div class="error" *ngIf="!f.email.errors.required && f.email.errors.pattern">Please enter valid email</div> -->
+                                          </ng-container>
+                                  </div>
+                                  <div class="form-group file_upload_wrap">
+                                      <input class="form-control " id="docuument_upaod" (change)="onImageSelect($event)"
+                                          placeholder="Confirm Password" type="file">
+                                      <div class="input_lbl"><label for="docuument_upaod"><img _ alt=""
+                                                  src="assets/images/upoad_icon.png"> Upload file</label></div>
+                                                  <div class="imageName" *ngFor="let item of selectedImageFileName; let i = index">
+                                                    <p>{{item.fileName}}</p>
+                                                    <i (click)="removeSelectedImageFile(i)" class="fa fa-times" aria-hidden="true"></i>
+                                                 </div>
+
+                                  </div>
+                                  <button (click)="submit()">Submit</button>
+                              </div>
+                          </div>
+                        </div>
+                    </div>
+                    </div>
+                  </li>
+              </ul>
+          </div>
+      </div>    
+      </ng-container>
+   </div>
+   <div class="laltenhr">
+   <p> Don't find what you are looking for? </p>
+   <p>Drop a mail at <span>hr@lal10.com</span></p>
+  </div>
+   </div>
+  
+<!-- Careers Section End Here -->

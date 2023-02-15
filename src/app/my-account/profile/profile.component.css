@@ -1,0 +1,12 @@
+.noEdit .form-group .form-control {
+  background-color: #ededed;
+  border: 1px solid #ededed;
+}
+.edit .form-group .form-control {
+  border: 1px solid #fff;
+  background-color: #fff;
+}
+.strictNoEdit {
+  background-color: #ededed !important;
+  border: 1px solid #ededed !important;
+}

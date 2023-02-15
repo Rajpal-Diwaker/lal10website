@@ -1,0 +1,63 @@
+<!-- Blog Section Start Here -->
+<div class="blog_blog_wrap">
+    <div class="row">
+        <div class="blog_heading mobileblog clearfix">
+            <h4>Blogs</h4>
+            <div class="contact_us_form">
+                <div class="common_input_warp">
+                    <div class="form-group">
+                        <input type="text" class="form-control" (input)="searchBlogs($event)" placeholder="Search..." value="" />
+                        <i class="fa fa-search" aria-hidden="true"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 col-sm-4 blogrightdction">
+            <div class="trending_blog_card blog_listing_tranding">
+                <div class="tranding_heading">
+                    <h2>Trending Blogs</h2>
+                </div>
+                <div class="blog_card" *ngFor="let item of tendingBlogsArr">
+                    <div class="trandingnlogimg">
+                    <img (click)="openBlogs(item.link)" [defaultImage]="defaultImage" [lazyLoad]="item.image">
+                    </div>
+                    <div class="blog_contat_card">
+                        <h2>{{item.title}}</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-8 col-sm-8 bdr_cart_left">
+            <div class="blog_listing_wrap">
+                <div class="full_blog_wrap">
+                    <div class="blog_heading  clearfix">
+                        <h4>Blogs</h4>
+                        <div class="contact_us_form desktopblog">
+                            <div class="common_input_warp">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" (input)="searchBlogs($event)" placeholder="Search..." value="" />
+                                    <i class="fa fa-search" aria-hidden="true"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="full_blog_list_wrap" *ngFor="let item of sortedBlogsArr">
+                        <div class="blog_image_wrap">
+                            <img [defaultImage]="defaultImage" [lazyLoad]="item.image ? item.image : defaultImage" />
+                        </div>
+                        <div class="blog_heading">
+                            <h2>{{item.title ? item.title : ''}}</h2>
+                            <p><span>{{item.createdAt | date: 'fullDate'}}</span> | <span> {{item.createdAt | date: 'shortTime'}}</span></p>
+                            <button (click)="openBlogs(item.link)">Read More >></button>
+                        </div>
+                    </div>
+                    <div *ngIf="sortedBlogsArr && !sortedBlogsArr.length">
+                      No blogs
+                    </div>
+                </div>
+            </div>
+        </div>
+      
+    </div>
+</div>
+<!-- Blog Section End Here -->

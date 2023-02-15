@@ -1,0 +1,75 @@
+<!--Payment Section Start Here -->
+<div class="payment_menthod_wrap">
+<div class="my_cart_wrap">
+    <section>
+        <div class="row">
+            <div class="col-md-12 col-sm-12">
+                <div class="cart_card_wrap">
+                    <h2>Payment Method</h2>
+                <ul>
+                       <li *ngFor="let item of paymentMethodArr">
+                        <div class="custom_radio_btn payment_card_wrap">
+                            <input (click)="paymentSelected=item.value; handlePaymentSendEvent(item.id)" type="radio" name="value" id="my-check{{item.id}}" />
+                            <label for="my-check{{item.id}}">
+                                <div style="cursor: pointer;">
+                                  <div class="address_content_wrap">
+                                    <h2>{{item.title}}</h2>
+                               </div>
+                               <span>{{item.description}}</span></div>
+                            </label>
+                            <!-- <div class="google_pay_img"><img src="assets/images/google_pay.png" alt=""></div> -->
+                          </div>
+                       </li>
+
+                     </ul>
+                   </div>
+                </div>
+           <div class="col-md-12 col-sm-12">
+             <div class="payment_wrap_cont_btn">
+            <div class="shipping_continue_wrap">
+            <div class="shipping_continue">
+              <button [routerLink]="['/cart']" [queryParams]="{review: ids | json}">REVIEW ORDER</button>  <button (click)="checkInventory()">Continue</button>
+            </div>
+            <label class="error_field_wrap" for=""><span class="error" *ngIf="continue && !paymentSelected">Please select payment method</span></label>
+            </div>
+          </div>
+           </div>
+        </div>
+    </section>
+
+</div>
+</div>
+<!-- <div class="continure_second_wrap">
+  <button (click)="checkInventory()">Continue</button>
+  <label class="error_field_wrap" for=""><span class="error" *ngIf="continue && !paymentSelected">Please select payment method</span></label>
+</div> -->
+<!-- Payment Section End Here -->
+
+
+<!-- Order placed Section Start Here  -->
+<div class="modal fade" id="placed_order" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true"
+data-backdrop="static" data-keyboard="false">
+  <div class="modal-dialog congrats_modal_wrap_width" role="document">
+    <div class="modal-content congrats_modal_wrap">
+    <!-- <div type="button" class="close_btn" data-dismiss="modal" aria-label="Close">
+       <i class="fa fa-times" aria-hidden="true"></i>
+        </div> -->
+      <div class="modal-body ">
+     <div class="congats_logo">
+           <img src="assets/images/congrats_icon.png" alt="" />
+      </div>
+      <div class="modal_msg">
+      <h2>Congratulation Order Placed</h2>
+        <p>Order ID: {{orderId}} | Transaction ID: {{transactionId}}</p>
+      <p id="orderplaced">Thank you for placing your order with us. You can track your
+        order status on ‘My Orders’ section in your account</p>
+      </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" (click)="redirectLogic()" data-dismiss="modal">Continue Shopping</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!--Order placed Section End Here  -->
+
